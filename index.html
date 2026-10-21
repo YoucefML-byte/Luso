@@ -320,6 +320,9 @@
 <script>
 (function () {
   var CONTACT_EMAIL = "youcefmlpro@gmail.com";
+  // Clé d'accès Web3Forms (web3forms.com) : les demandes arrivent par email même sur GitHub Pages.
+  // Cette clé est publique par conception. Laissée vide, le formulaire passe par contact.php.
+  var WEB3FORMS_KEY = "";
 
   // Menu mobile
   var toggle = document.getElementById("menu-toggle");
@@ -410,15 +413,30 @@
       return;
     }
     var data = new FormData(form);
-    data.set("elapsed", String(Date.now() - loadedAt));
+    var url = form.getAttribute("action");
+    if (WEB3FORMS_KEY) {
+      // Champ piège rempli ou envoi trop rapide : un robot, on fait comme si tout allait bien.
+      if (data.get("website") || Date.now() - loadedAt < 2500) {
+        form.reset();
+        showStatus("success", "<b>Merci, votre demande est bien partie.</b> On vous répond sous 24&nbsp;h ouvrées.");
+        return;
+      }
+      url = "https://api.web3forms.com/submit";
+      data.delete("website");
+      data.set("access_key", WEB3FORMS_KEY);
+      data.set("subject", "Demande de devis : " + data.get("project") + " (" + data.get("name") + ")");
+      data.set("from_name", "Site Luso");
+    } else {
+      data.set("elapsed", String(Date.now() - loadedAt));
+    }
     submitBtn.disabled = true;
     submitBtn.textContent = "Envoi en cours…";
     showStatus("info", "");
 
-    fetch(form.getAttribute("action"), { method: "POST", body: data, headers: { Accept: "application/json" } })
+    fetch(url, { method: "POST", body: data, headers: { Accept: "application/json" } })
       .then(function (res) {
         return res.json().catch(function () { return {}; }).then(function (json) {
-          if (!res.ok || !json.ok) throw new Error(json.message || "HTTP " + res.status);
+          if (!res.ok || !(json.ok || json.success)) throw new Error(json.message || "HTTP " + res.status);
         });
       })
       .then(function () {
