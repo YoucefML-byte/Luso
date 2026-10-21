@@ -1,6 +1,6 @@
 # Luso — site de l'agence
 
-Site de l'agence Luso, création de sites web et d'applications : services, démos, méthode, formules, FAQ et formulaire de devis.
+Site de l'agence Luso, création de sites web et d'applications : réalisations, méthode, offres, FAQ et formulaire de devis. Page unique, pensée d'abord pour le mobile, avec un bouton de devis collant en bas d'écran sur téléphone.
 
 Site statique (HTML, CSS, JavaScript), sans cookie ni service tiers : les polices sont hébergées dans `assets/fonts/`.
 
@@ -15,6 +15,7 @@ Site statique (HTML, CSS, JavaScript), sans cookie ni service tiers : les police
 | `confidentialite.html` | Politique de confidentialité (RGPD) |
 | `contact.php` | Envoi des demandes de devis par email (hébergement PHP uniquement) |
 | `assets/styles.css` | Styles communs |
+| `assets/img/` | Captures des démos Citrine affichées sur l'accueil (à régénérer si les démos changent) |
 
 ## Mise en ligne avec GitHub Pages
 

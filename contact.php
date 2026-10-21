@@ -21,7 +21,7 @@ const FROM_EMAIL = 'no-reply@luso.fr';
 const FROM_NAME = 'Site Luso';
 
 // Valeurs autorisées (identiques à celles du formulaire).
-const PROJECTS = ['Site vitrine', 'Boutique en ligne', 'Application mobile', 'Application web', 'Design UI/UX', 'Maintenance'];
+const PROJECTS = ['Site vitrine', 'Boutique en ligne', 'Application', 'Refonte de site', 'Autre'];
 const BUDGETS = ['Moins de 2 000 €', '2 000 € à 5 000 €', '5 000 € à 15 000 €', 'Plus de 15 000 €', 'Je ne sais pas encore'];
 
 // ---- Traitement ------------------------------------------------------------
