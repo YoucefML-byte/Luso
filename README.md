@@ -2,7 +2,7 @@
 
 Site de l'agence Luso, création de sites web et d'applications : réalisations, méthode, offres, FAQ et formulaire de devis. Page unique, pensée d'abord pour le mobile, avec un bouton de devis collant en bas d'écran sur téléphone.
 
-Site statique (HTML, CSS, JavaScript), sans cookie ni service tiers : les polices sont hébergées dans `assets/fonts/`.
+Site statique (HTML, CSS, JavaScript), sans cookie ni traceur : les polices sont hébergées dans `assets/fonts/`.
 
 ## Contenu
 
@@ -19,12 +19,13 @@ Site statique (HTML, CSS, JavaScript), sans cookie ni service tiers : les police
 
 ## Mise en ligne avec GitHub Pages
 
-Dans le dépôt : **Settings → Pages → Build and deployment**, choisir **Deploy from a branch**, branche `main`, dossier `/ (root)`, puis **Save**. Le site est ensuite disponible à l'adresse `https://youcefml-byte.github.io/luso/`.
+Dans le dépôt : **Settings → Pages → Build and deployment**, choisir **Deploy from a branch**, branche `main`, dossier `/ (root)`, puis **Save**. Le site est ensuite disponible à l'adresse `https://youcefml-byte.github.io/Luso/`.
 
 ## Formulaire de contact
 
 - Sur un hébergement **avec PHP** (o2switch, OVHcloud, Hostinger…), `contact.php` envoie chaque demande par email à l'adresse définie dans `RECIPIENT`.
-- Sur **GitHub Pages** (pas de PHP), le formulaire ouvre la messagerie du visiteur avec un email pré-rempli à destination de l'adresse `CONTACT_EMAIL` définie dans le script de `index.html`.
+- Sur **GitHub Pages** (pas de PHP), les demandes sont envoyées par [Web3Forms](https://web3forms.com) grâce à la clé `WEB3FORMS_KEY` définie dans le script de `index.html` ; elles arrivent par email à l'adresse liée à cette clé. Si Web3Forms ne répond pas, le formulaire ouvre la messagerie du visiteur avec un email pré-rempli à destination de `CONTACT_EMAIL`.
+- Si `WEB3FORMS_KEY` est vide, le formulaire passe par `contact.php`.
 
 ## À compléter avant d'ouvrir l'agence
 
