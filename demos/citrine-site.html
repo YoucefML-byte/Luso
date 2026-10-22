@@ -199,7 +199,7 @@ img, svg { display: block; max-width: 100%; }
 <div class="demo-bar" role="note">
   <div class="wrap">
     <p>
-      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2443D6"/><path d="M16 6a10 10 0 0 1 10 10H16z" fill="#F2AE3A"/><path d="M16 26A10 10 0 0 1 6 16h10z" fill="#fff"/></svg>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2747F5"/><path d="M16 6a10 10 0 0 1 10 10H16z" fill="#F2AE3A"/><path d="M16 26A10 10 0 0 1 6 16h10z" fill="#fff"/></svg>
       <span>Démo réalisée par Luso <span class="tag">· Citrine est une entreprise fictive</span></span>
     </p>
     <nav aria-label="Navigation Luso">
@@ -292,7 +292,7 @@ img, svg { display: block; max-width: 100%; }
         </div>
         <label class="veg"><input type="checkbox" id="veg-only"><span class="sw" aria-hidden="true"></span>Végétarien uniquement</label>
       </div>
-      <ul class="dishes" id="dishes" role="tabpanel" aria-labelledby="tab-entrees"></ul>
+      <div id="dishes" role="tabpanel" aria-labelledby="tab-entrees" tabindex="0"><ul class="dishes" id="dishes-list"></ul></div>
       <p class="menu-note">Prix nets, service compris. Liste des allergènes disponible sur demande.</p>
     </div>
   </section>
@@ -329,7 +329,7 @@ img, svg { display: block; max-width: 100%; }
       <div class="visit">
         <dl class="hours" id="hours"></dl>
         <div>
-          <div class="map" aria-label="Plan d'accès stylisé : le restaurant se trouve près des quais, à deux minutes du métro.">
+          <div class="map" role="img" aria-label="Plan d'accès stylisé : le restaurant se trouve près des quais, à deux minutes du métro.">
             <svg viewBox="0 0 600 360" aria-hidden="true">
               <rect width="600" height="360" fill="#F4F6EA"/>
               <path d="M-20 300 C 120 250 220 330 360 280 S 560 230 640 260 L 640 380 L -20 380 Z" fill="#CFE0EE"/>
@@ -458,7 +458,8 @@ img, svg { display: block; max-width: 100%; }
     ]
   };
   var current = "entrees";
-  var list = document.getElementById("dishes");
+  var panel = document.getElementById("dishes");
+  var list = document.getElementById("dishes-list");
   var vegOnly = document.getElementById("veg-only");
   var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
 
@@ -478,7 +479,7 @@ img, svg { display: block; max-width: 100%; }
       t.tabIndex = on ? 0 : -1;
     });
     current = tab.getAttribute("data-cat");
-    list.setAttribute("aria-labelledby", tab.id);
+    panel.setAttribute("aria-labelledby", tab.id);
     if (focus) tab.focus();
     renderMenu();
   }

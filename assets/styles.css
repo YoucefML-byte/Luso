@@ -44,6 +44,8 @@ h1 em, h2 em { font-family: var(--serif); font-style: italic; font-weight: 500; 
 p, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+.skip-link { position: fixed; top: 8px; left: 8px; z-index: 100; padding: .6rem 1rem; border-radius: 999px; background: var(--ink); color: var(--bg); font-weight: 600; text-decoration: none; transform: translateY(-150%); transition: transform .2s var(--ease); }
+.skip-link:focus { transform: none; }
 [hidden] { display: none !important; }
 ::selection { background: var(--brand); color: #fff; }
 
@@ -142,6 +144,8 @@ ul, ol { padding: 0; list-style: none; }
 .morph-stage { position: relative; display: grid; place-items: center; gap: 2rem; padding: 64px clamp(16px, 4vw, 40px); text-align: center; }
 .morph-intro { display: grid; justify-items: center; gap: 1.1rem; }
 .morph-intro h1 { font-size: clamp(2.1rem, 5.4vw, 4rem); line-height: .95; letter-spacing: -.05em; max-width: 11ch; }
+.morph-hint { display: none; }
+.js .morph-hint { display: block; }
 .morph-hint { font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
 .morph-content { display: grid; justify-items: center; gap: 1rem; max-width: 40rem; }
 .morph-kicker { font-size: .875rem; font-weight: 600; color: var(--brand); }
@@ -421,6 +425,14 @@ ul, ol { padding: 0; list-style: none; }
 /* Apparition au défilement (uniquement si JavaScript est actif) */
 .js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .js [data-reveal].in { opacity: 1; transform: none; }
+
+/* Page 404 */
+.notfound { display: grid; align-items: center; min-height: calc(100svh - 73px); padding-block: 48px 72px; }
+.notfound .wrap { display: grid; justify-items: start; gap: 1.25rem; }
+.notfound-code { font-family: var(--display); font-weight: 800; font-size: clamp(6rem, 22vw, 15rem); line-height: .8; letter-spacing: -.07em; color: transparent; -webkit-text-stroke: 2px var(--ink); }
+.notfound h1 { font-size: clamp(2.4rem, 6.4vw, 4.6rem); letter-spacing: -.05em; max-width: 14ch; }
+.notfound p:not(.notfound-code) { max-width: 30rem; font-size: 1.125rem; color: var(--ink-soft); }
+.notfound-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; margin-top: .5rem; }
 
 /* Pages légales */
 .doc-header { position: sticky; }

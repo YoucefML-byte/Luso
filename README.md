@@ -18,6 +18,9 @@ Site statique (HTML, CSS, JavaScript), sans cookie ni traceur : les polices sont
 | `assets/img/` | Captures des démos Citrine affichées sur l'accueil (à régénérer si les démos changent) |
 | `assets/img/hero/` | 20 photos Unsplash (licence Unsplash) du héros animé, en WebP 216 × 306 |
 | `assets/data/world-110m.json` | Tracés des pays pour le globe de la section contact (Natural Earth via world-atlas 2.0.2, arcs TopoJSON quantifiés) |
+| `404.html` | Page d'erreur aux couleurs du site, servie par GitHub Pages pour toute adresse inconnue |
+| `sitemap.xml`, `robots.txt` | Plan du site pour Google ; `robots.txt` n'est lu qu'à la racine d'un nom de domaine |
+| `apple-touch-icon.png`, `assets/img/og.jpg` | Icône d'écran d'accueil iPhone et image d'aperçu des partages (1200 × 630) |
 
 ## Mise en ligne avec GitHub Pages
 
@@ -36,3 +39,12 @@ Les informations légales manquantes sont surlignées dans les pages (classe `to
 ## Mise à jour des styles
 
 GitHub Pages laisse les navigateurs garder `assets/styles.css` en cache pendant 10 minutes. Après chaque modification de ce fichier, changez le numéro `?v=` du lien `styles.css` dans `index.html`, `mentions-legales.html` et `confidentialite.html`, sinon un visiteur peut recevoir la nouvelle page avec l'ancienne feuille de style.
+
+## Passer à un nom de domaine (ex. luso.fr)
+
+1. Dans **Settings → Pages → Custom domain**, saisir le domaine, puis cocher **Enforce HTTPS** une fois le certificat prêt.
+2. Remplacer `https://youcefml-byte.github.io/Luso/` par la nouvelle adresse dans :
+   - `index.html` : balises `canonical`, `og:url`, `og:image` et données structurées (`application/ld+json`) ;
+   - `mentions-legales.html` et `confidentialite.html` : balise `canonical` ;
+   - `sitemap.xml` et `robots.txt`.
+3. Déclarer le site et le `sitemap.xml` dans [Google Search Console](https://search.google.com/search-console).

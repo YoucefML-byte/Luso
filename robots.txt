@@ -1,0 +1,5 @@
+# Lu par les moteurs de recherche uniquement à la racine d'un domaine : actif dès que le site a son propre nom de domaine.
+User-agent: *
+Allow: /
+
+Sitemap: https://youcefml-byte.github.io/Luso/sitemap.xml
