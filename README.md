@@ -16,6 +16,7 @@ Site statique (HTML, CSS, JavaScript), sans cookie ni traceur : les polices sont
 | `contact.php` | Envoi des demandes de devis par email (hébergement PHP uniquement) |
 | `assets/styles.css` | Styles communs |
 | `assets/img/` | Captures des démos Citrine affichées sur l'accueil (à régénérer si les démos changent) |
+| `assets/img/hero/` | 20 photos Unsplash (licence Unsplash) du héros animé, en WebP 216 × 306 |
 
 ## Mise en ligne avec GitHub Pages
 

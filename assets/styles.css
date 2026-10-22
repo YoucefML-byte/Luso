@@ -127,8 +127,8 @@ ul, ol { padding: 0; list-style: none; }
 }
 @media (max-width: 400px) { .header-actions .btn-sm { padding: 0 .9rem; font-size: .875rem; } }
 
-/* Héros */
-.hero { padding-block: clamp(28px, 6vw, 72px) clamp(56px, 8vw, 96px); }
+/* Héros : « scroll-morph » adapté du composant 21st.dev. 20 cartes photo arrivent en vrac, s'alignent, forment un cercle autour du titre,
+   puis le défilement de la page les déroule en arc au bas de l'écran pendant que le texte d'accroche apparaît. La scène reste collée pendant ce défilement. */
 .badge {
   display: inline-flex; align-items: center; gap: .55rem; padding: .4rem .9rem .4rem .7rem;
   border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
@@ -137,39 +137,53 @@ ul, ol { padding: 0; list-style: none; }
 .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: #1FA45B; }
 .dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: inherit; animation: ping 2s var(--ease) infinite; }
 @keyframes ping { 0% { transform: scale(1); opacity: .7; } 80%, 100% { transform: scale(3); opacity: 0; } }
-.hero h1 { margin-top: 1.25rem; font-size: clamp(3rem, 10.5vw, 8.4rem); line-height: .92; letter-spacing: -.055em; max-width: 12ch; }
-.hero h1 em { letter-spacing: -.04em; padding-right: .04em; }
-.hero-row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1.5rem 3rem; margin-top: clamp(24px, 4vw, 40px); }
-.hero-lead { font-size: clamp(1.0625rem, 1.6vw, 1.25rem); color: var(--ink-soft); max-width: 31rem; }
-.hero-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.75rem; }
 
-.showcase { position: relative; margin-top: clamp(40px, 6vw, 72px); padding-right: clamp(48px, 13vw, 170px); }
-.shot-browser {
-  display: block; overflow: hidden; border-radius: clamp(12px, 1.6vw, 20px); background: var(--surface);
-  border: 1px solid var(--line); box-shadow: 0 40px 80px -40px rgba(14, 14, 15, .35);
-  transition: transform .6s var(--ease);
-}
-.browser-bar { display: flex; align-items: center; gap: 6px; padding: clamp(8px, 1.1vw, 12px) 14px; border-bottom: 1px solid var(--line); }
-.browser-bar i { width: 10px; height: 10px; border-radius: 50%; background: var(--line); }
-.browser-bar span { margin-left: 10px; padding: 2px 12px; border-radius: 999px; background: var(--bg); font-size: .75rem; color: var(--ink-soft); }
-.shot-browser img { width: 100%; height: auto; }
-.shot-phone {
-  position: absolute; right: 0; bottom: clamp(-40px, -3vw, -16px); width: clamp(120px, 23vw, 290px);
-  border: clamp(5px, .7vw, 9px) solid var(--ink); border-radius: clamp(20px, 3vw, 40px); overflow: hidden; background: var(--ink);
-  box-shadow: 0 40px 70px -30px rgba(14, 14, 15, .55);
-  transform: rotate(4deg); transition: transform .6s var(--ease);
-}
-.shot-phone img { width: 100%; height: auto; border-radius: clamp(14px, 2.2vw, 31px); }
-.shot-browser:hover { transform: translateY(-6px); }
-.shot-phone:hover { transform: rotate(0deg) translateY(-10px); }
+.morph { position: relative; }
+.morph-stage { position: relative; display: grid; place-items: center; gap: 2rem; padding: 64px clamp(16px, 4vw, 40px); text-align: center; }
+.morph-intro { display: grid; justify-items: center; gap: 1.1rem; }
+.morph-intro h1 { font-size: clamp(2.1rem, 5.4vw, 4rem); line-height: .95; letter-spacing: -.05em; max-width: 11ch; }
+.morph-hint { font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ink-soft); }
+.morph-content { display: grid; justify-items: center; gap: 1rem; max-width: 40rem; }
+.morph-kicker { font-size: .875rem; font-weight: 600; color: var(--brand); }
+.morph-title { font-size: clamp(2rem, 4.6vw, 3.5rem); letter-spacing: -.045em; }
+.morph-lead { font-size: clamp(1rem, 1.5vw, 1.1875rem); color: var(--ink-soft); max-width: 32rem; }
+.hero-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 1rem 1.75rem; margin-top: .5rem; }
+.morph-cards { display: none; }
 
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; margin-top: clamp(64px, 9vw, 112px); padding-top: 28px; border-top: 1px solid var(--line); }
-.facts strong { display: block; font-family: var(--display); font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
-.facts span { display: block; margin-top: .5rem; font-size: .9375rem; color: var(--ink-soft); max-width: 16rem; }
+/* Version animée (JavaScript actif) */
+.js .morph { height: calc(100svh + 150vh); }
+.js .morph-stage { position: sticky; top: 0; height: 100svh; padding: 0; overflow: hidden; perspective: 1000px; }
+.js .morph-intro { position: absolute; top: 50%; left: 50%; z-index: 0; width: min(92vw, 40rem); transform: translate(-50%, -50%); opacity: 0; pointer-events: none; }
+.js .morph-content { position: absolute; top: calc(72px + 4svh); left: 50%; z-index: 2; width: min(92vw, 40rem); transform: translateX(-50%); opacity: 0; visibility: hidden; }
+.js .morph-cards { display: block; position: absolute; inset: 0; z-index: 1; }
+.mcard { position: absolute; left: 50%; top: 50%; width: 60px; height: 85px; margin: -42.5px 0 0 -30px; opacity: 0; perspective: 1000px; will-change: transform, opacity; }
+.mcard-in { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform .7s cubic-bezier(.3, 1.5, .5, 1); }
+.mcard:hover .mcard-in { transform: rotateY(180deg); }
+.mcard-front, .mcard-back { position: absolute; inset: 0; overflow: hidden; border-radius: 10px; backface-visibility: hidden; -webkit-backface-visibility: hidden; box-shadow: 0 10px 24px -10px rgba(14, 14, 15, .45); }
+.mcard-front { background: var(--line); }
+.mcard-front img { width: 100%; height: 100%; object-fit: cover; }
+.mcard-front::after { content: ""; position: absolute; inset: 0; background: rgba(14, 14, 15, .08); transition: background-color .3s; }
+.mcard:hover .mcard-front::after { background: transparent; }
+.mcard-back { display: grid; place-content: center; gap: 2px; padding: 4px; background: var(--ink); color: var(--bg); text-align: center; transform: rotateY(180deg); }
+.mcard-back small { font-size: 5px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--sun); }
+.mcard-back b { font-family: var(--display); font-size: 7px; line-height: 1.1; font-weight: 600; }
+@media (max-width: 767px) {
+  .js .morph { height: calc(100svh + 120vh); }
+  .morph-intro h1 { font-size: clamp(1.65rem, 7.4vw, 2.1rem); max-width: 9.5ch; }
+  .js .morph-intro .badge { display: none; }
+  .js .morph-intro { width: 240px; }
+  .morph-lead { font-size: .9375rem; }
+}
 @media (max-width: 640px) {
   .hero-cta { width: 100%; }
   .hero-cta .btn { flex: 1 1 100%; justify-content: space-between; }
-  .hero-cta .link-arrow { margin-inline: auto; }
+}
+
+.hero-facts { padding-block: clamp(40px, 6vw, 72px) clamp(56px, 8vw, 96px); }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; padding-top: 28px; border-top: 1px solid var(--line); }
+.facts strong { display: block; font-family: var(--display); font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.facts span { display: block; margin-top: .5rem; font-size: .9375rem; color: var(--ink-soft); max-width: 16rem; }
+@media (max-width: 640px) {
   .facts { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 0; }
   .facts li { display: flex; align-items: baseline; gap: 1rem; padding-block: 16px; border-bottom: 1px solid var(--line); }
   .facts strong { flex: none; min-width: 7.2rem; font-size: 1.75rem; }
@@ -378,12 +392,6 @@ ul, ol { padding: 0; list-style: none; }
 /* Apparition au défilement (uniquement si JavaScript est actif) */
 .js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .js [data-reveal].in { opacity: 1; transform: none; }
-.js .hero [data-reveal] { animation: rise .9s var(--ease) both; opacity: 1; transform: none; transition: none; }
-.js .hero [data-reveal]:nth-child(2) { animation-delay: .08s; }
-.js .hero [data-reveal]:nth-child(3) { animation-delay: .16s; }
-.js .hero [data-reveal]:nth-child(4) { animation-delay: .26s; }
-.js .hero [data-reveal]:nth-child(5) { animation-delay: .36s; }
-@keyframes rise { from { opacity: 0; transform: translateY(28px); } }
 
 /* Pages légales */
 .doc-header { position: sticky; }
