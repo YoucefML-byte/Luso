@@ -31,3 +31,7 @@ Dans le dépôt : **Settings → Pages → Build and deployment**, choisir **Dep
 ## À compléter avant d'ouvrir l'agence
 
 Les informations légales manquantes sont surlignées dans les pages (classe `todo`) : identité de l'entreprise, SIREN, adresse, directeur de la publication, médiateur de la consommation, prestataires.
+
+## Mise à jour des styles
+
+GitHub Pages laisse les navigateurs garder `assets/styles.css` en cache pendant 10 minutes. Après chaque modification de ce fichier, changez le numéro `?v=` du lien `styles.css` dans `index.html`, `mentions-legales.html` et `confidentialite.html`, sinon un visiteur peut recevoir la nouvelle page avec l'ancienne feuille de style.
