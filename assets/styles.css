@@ -201,27 +201,37 @@ ul, ol { padding: 0; list-style: none; }
 .marquee i { font-style: normal; color: var(--sun); font-size: clamp(1rem, 2vw, 1.5rem); }
 @keyframes marquee { to { transform: translateX(calc(-50% - clamp(10px, 1.5vw, 20px))); } }
 
-/* Réalisations */
-.work { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(16px, 2vw, 24px); }
+/* Réalisations : la démo restaurant en grand avec son application, puis trois démos métiers */
+.work { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: clamp(16px, 2vw, 24px); }
+.wc-wide { grid-column: span 4; }
+.wc-app { grid-column: span 2; }
+.wc-third { grid-column: span 2; }
 .work-card { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); border-radius: var(--r); overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
-.work-media { position: relative; flex: 1; overflow: hidden; aspect-ratio: 16 / 11; }
-.wc-site .work-media { background: #F7F5EC; }
-.wc-app .work-media { background: #E8EAD9; }
-.work-media img { width: 100%; height: 100%; object-fit: cover; object-position: top left; transition: transform .8s var(--ease); }
-.wc-app .work-media img { width: 62%; height: auto; margin: 9% auto 0; border-radius: 26px 26px 0 0; box-shadow: 0 30px 60px -30px rgba(14, 14, 15, .4); object-fit: initial; }
+.work-media { position: relative; flex: 1; overflow: hidden; aspect-ratio: 16 / 10; background: #EFEAE1; }
+.wc-wide .work-media, .wc-app .work-media { aspect-ratio: auto; min-height: 340px; }
+.wc-app .work-media { background: #E8E9D6; }
+.work-media img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform .8s var(--ease); }
+.wc-app .work-media img { position: absolute; left: 50%; top: 8%; width: min(62%, 240px); height: auto; transform: translateX(-50%); border-radius: 26px 26px 0 0; box-shadow: 0 30px 60px -30px rgba(14, 14, 15, .45); object-fit: initial; }
+.wc-third .work-media img { object-position: top left; }
 .work-card:hover .work-media img { transform: scale(1.04); }
-.wc-app:hover .work-media img { transform: translateY(-10px); }
+.wc-app:hover .work-media img { transform: translate(-50%, -10px); }
 .work-info { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; padding: 20px 22px 22px; border-top: 1px solid var(--line); }
 .tag { display: inline-block; font-size: .8125rem; font-weight: 600; color: var(--brand); margin-bottom: .35rem; }
-.work-info h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); letter-spacing: -.03em; }
+.work-info h3 { font-size: clamp(1.3rem, 2vw, 1.65rem); letter-spacing: -.03em; }
 .work-info p { margin-top: .35rem; color: var(--ink-soft); font-size: .9375rem; }
 .round-ico { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: var(--ink); color: var(--bg); transition: transform .4s var(--ease), background-color .3s; }
 .round-ico svg { width: 20px; height: 20px; }
 .work-card:hover .round-ico { transform: rotate(45deg); background: var(--brand); }
-@media (max-width: 760px) {
+.work-note { margin-top: 20px; font-size: .875rem; color: var(--ink-soft); }
+@media (max-width: 1000px) {
+  .wc-wide { grid-column: span 6; }
+  .wc-app, .wc-third { grid-column: span 3; }
+}
+@media (max-width: 640px) {
   .work { grid-template-columns: minmax(0, 1fr); }
-  .wc-app .work-media { aspect-ratio: 4 / 3.4; }
-  .wc-app .work-media img { width: 54%; }
+  .wc-wide, .wc-app, .wc-third { grid-column: auto; }
+  .wc-wide .work-media { min-height: 0; aspect-ratio: 16 / 10; }
+  .wc-app .work-media { min-height: 0; aspect-ratio: 4 / 3.6; }
 }
 
 /* Avantages */

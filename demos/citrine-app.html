@@ -7,7 +7,7 @@
 <meta name="robots" content="noindex">
 <title>Citrine · Démo application</title>
 <meta name="description" content="Démo Luso : application mobile de commande à emporter pour un restaurant fictif, Citrine. Menu, panier, créneau de retrait, suivi de commande et fidélité.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23F3CF45'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23FBE68A'/%3E%3Cpath d='M16 5v22M5 16h22M8.2 8.2l15.6 15.6M23.8 8.2L8.2 23.8' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23F2C94C'/%3E%3Ccircle cx='16' cy='16' r='12' fill='%23FBE8A6'/%3E%3Cpath d='M16 4v24M4 16h24M7.5 7.5l17 17M24.5 7.5l-17 17' stroke='%23F7F3EA' stroke-width='1.4'/%3E%3C/svg%3E">
 <style>
 /* Polices hébergées sur le site Luso (aucun appel à un service tiers). */
 @font-face { font-family: "Fraunces"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("../assets/fonts/fraunces-latin-opsz-normal.woff2") format("woff2"); }
@@ -118,7 +118,9 @@ svg { display: block; max-width: 100%; }
 .scroller { display: flex; gap: 12px; overflow-x: auto; margin-inline: -18px; padding: 2px 18px 6px; scroll-snap-type: x mandatory; scrollbar-width: none; }
 .scroller::-webkit-scrollbar { display: none; }
 .pop { flex: none; width: 150px; scroll-snap-align: start; background: var(--surface); border-radius: 20px; padding: 12px; display: grid; gap: 6px; border: 1px solid var(--line); text-align: left; }
+.plate { display: block; aspect-ratio: 1; height: auto; border-radius: 50%; object-fit: cover; background: var(--line); box-shadow: 0 6px 14px -8px rgba(20, 24, 13, .45); }
 .pop .plate { width: 100%; }
+.promo .plate { width: 76px; }
 .pop b { font-size: .9375rem; line-height: 1.2; }
 .pop .bottom { display: flex; justify-content: space-between; align-items: center; }
 .price { font-weight: 700; font-variant-numeric: tabular-nums; }
@@ -161,7 +163,8 @@ svg { display: block; max-width: 100%; }
 .pay svg { width: 22px; height: 22px; flex: none; color: var(--olive); }
 
 .track-head { text-align: center; display: grid; gap: 6px; justify-items: center; padding-block: 18px 8px; }
-.track-head .big { width: 84px; height: 84px; border-radius: 50%; background: var(--lemon); display: grid; place-items: center; }
+.track-head .big { width: 84px; height: 84px; border-radius: 50%; background: var(--lemon); display: grid; place-items: center; padding: 5px; }
+.track-head .big .plate { width: 100%; }
 .track-head h2 { font-size: 1.6rem; }
 .track-head p { color: var(--muted); font-size: .9375rem; }
 .steps { margin-top: 16px; display: grid; gap: 0; }
@@ -208,7 +211,8 @@ svg { display: block; max-width: 100%; }
 
 /* Notifications */
 .notif { position: absolute; top: 46px; left: 10px; right: 10px; z-index: 6; padding: 12px 14px; border-radius: 20px; background: rgba(255, 255, 255, .96); box-shadow: 0 10px 30px rgba(20, 24, 13, .25); display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 10px; align-items: center; animation: drop .35s ease; border: 0; text-align: left; width: auto; }
-.notif .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--lemon); display: grid; place-items: center; }
+.notif .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--lemon); display: grid; place-items: center; overflow: hidden; }
+.notif .ic .plate { width: 100%; height: 100%; border-radius: 0; }
 .notif b { display: block; font-size: .875rem; }
 .notif small { font-size: .8125rem; color: var(--muted); }
 .toast { position: absolute; left: 50%; top: 48px; transform: translateX(-50%); z-index: 4; background: var(--ink); color: var(--paper); padding: .55rem 1rem; border-radius: 99px; font-size: .875rem; font-weight: 600; white-space: nowrap; animation: fade .2s ease; }
@@ -227,7 +231,7 @@ svg { display: block; max-width: 100%; }
     </p>
     <nav aria-label="Navigation Luso">
       <a href="citrine-site.html">Voir le site vitrine</a>
-      <a href="../index.html#demos">Retour à Luso</a>
+      <a href="../index.html#realisations">Retour à Luso</a>
     </nav>
   </div>
 </div>
@@ -279,21 +283,22 @@ svg { display: block; max-width: 100%; }
 <script>
 (function () {
   var PRODUCTS = [
-    { id: "burrata", cat: "Entrées", n: "Burrata, tomates anciennes", d: "Basilic, huile d'olive de Nyons, pain grillé.", p: 12, v: 1, c: ["#F6F2E6", "#E46C4F", "#C93C2B"] },
-    { id: "houmous", cat: "Entrées", n: "Houmous rôti", d: "Pois chiches croquants, za'atar, galette chaude.", p: 9, v: 1, g: 1, c: ["#ECDCAB", "#D9BF7E", "#E2B65A"] },
-    { id: "poulpe", cat: "Entrées", n: "Poulpe grillé", d: "Pommes de terre fumées, citron confit, paprika.", p: 15, g: 1, c: ["#E9C4B4", "#B5482E", "#F3CF45"] },
-    { id: "dorade", cat: "Plats", n: "Dorade au four", d: "Fenouil rôti, agrumes, herbes fraîches.", p: 24, g: 1, c: ["#E7E3D3", "#C9B994", "#F3CF45"] },
-    { id: "agneau", cat: "Plats", n: "Agneau confit sept heures", d: "Semoule aux herbes, jus aux épices douces.", p: 22, c: ["#E8D7A4", "#8B4A2B", "#6E3A20"] },
-    { id: "risotto", cat: "Plats", n: "Risotto à l'artichaut", d: "Pecorino, citron, roquette.", p: 17, v: 1, g: 1, c: ["#EFE4C2", "#A8B66A", "#6B7A34"] },
-    { id: "orecchiette", cat: "Plats", n: "Orecchiette au brocoli", d: "Piment doux, chapelure à l'ail.", p: 15, v: 1, c: ["#EADFB8", "#5E7A2E", "#3F5420"] },
-    { id: "tarte", cat: "Desserts", n: "Tarte au citron", d: "Meringue brûlée, zestes confits.", p: 7.5, v: 1, c: ["#F7E7A0", "#F3CF45", "#FFFFFF"] },
-    { id: "panna", cat: "Desserts", n: "Panna cotta aux figues", d: "Figues rôties, miel de thym.", p: 7, v: 1, g: 1, c: ["#F7F1E3", "#8E4F7A", "#6A2F5C"] },
-    { id: "glace", cat: "Desserts", n: "Glace à l'huile d'olive", d: "Fleur de sel, biscuit aux amandes.", p: 6, v: 1, c: ["#E6E9C7", "#B9C27A", "#FFFFFF"] },
-    { id: "citronnade", cat: "Boissons", n: "Citronnade maison", d: "Citrons pressés, menthe fraîche. 33 cl.", p: 4.5, v: 1, g: 1, c: ["#FBEA94", "#F3CF45", "#FFFFFF"] },
-    { id: "the", cat: "Boissons", n: "Thé glacé à la menthe", d: "Infusé à froid, peu sucré. 33 cl.", p: 4.5, v: 1, g: 1, c: ["#D8C27A", "#7FA35A", "#FFFFFF"] }
+    { id: "salade", cat: "Entrées", n: "Salade du marché", d: "Oignons rouges, herbes fraîches, vinaigrette au citron.", p: 11, v: 1, g: 1 },
+    { id: "bol", cat: "Entrées", n: "Bol de pois chiches rôtis", d: "Légumes croquants, tahini, za'atar.", p: 10, v: 1, g: 1 },
+    { id: "tartare", cat: "Entrées", n: "Tartare de truite", d: "Avocat, basilic, citron vert.", p: 14, g: 1 },
+    { id: "truite", cat: "Plats", n: "Truite rôtie", d: "Légumes du moment, beurre blanc aux agrumes.", p: 24, g: 1 },
+    { id: "linguine", cat: "Plats", n: "Linguine aux gambas", d: "Tomates confites, ail, persil plat.", p: 22 },
+    { id: "tagliatelles", cat: "Plats", n: "Tagliatelles au ragù d'agneau", d: "Agneau confit sept heures, pecorino.", p: 21 },
+    { id: "onglet", cat: "Plats", n: "Onglet grillé", d: "Frites maison, sauce vierge.", p: 26, g: 1 },
+    { id: "penne", cat: "Plats", n: "Penne all'arrabbiata", d: "Tomates San Marzano, piment, basilic.", p: 17, v: 1 },
+    { id: "pannacotta", cat: "Desserts", n: "Panna cotta aux fraises", d: "Coulis de fraises, basilic.", p: 8, v: 1, g: 1 },
+    { id: "tiramisu", cat: "Desserts", n: "Tiramisu maison", d: "Mascarpone, café torréfié à Lyon.", p: 9, v: 1 },
+    { id: "framboise", cat: "Desserts", n: "Entremets framboise", d: "Biscuit amande, crème légère vanille.", p: 9, v: 1 },
+    { id: "citronnade", cat: "Boissons", n: "Citronnade maison", d: "Citrons pressés, menthe fraîche. 33 cl.", p: 4.5, v: 1, g: 1 },
+    { id: "the", cat: "Boissons", n: "Thé glacé citron vert", d: "Infusé à froid, peu sucré. 33 cl.", p: 4.5, v: 1, g: 1 }
   ];
   var CATS = ["Entrées", "Plats", "Desserts", "Boissons"];
-  var POPULAR = ["burrata", "dorade", "tarte", "risotto", "citronnade"];
+  var POPULAR = ["tartare", "truite", "tiramisu", "penne", "citronnade"];
   var byId = {};
   PRODUCTS.forEach(function (p) { byId[p.id] = p; });
 
@@ -309,11 +314,7 @@ svg { display: block; max-width: 100%; }
   function euro(n) { return n.toLocaleString("fr-FR", { style: "currency", currency: "EUR" }); }
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function plate(p) {
-    var c = p.c;
-    return '<svg class="plate" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="#FFFFFF" stroke="#DCDFCC" stroke-width="1.5"/>' +
-      '<circle cx="50" cy="50" r="36" fill="' + c[0] + '"/><circle cx="50" cy="50" r="24" fill="none" stroke="' + c[1] + '" stroke-width="7" stroke-dasharray="22 9" stroke-linecap="round"/>' +
-      '<g fill="' + c[2] + '"><circle cx="36" cy="38" r="4.5"/><circle cx="62" cy="36" r="4"/><circle cx="66" cy="60" r="4.5"/><circle cx="40" cy="64" r="4"/><circle cx="51" cy="50" r="5"/></g>' +
-      '<g fill="#5E7A2E"><ellipse cx="46" cy="30" rx="4" ry="1.8" transform="rotate(-20 46 30)"/><ellipse cx="70" cy="47" rx="4" ry="1.8" transform="rotate(60 70 47)"/></g></svg>';
+    return '<img class="plate" src="img/citrine/app/' + p.id + '.webp" width="320" height="320" alt="" loading="lazy">';
   }
   function count() { var n = 0; for (var k in state.cart) n += state.cart[k]; return n; }
   function subtotal() { var s = 0; for (var k in state.cart) s += byId[k].p * state.cart[k]; return s; }
@@ -350,7 +351,7 @@ svg { display: block; max-width: 100%; }
       if (state.order) {
         h += '<button class="order-card" data-go="track"><span><small>Commande n° ' + state.order.num + '</small>' + statusLabel() + '</span>' + ICON_PLUS.replace("M12 5v14M5 12h14", "M9 6l6 6-6 6") + "</button>";
       }
-      h += (state.usedPromo ? "" : '<div class="promo"><div><h3>−10 % sur votre première commande</h3><p>Appliqué automatiquement dans le panier.</p></div>' + plate(byId.tarte) + "</div>");
+      h += (state.usedPromo ? "" : '<div class="promo"><div><h3>−10 % sur votre première commande</h3><p>Appliqué automatiquement dans le panier.</p></div>' + plate(byId.tiramisu) + "</div>");
       h += '<div class="sec-title"><h3>Les plus commandés</h3><button data-tab-go="menu">Tout voir</button></div><div class="scroller">';
       POPULAR.forEach(function (id) {
         var p = byId[id];
@@ -375,7 +376,7 @@ svg { display: block; max-width: 100%; }
     },
     cart: function () {
       if (!count()) {
-        return '<div class="h-greet"><div><h2>Panier</h2></div></div><div class="empty">' + plate(byId.houmous) + '<p>Votre panier est vide pour le moment.</p><button class="btn-app" data-tab-go="menu" style="max-width:220px">Voir la carte</button></div>';
+        return '<div class="h-greet"><div><h2>Panier</h2></div></div><div class="empty">' + plate(byId.bol) + '<p>Votre panier est vide pour le moment.</p><button class="btn-app" data-tab-go="menu" style="max-width:220px">Voir la carte</button></div>';
       }
       var h = '<div class="h-greet"><div><small>À emporter · Citrine Lyon 2e</small><h2>Panier</h2></div></div>';
       Object.keys(state.cart).forEach(function (id) {
@@ -461,7 +462,7 @@ svg { display: block; max-width: 100%; }
     var old = app.querySelector(".notif"); if (old) old.remove();
     var n = document.createElement("button");
     n.className = "notif"; n.setAttribute("role", "alert");
-    n.innerHTML = '<span class="ic">' + plate(byId.tarte).replace('class="plate"', 'width="28" height="28"') + "</span><span><b>" + title + "</b><small>" + text + "</small></span>";
+    n.innerHTML = '<span class="ic">' + plate(byId.tiramisu) + "</span><span><b>" + title + "</b><small>" + text + "</small></span>";
     n.addEventListener("click", function () { n.remove(); go("track"); });
     app.appendChild(n);
     setTimeout(function () { n.remove(); }, 5000);

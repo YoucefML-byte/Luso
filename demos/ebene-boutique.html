@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>Ébène · Torréfacteur à Bordeaux · Boutique en ligne</title>
+<meta name="description" content="Démo Luso : boutique en ligne d'un torréfacteur fictif, Ébène. Catalogue filtrable, fiche produit, panier, livraison offerte et paiement simulé.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E1612'/%3E%3Cellipse cx='16' cy='16' rx='7' ry='10.5' transform='rotate(30 16 16)' fill='%23F3EEE7'/%3E%3Cpath d='M11.5 23c3-2.5 2-5.5 4.5-8s2.5-4.3 5-5.5' stroke='%231E1612' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* Polices hébergées sur le site Luso (aucun appel à un service tiers). */
+@font-face { font-family: "DM Serif Display"; font-style: normal; font-weight: 400; font-display: swap; src: url("../assets/fonts/dm-serif-display-latin-normal.woff2") format("woff2"); }
+@font-face { font-family: "DM Serif Display"; font-style: italic; font-weight: 400; font-display: swap; src: url("../assets/fonts/dm-serif-display-latin-italic.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2"); }
+
+/* Ébène : crème chaude, brun espresso et cuivre. Packshots de sachets kraft, titres DM Serif. */
+:root {
+  --paper: #F3EEE7;
+  --surface: #FBF8F3;
+  --sand: #E6DCCF;
+  --ink: #1E1612;
+  --muted: #6E6258;
+  --line: #DED3C4;
+  --copper: #A0541F;
+  --copper-dark: #8F4A1F;
+  --good: #2F6B3B;
+  --display: "DM Serif Display", Georgia, serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .24, 1);
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1rem; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+body.locked { overflow: hidden; }
+h1, h2, h3 { font-family: var(--display); font-weight: 400; line-height: 1.05; margin: 0; text-wrap: balance; }
+h1 em, h2 em { color: var(--copper); }
+p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { list-style: none; padding: 0; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1280px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.section { padding-block: clamp(64px, 9vw, 120px); }
+.eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--copper-dark); }
+.head { display: grid; gap: .9rem; max-width: 40rem; margin-bottom: clamp(28px, 4vw, 44px); }
+.head h2 { font-size: clamp(2.2rem, 4.8vw, 3.6rem); }
+.head p { color: var(--muted); font-size: 1.0625rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 50px; padding: 0 1.5rem; border: 1.5px solid transparent; border-radius: 4px; font-weight: 600; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--ease); }
+.btn:active { transform: scale(.98); }
+.btn-dark { background: var(--ink); color: var(--paper); }
+.btn-dark:hover { background: var(--copper); }
+.btn-copper { background: var(--copper); color: #fff; }
+.btn-copper:hover { background: var(--copper-dark); }
+.btn-line { border-color: var(--ink); background: transparent; }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+.btn-block { width: 100%; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+
+/* Bandeau Luso */
+.demo-bar { background: #0E0E0F; color: #F4F2EE; font-family: "Bricolage Grotesque", var(--body); font-size: .875rem; }
+.demo-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1.25rem; padding-block: 9px; }
+.demo-bar p { display: flex; align-items: center; gap: .55rem; }
+.demo-bar svg { width: 20px; height: 20px; flex: none; }
+.demo-bar a { color: inherit; text-decoration: none; font-weight: 600; }
+.demo-bar a:hover { color: #F2AE3A; }
+.demo-bar .tag { opacity: .7; font-weight: 400; }
+.announce { background: var(--copper); color: #fff; font-size: .8125rem; font-weight: 600; letter-spacing: .02em; text-align: center; padding: 8px 16px; }
+
+/* En-tête */
+.top { position: sticky; top: 0; z-index: 40; background: rgba(243, 238, 231, .94); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.top .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 76px; }
+.brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; }
+.brand svg { width: 34px; height: 34px; color: var(--ink); }
+.brand b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.55rem; letter-spacing: .24em; line-height: 1; }
+.brand small { display: block; margin-top: 4px; font-size: .5625rem; font-weight: 700; letter-spacing: .3em; color: var(--muted); }
+.top nav { display: flex; gap: 1.6rem; margin-left: 2rem; }
+.top nav a { text-decoration: none; font-weight: 500; }
+.top nav a:hover { color: var(--copper); }
+.top-actions { display: flex; align-items: center; gap: .4rem; margin-left: auto; }
+.icon-btn { position: relative; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; text-decoration: none; }
+.icon-btn:hover { background: var(--sand); }
+.icon-btn svg { width: 22px; height: 22px; }
+.count { position: absolute; top: 2px; right: 0; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--copper); color: #fff; font-size: .6875rem; font-weight: 700; display: grid; place-items: center; }
+.count.bump { animation: bump .4s var(--ease); }
+@keyframes bump { 50% { transform: scale(1.35); } }
+.menu-btn { display: none; }
+@media (max-width: 900px) {
+  .menu-btn { display: grid; }
+  .top nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; margin: 0; padding: 6px clamp(16px, 4vw, 40px) 16px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .top nav:not(.open) { display: none; }
+  .top nav a { padding: .8rem 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 1.35rem; }
+}
+
+/* Héros */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); min-height: min(86svh, 760px); }
+.hero-copy { display: grid; align-content: center; gap: 1.4rem; padding: clamp(40px, 6vw, 88px) clamp(16px, 5vw, 72px) clamp(40px, 6vw, 88px) max(clamp(16px, 4vw, 40px), calc((100vw - 1280px) / 2 + 40px)); }
+.hero h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); }
+.hero-copy > p { font-size: 1.125rem; color: var(--muted); max-width: 30rem; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.trust { display: flex; align-items: center; gap: .8rem; font-size: .875rem; color: var(--muted); }
+.trust .stars { color: var(--copper); letter-spacing: .1em; }
+.hero-media { position: relative; overflow: hidden; }
+.hero-media img { width: 100%; height: 100%; object-fit: cover; }
+.fresh { position: absolute; left: 24px; bottom: 24px; display: flex; align-items: center; gap: .8rem; padding: 14px 18px; border-radius: 6px; background: rgba(251, 248, 243, .95); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, .5); }
+.fresh b { display: block; font-family: var(--display); font-size: 1.25rem; font-weight: 400; }
+.fresh small { color: var(--muted); font-size: .8125rem; }
+.fresh .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--good); box-shadow: 0 0 0 5px rgba(63, 122, 74, .18); }
+@media (max-width: 860px) { .hero { grid-template-columns: minmax(0, 1fr); } .hero-media { height: 360px; order: -1; } .hero-copy { padding-inline: clamp(16px, 4vw, 40px); } }
+
+.perks { border-block: 1px solid var(--line); background: var(--surface); }
+.perks ul { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.perks li { display: flex; align-items: center; gap: .8rem; padding: 20px 16px; font-size: .9375rem; }
+.perks li + li { border-left: 1px solid var(--line); }
+.perks svg { flex: none; width: 26px; height: 26px; color: var(--copper); }
+.perks b { display: block; }
+.perks small { color: var(--muted); }
+@media (max-width: 860px) { .perks ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } .perks li:nth-child(3) { border-left: 0; } .perks li:nth-child(n+3) { border-top: 1px solid var(--line); } }
+@media (max-width: 480px) { .perks li { flex-direction: column; align-items: flex-start; gap: .4rem; font-size: .875rem; } }
+
+/* Catalogue */
+.shop-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 28px; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button { min-height: 40px; padding: 0 1rem; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; font-size: .9375rem; cursor: pointer; transition: background-color .2s, border-color .2s, color .2s; }
+.filters button:hover { border-color: var(--ink); }
+.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.sort { display: flex; align-items: center; gap: .6rem; font-size: .9375rem; color: var(--muted); }
+.sort select { min-height: 40px; padding: 0 2.2rem 0 .9rem; border: 1.5px solid var(--line); border-radius: 4px; background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231E1612' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center / 14px; appearance: none; color: var(--ink); font-weight: 600; }
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 2vw, 24px); }
+.card { position: relative; display: flex; flex-direction: column; animation: rise .45s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(12px); } }
+.card-img { position: relative; display: block; width: 100%; padding: 0; border: 0; border-radius: 6px; overflow: hidden; cursor: pointer; background: var(--sand); aspect-ratio: 1; }
+.card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--ease); }
+.card:hover .card-img img { transform: scale(1.05); }
+.badge { position: absolute; left: 10px; top: 10px; padding: .2rem .6rem; border-radius: 3px; background: var(--ink); color: var(--paper); font-size: .6875rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+.badge.limited { background: var(--copper); }
+.card-media { position: relative; }
+.quick { position: absolute; left: 10px; right: 10px; bottom: 10px; min-height: 44px; font-size: .875rem; opacity: 0; transform: translateY(8px); transition: opacity .25s, transform .3s var(--ease), background-color .2s; }
+.card-media:hover .quick, .quick:focus-visible { opacity: 1; transform: none; }
+.card-body { display: grid; gap: .25rem; padding-top: 12px; }
+.origin { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.card h3 { font-size: 1.45rem; }
+.card h3 button { padding: 0; border: 0; background: none; font: inherit; cursor: pointer; text-align: left; }
+.notes { font-size: .875rem; color: var(--muted); }
+.card-foot { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; margin-top: .25rem; }
+.price { font-weight: 700; }
+.price small { font-weight: 500; color: var(--muted); }
+.rate { font-size: .8125rem; color: var(--muted); }
+.rate .stars { color: var(--copper); }
+@media (hover: none) { .quick { display: none; } }
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 720px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .card h3 { font-size: 1.2rem; } }
+.mobile-add { display: none; }
+@media (hover: none) { .mobile-add { display: flex; margin-top: 10px; min-height: 42px; font-size: .875rem; } }
+
+/* Abonnement */
+.sub { background: var(--ink); color: var(--paper); }
+.sub .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.sub-img { position: relative; border-radius: 6px; overflow: hidden; aspect-ratio: 4 / 4.4; }
+.sub-img img { width: 100%; height: 100%; object-fit: cover; }
+.sub .head p { color: rgba(243, 238, 231, .75); }
+.sub .eyebrow { color: #E3A06F; }
+.sub h2 em { color: #E3A06F; }
+.steps { display: grid; gap: 14px; margin: 8px 0 28px; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; align-items: start; }
+.steps li::before { content: counter(s); display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(243, 238, 231, .35); font-family: var(--display); }
+.steps b { display: block; }
+.steps span { color: rgba(243, 238, 231, .7); font-size: .9375rem; }
+.freq { display: inline-flex; padding: 4px; border-radius: 999px; background: rgba(243, 238, 231, .1); margin-bottom: 18px; }
+.freq button { min-height: 40px; padding: 0 1rem; border: 0; border-radius: 999px; background: transparent; color: var(--paper); font-weight: 600; cursor: pointer; }
+.freq button[aria-pressed="true"] { background: var(--paper); color: var(--ink); }
+.sub-price { display: flex; align-items: baseline; gap: .6rem; margin-bottom: 20px; }
+.sub-price strong { font-family: var(--display); font-size: 2.6rem; font-weight: 400; }
+.sub-price s { opacity: .5; }
+.sub-price span { color: #E3A06F; font-weight: 600; }
+@media (max-width: 860px) { .sub .wrap { grid-template-columns: minmax(0, 1fr); } .sub-img { aspect-ratio: 16 / 10; } }
+
+/* Atelier */
+.story { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.story-pics { display: grid; grid-template-columns: 1.4fr 1fr; gap: 14px; }
+.story-pics img { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; }
+.story-pics img:first-child { grid-row: span 2; aspect-ratio: 3 / 4; }
+.story-pics img:not(:first-child) { aspect-ratio: 1; }
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.facts strong { display: block; font-family: var(--display); font-size: 2.4rem; font-weight: 400; line-height: 1; color: var(--copper); }
+.facts span { font-size: .875rem; color: var(--muted); }
+@media (max-width: 860px) { .story { grid-template-columns: minmax(0, 1fr); } }
+
+/* Guides */
+.guides { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.guide { overflow: hidden; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+.guide img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+.guide div { display: grid; gap: .5rem; padding: 20px; }
+.guide h3 { font-size: 1.5rem; }
+.guide dl { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin-top: .4rem; padding-top: .8rem; border-top: 1px solid var(--line); font-size: .8125rem; }
+.guide dt { color: var(--muted); }
+.guide dd { font-weight: 700; }
+@media (max-width: 860px) { .guides { grid-template-columns: minmax(0, 1fr); max-width: 520px; } }
+
+/* Avis */
+.reviews-band { background: var(--surface); border-block: 1px solid var(--line); }
+.reviews-top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; margin-bottom: 28px; }
+.score { display: flex; align-items: center; gap: 1rem; }
+.score strong { font-family: var(--display); font-size: 3.4rem; font-weight: 400; line-height: 1; }
+.score .stars { color: var(--copper); letter-spacing: .1em; }
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.review { display: grid; gap: .8rem; align-content: start; padding: 24px; border-radius: 6px; background: var(--paper); }
+.review .stars { color: var(--copper); }
+.review footer { font-size: .875rem; color: var(--muted); }
+.review footer b { color: var(--ink); }
+.verified { display: inline-flex; align-items: center; gap: .3rem; color: var(--good); font-weight: 600; font-size: .8125rem; }
+@media (max-width: 860px) { .reviews { grid-template-columns: minmax(0, 1fr); } }
+
+/* Lettre d'information */
+.news { position: relative; overflow: hidden; color: var(--paper); text-align: center; }
+.news-bg { position: absolute; inset: 0; }
+.news-bg img { width: 100%; height: 100%; object-fit: cover; }
+.news-bg::after { content: ""; position: absolute; inset: 0; background: rgba(30, 22, 18, .78); }
+.news .wrap { position: relative; display: grid; justify-items: center; gap: 1rem; }
+.news h2 { font-size: clamp(2rem, 4.4vw, 3.2rem); }
+.news h2 em { color: #E3A06F; }
+.news form { display: flex; width: min(100%, 480px); margin-top: .5rem; }
+.news input { flex: 1; min-width: 0; min-height: 52px; padding: 0 16px; border: 0; border-radius: 4px 0 0 4px; }
+.news .btn { border-radius: 0 4px 4px 0; }
+.news-msg { min-height: 1.5em; font-weight: 600; color: #F3C79F; }
+
+/* Pied de page */
+.foot { padding-block: 56px 28px; background: var(--ink); color: rgba(243, 238, 231, .72); font-size: .9375rem; }
+.foot-grid { display: grid; grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr)); gap: 32px; }
+.foot .brand svg { color: var(--paper); }
+.foot .brand { color: var(--paper); }
+.foot .brand small { color: rgba(243, 238, 231, .6); }
+.foot .fh { font-family: var(--body); line-height: 1.4; font-weight: 700; margin: 0 0 .8rem; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: #E3A06F; }
+.foot li { margin-bottom: .35rem; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--paper); }
+.pay { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1rem; }
+.pay span { padding: .2rem .55rem; border: 1px solid rgba(243, 238, 231, .25); border-radius: 3px; font-size: .75rem; font-weight: 700; letter-spacing: .04em; }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: 44px; padding-top: 18px; border-top: 1px solid rgba(243, 238, 231, .15); font-size: .875rem; }
+.foot-bottom a { color: #E3A06F; font-weight: 600; }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-grid > div:first-child { grid-column: 1 / -1; } }
+
+/* Fenêtres : fiche produit et paiement */
+dialog { padding: 0; border: 0; border-radius: 8px; background: var(--surface); color: var(--ink); box-shadow: 0 40px 100px -30px rgba(0, 0, 0, .6); }
+dialog::backdrop { background: rgba(30, 22, 18, .55); backdrop-filter: blur(3px); }
+.x { position: absolute; top: 12px; right: 12px; z-index: 2; display: grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: rgba(251, 248, 243, .9); cursor: pointer; font-size: 1.1rem; }
+.x:hover { background: var(--sand); }
+.pdp { width: min(1000px, 94vw); max-height: 92vh; }
+.pdp-in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.pdp-img { background: var(--sand); }
+.pdp-img img { width: 100%; height: 100%; object-fit: cover; }
+.pdp-info { display: grid; gap: 1rem; align-content: start; padding: clamp(24px, 3.4vw, 40px); max-height: 92vh; overflow-y: auto; }
+.pdp-info h2 { font-size: clamp(2rem, 3.6vw, 2.8rem); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips span { padding: .25rem .7rem; border-radius: 999px; background: var(--sand); font-size: .8125rem; font-weight: 600; }
+.profile { display: grid; gap: .5rem; }
+.profile div { display: grid; grid-template-columns: 80px minmax(0, 1fr); gap: .75rem; align-items: center; font-size: .875rem; }
+.bar { display: flex; gap: 4px; }
+.bar i { flex: 1; height: 6px; border-radius: 3px; background: var(--line); }
+.bar i.on { background: var(--copper); }
+.specs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; padding-block: .8rem; border-block: 1px solid var(--line); font-size: .8125rem; }
+.specs dt { color: var(--muted); }
+.specs dd { font-weight: 600; }
+.opt legend { margin-bottom: .5rem; padding: 0; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.opt { margin: 0; padding: 0; border: 0; }
+.opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.opts label { position: relative; }
+.opts input { position: absolute; opacity: 0; }
+.opts span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 .9rem; border: 1.5px solid var(--line); border-radius: 4px; background: var(--paper); font-size: .875rem; font-weight: 600; cursor: pointer; }
+.opts input:checked + span { border-color: var(--ink); background: var(--ink); color: var(--paper); }
+.opts input:focus-visible + span { outline: 2px solid var(--copper); outline-offset: 2px; }
+.buy { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 10px; }
+.qty { display: inline-flex; align-items: center; border: 1.5px solid var(--line); border-radius: 4px; background: var(--paper); }
+.qty button { width: 40px; height: 46px; border: 0; background: transparent; font-size: 1.1rem; cursor: pointer; }
+.qty output { min-width: 28px; text-align: center; font-weight: 700; }
+.ship-info { display: grid; gap: .3rem; font-size: .875rem; color: var(--muted); }
+.ship-info span::before { content: "✓ "; color: var(--good); font-weight: 700; }
+@media (max-width: 760px) { .pdp-in { grid-template-columns: minmax(0, 1fr); } .pdp-img { height: 280px; } .pdp-info { max-height: none; } .pdp { overflow-y: auto; } }
+
+/* Panier latéral */
+.scrim { position: fixed; inset: 0; z-index: 70; background: rgba(30, 22, 18, .45); opacity: 0; visibility: hidden; transition: opacity .3s, visibility 0s .3s; }
+.drawer { position: fixed; top: 0; right: 0; bottom: 0; z-index: 71; display: flex; flex-direction: column; width: min(440px, 100%); background: var(--surface); box-shadow: -20px 0 60px -20px rgba(0, 0, 0, .4); transform: translateX(100%); transition: transform .4s var(--ease); }
+.cart-open .scrim { opacity: 1; visibility: visible; transition: opacity .3s; }
+.cart-open .drawer { transform: none; }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; padding: 20px 22px; border-bottom: 1px solid var(--line); }
+.drawer-head h2 { font-size: 1.6rem; }
+.drawer-head .x { position: static; }
+.ship-bar { padding: 14px 22px; border-bottom: 1px solid var(--line); font-size: .875rem; }
+.ship-bar .track { height: 6px; margin-top: 8px; border-radius: 3px; background: var(--line); overflow: hidden; }
+.ship-bar .fill { height: 100%; background: var(--good); border-radius: 3px; transition: width .5s var(--ease); }
+.lines { flex: 1; overflow-y: auto; padding: 8px 22px; }
+.line { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; gap: 12px; padding-block: 14px; border-bottom: 1px solid var(--line); }
+.line img { width: 72px; height: 72px; object-fit: cover; border-radius: 4px; background: var(--sand); }
+.line b { display: block; font-family: var(--display); font-weight: 400; font-size: 1.15rem; line-height: 1.15; }
+.line small { display: block; color: var(--muted); font-size: .8125rem; }
+.line .qty { margin-top: 8px; }
+.line .qty button { width: 32px; height: 34px; }
+.line-right { display: grid; justify-items: end; align-content: space-between; }
+.rm { border: 0; background: none; color: var(--muted); font-size: .8125rem; text-decoration: underline; cursor: pointer; }
+.cart-empty { display: grid; justify-items: center; gap: 1rem; padding: 48px 12px; text-align: center; color: var(--muted); }
+.cart-empty svg { width: 56px; height: 56px; color: var(--line); }
+.drawer-foot { display: grid; gap: .6rem; padding: 18px 22px 22px; border-top: 1px solid var(--line); background: var(--paper); }
+.sum { display: flex; justify-content: space-between; font-size: .9375rem; }
+.sum.total { font-size: 1.125rem; font-weight: 700; padding-top: .4rem; border-top: 1px solid var(--line); }
+
+/* Paiement */
+.checkout { width: min(560px, 94vw); max-height: 92vh; overflow-y: auto; }
+.co { display: grid; gap: 1.2rem; padding: clamp(24px, 4vw, 36px); }
+.co h2 { font-size: 2rem; padding-right: 40px; }
+.progress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.progress span { padding-top: 8px; border-top: 3px solid var(--line); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.progress span.on { border-color: var(--copper); color: var(--ink); }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.fields .full { grid-column: 1 / -1; }
+.f { display: grid; gap: .35rem; }
+.f label { font-size: .8125rem; font-weight: 600; color: var(--muted); }
+.f input { min-height: 48px; padding: 0 14px; border: 1.5px solid var(--line); border-radius: 4px; background: var(--paper); }
+.f input:focus { outline: none; border-color: var(--copper); box-shadow: 0 0 0 4px rgba(181, 101, 47, .15); }
+.radios { display: grid; gap: 8px; }
+.radios label { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: .8rem; align-items: center; padding: 14px 16px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--paper); cursor: pointer; }
+.radios label:has(input:checked) { border-color: var(--ink); background: var(--surface); }
+.radios input { accent-color: var(--ink); width: 18px; height: 18px; }
+.radios small { display: block; color: var(--muted); font-size: .8125rem; }
+.recap { display: grid; gap: .4rem; padding: 14px 16px; border-radius: 6px; background: var(--paper); font-size: .9375rem; }
+.co-msg { color: #A33B22; font-weight: 600; font-size: .9375rem; }
+.co-msg:empty { display: none; }
+.co-nav { display: flex; justify-content: space-between; gap: 10px; }
+.secure { display: flex; align-items: center; gap: .4rem; font-size: .8125rem; color: var(--muted); }
+.done-ic { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--good); color: #fff; }
+.demo-note { padding: 12px 14px; border-radius: 6px; background: var(--sand); font-size: .875rem; color: var(--muted); }
+@media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+
+.toast { position: fixed; left: 50%; bottom: 24px; z-index: 90; display: flex; align-items: center; gap: .8rem; max-width: calc(100vw - 32px); padding: 12px 16px; border-radius: 6px; background: var(--ink); color: var(--paper); box-shadow: 0 20px 40px -16px rgba(0, 0, 0, .5); transform: translate(-50%, calc(100% + 40px)); visibility: hidden; transition: transform .4s var(--ease), visibility 0s .4s; font-size: .9375rem; }
+.toast.show { transform: translate(-50%, 0); visibility: visible; transition: transform .4s var(--ease); }
+.toast img { width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
+.toast button { margin-left: .5rem; padding: .35rem .7rem; border: 1px solid rgba(243, 238, 231, .35); border-radius: 4px; background: transparent; color: inherit; font-weight: 600; cursor: pointer; }
+
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="bean" viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="12" ry="17" transform="rotate(30 20 20)" fill="currentColor"/><path d="M13 31c5-4 3-9 7-13s4-7 8-9" stroke="var(--paper)" stroke-width="2.4" fill="none" stroke-linecap="round"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1.2 11.1a1 1 0 0 1-1 .9H7.2a1 1 0 0 1-1-.9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="demo-bar" role="note">
+  <div class="wrap">
+    <p>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2747F5"/><path d="M16 6a10 10 0 0 1 10 10H16z" fill="#F2AE3A"/><path d="M16 26A10 10 0 0 1 6 16h10z" fill="#fff"/></svg>
+      <span>Démo réalisée par Luso <span class="tag">· Ébène est une entreprise fictive, aucun paiement réel</span></span>
+    </p>
+    <a href="../index.html#realisations">Retour à Luso</a>
+  </div>
+</div>
+<p class="announce">Livraison offerte dès 39&nbsp;€ · Torréfié chaque mardi à Bordeaux · −10&nbsp;% sur votre première commande</p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#accueil">
+      <svg aria-hidden="true"><use href="#bean"/></svg>
+      <span><b>ÉBÈNE</b><small>TORRÉFACTEUR · BORDEAUX</small></span>
+    </a>
+    <nav id="nav" aria-label="Navigation de la boutique">
+      <a href="#cafes">Nos cafés</a>
+      <a href="#abonnement">Abonnement</a>
+      <a href="#atelier">L'atelier</a>
+      <a href="#guides">Préparer son café</a>
+    </nav>
+    <div class="top-actions">
+      <button class="icon-btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+      <button class="icon-btn" id="cart-btn" aria-label="Ouvrir le panier, 0 article"><svg aria-hidden="true"><use href="#i-bag"/></svg><span class="count" id="count" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="accueil">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy">
+      <span class="eyebrow">Café de spécialité</span>
+      <h1 id="hero-title">Des grains d'exception, <em>torréfiés</em> pour vous chaque mardi.</h1>
+      <p>Nous sélectionnons des cafés de petits producteurs et les torréfions en petits lots dans notre atelier bordelais. Expédiés sous 24&nbsp;h, pour une tasse au sommet de ses arômes.</p>
+      <div class="hero-actions">
+        <a class="btn btn-dark" href="#cafes">Découvrir nos cafés</a>
+        <a class="btn btn-line" href="#abonnement">S'abonner −10&nbsp;%</a>
+      </div>
+      <p class="trust"><span class="stars" aria-hidden="true">★★★★★</span>4,9/5 · plus de 1&nbsp;200 avis clients vérifiés</p>
+    </div>
+    <div class="hero-media">
+      <img src="img/ebene/hero.webp" width="1600" height="1067" alt="Préparation d'un café filtre à la main dans l'atelier Ébène" fetchpriority="high">
+      <div class="fresh"><span class="dot" aria-hidden="true"></span><span><b>Torréfié mardi dernier</b><small>Prochaine torréfaction : mardi</small></span></div>
+    </div>
+  </section>
+
+  <section class="perks" aria-label="Nos engagements">
+    <ul class="wrap">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 3c3 4 6 6 6 10a6 6 0 0 1-12 0c0-4 3-6 6-10z"/></svg><span><b>Torréfié &lt; 7 jours</b><small>fraîcheur garantie</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg><span><b>Livraison en 48&nbsp;h</b><small>offerte dès 39&nbsp;€</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg><span><b>Paiement sécurisé</b><small>CB, Apple Pay, PayPal</small></span></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2M4 4v4h4"/></svg><span><b>Satisfait ou remboursé</b><small>30 jours pour changer d'avis</small></span></li>
+    </ul>
+  </section>
+
+  <section class="section" id="cafes" aria-labelledby="cafes-title">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">La boutique</span>
+        <h2 id="cafes-title">Nos <em>cafés</em> du moment</h2>
+        <p>Chaque café est disponible en grains ou moulu pour votre méthode, en 250&nbsp;g ou en 1&nbsp;kg.</p>
+      </div>
+      <div class="shop-tools">
+        <div class="filters" id="filters" role="group" aria-label="Filtrer les cafés">
+          <button aria-pressed="true" data-f="all">Tous</button>
+          <button aria-pressed="false" data-f="filtre">Filtre</button>
+          <button aria-pressed="false" data-f="espresso">Espresso</button>
+          <button aria-pressed="false" data-f="deca">Décaféiné</button>
+          <button aria-pressed="false" data-f="coffret">Coffrets</button>
+        </div>
+        <label class="sort">Trier par
+          <select id="sort">
+            <option value="pop">Popularité</option>
+            <option value="asc">Prix croissant</option>
+            <option value="desc">Prix décroissant</option>
+            <option value="rate">Mieux notés</option>
+          </select>
+        </label>
+      </div>
+      <p class="sr-only" id="result-count" aria-live="polite"></p>
+      <ul class="grid" id="grid"></ul>
+    </div>
+  </section>
+
+  <section class="section sub" id="abonnement" aria-labelledby="sub-title">
+    <div class="wrap">
+      <div class="sub-img"><img src="img/ebene/tasse.webp" width="900" height="600" alt="Tasse de café posée sur des grains torréfiés" loading="lazy"></div>
+      <div>
+        <div class="head">
+          <span class="eyebrow">Abonnement</span>
+          <h2 id="sub-title">Ne tombez plus <em>jamais</em> à court de café.</h2>
+          <p>Recevez un café fraîchement torréfié à la fréquence de votre choix. Sans engagement, modifiable ou suspendu en un clic.</p>
+        </div>
+        <ol class="steps">
+          <li><span><b>Choisissez votre café</b><span>ou laissez-nous vous surprendre avec un nouveau cru à chaque envoi.</span></span></li>
+          <li><span><b>Réglez la fréquence</b><span>toutes les deux ou quatre semaines, livraison toujours offerte.</span></span></li>
+          <li><span><b>Profitez de −10&nbsp;%</b><span>sur chaque envoi, et d'un café offert au troisième.</span></span></li>
+        </ol>
+        <div class="freq" role="group" aria-label="Fréquence de livraison">
+          <button aria-pressed="true" data-w="2">Toutes les 2 semaines</button>
+          <button aria-pressed="false" data-w="4">Toutes les 4 semaines</button>
+        </div>
+        <p class="sub-price"><strong>11,61&nbsp;€</strong><s>12,90&nbsp;€</s><span id="sub-txt">par envoi · environ 25&nbsp;€/mois</span></p>
+        <button class="btn btn-copper" id="sub-btn">Démarrer mon abonnement</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="atelier" aria-labelledby="atelier-title">
+    <div class="wrap story">
+      <div class="story-pics">
+        <img src="img/ebene/atelier.webp" width="900" height="600" alt="L'atelier Ébène, ses étagères et ses moulins" loading="lazy">
+        <img src="img/ebene/sac.webp" width="900" height="600" alt="Sac en toile de jute rempli de grains de café" loading="lazy">
+        <img src="img/ebene/porte-filtre.webp" width="900" height="600" alt="Porte-filtre d'espresso et grains de café" loading="lazy">
+      </div>
+      <div>
+        <div class="head" style="margin-bottom:0">
+          <span class="eyebrow">L'atelier</span>
+          <h2 id="atelier-title">Du producteur à votre tasse, <em>sans détour</em>.</h2>
+          <p>Ébène, c'est un torréfacteur et une petite équipe passionnée installés aux Chartrons depuis 2016. Nous achetons nos cafés en direct ou via des importateurs engagés, au-dessus du prix du commerce équitable, et nous les torréfions en lots de 15&nbsp;kg pour révéler leur caractère.</p>
+        </div>
+        <div class="facts">
+          <div><strong>14</strong><span>producteurs partenaires</span></div>
+          <div><strong>15&nbsp;kg</strong><span>par torréfaction, pas plus</span></div>
+          <div><strong>24&nbsp;h</strong><span>entre la torréfaction et l'envoi</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="guides" aria-labelledby="guides-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head">
+        <span class="eyebrow">Le coin du barista</span>
+        <h2 id="guides-title">Bien préparer <em>son café</em></h2>
+        <p>Nos repères pour une tasse réussie, quelle que soit votre méthode.</p>
+      </div>
+      <div class="guides">
+        <article class="guide"><img src="img/ebene/noir.webp" width="800" height="533" alt="Tasse de café filtre" loading="lazy"><div><h3>Café filtre</h3><p>Rinçez le filtre, versez en trois temps et laissez infuser lentement.</p><dl><div><dt>Dose</dt><dd>15&nbsp;g</dd></div><div><dt>Eau</dt><dd>250&nbsp;ml</dd></div><div><dt>Temps</dt><dd>3&nbsp;min</dd></div></dl></div></article>
+        <article class="guide"><img src="img/ebene/duo.webp" width="800" height="533" alt="Deux tasses d'espresso" loading="lazy"><div><h3>Espresso</h3><p>Une mouture fine et un tassage régulier pour un café crémeux.</p><dl><div><dt>Dose</dt><dd>18&nbsp;g</dd></div><div><dt>Tasse</dt><dd>36&nbsp;g</dd></div><div><dt>Temps</dt><dd>28&nbsp;s</dd></div></dl></div></article>
+        <article class="guide"><img src="img/ebene/latte.webp" width="800" height="533" alt="Lait versé dans un café latte" loading="lazy"><div><h3>Latte</h3><p>Un espresso, un lait chauffé à 60&nbsp;°C et une mousse veloutée.</p><dl><div><dt>Espresso</dt><dd>1</dd></div><div><dt>Lait</dt><dd>180&nbsp;ml</dd></div><div><dt>Température</dt><dd>60&nbsp;°C</dd></div></dl></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reviews-band" aria-labelledby="avis-title">
+    <div class="wrap">
+      <div class="reviews-top">
+        <div class="head" style="margin:0"><span class="eyebrow">Avis clients</span><h2 id="avis-title">Ils ont <em>goûté</em></h2></div>
+        <div class="score"><strong>4,9</strong><span><span class="stars" aria-hidden="true">★★★★★</span><br>1&nbsp;214 avis vérifiés</span></div>
+      </div>
+      <div class="reviews">
+        <article class="review"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><p>« L'Uraga est une claque : pêche et jasmin, exactement comme décrit. Livré en deux jours, torréfié la veille de l'envoi. »</p><footer><b>Léa D.</b> · <span class="verified"><svg width="14" height="14" aria-hidden="true"><use href="#i-check"/></svg>Achat vérifié</span></footer></article>
+        <article class="review"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><p>« Abonnée depuis un an au Nuit Ébène pour ma machine à espresso. Toujours régulier, et le service client est adorable. »</p><footer><b>Nadia K.</b> · <span class="verified"><svg width="14" height="14" aria-hidden="true"><use href="#i-check"/></svg>Achat vérifié</span></footer></article>
+        <article class="review"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><p>« Offert le coffret découverte à mon père : il a commandé deux sachets de Colombie dans la foulée. Joli packaging. »</p><footer><b>Hugo P.</b> · <span class="verified"><svg width="14" height="14" aria-hidden="true"><use href="#i-check"/></svg>Achat vérifié</span></footer></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section news" aria-labelledby="news-title">
+    <div class="news-bg"><img src="img/ebene/grains.webp" width="1200" height="800" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <span class="eyebrow" style="color:#E3A06F">La lettre d'Ébène</span>
+      <h2 id="news-title"><em>−10&nbsp;%</em> sur votre première commande</h2>
+      <p style="opacity:.8;max-width:32rem">Nouveaux crus, éditions limitées et conseils de préparation, une fois par mois. Désinscription en un clic.</p>
+      <form id="news-form" novalidate>
+        <label class="sr-only" for="news-email">Votre email</label>
+        <input id="news-email" type="email" placeholder="Votre adresse email" autocomplete="email" required>
+        <button class="btn btn-copper" type="submit">Je m'inscris</button>
+      </form>
+      <p class="news-msg" id="news-msg" role="status"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#accueil"><svg aria-hidden="true"><use href="#bean"/></svg><span><b>ÉBÈNE</b><small>TORRÉFACTEUR · BORDEAUX</small></span></a>
+        <p style="margin-top:1rem;max-width:22rem">Café de spécialité torréfié chaque mardi aux Chartrons, Bordeaux.</p>
+        <div class="pay" aria-label="Moyens de paiement acceptés"><span>CB</span><span>VISA</span><span>MASTERCARD</span><span>APPLE PAY</span><span>PAYPAL</span></div>
+      </div>
+      <div><h3 class="fh">Boutique</h3><ul><li><a href="#cafes">Tous nos cafés</a></li><li><a href="#cafes" data-jump="coffret">Coffrets cadeaux</a></li><li><a href="#abonnement">Abonnement</a></li></ul></div>
+      <div><h3 class="fh">Aide</h3><ul><li><a href="#accueil">Livraison et retours</a></li><li><a href="#guides">Préparer son café</a></li><li><a href="#accueil">Nous contacter</a></li></ul></div>
+      <div><h3 class="fh">L'atelier</h3><ul><li>14 quai des Chartrons, Bordeaux</li><li>Ouvert du mardi au samedi</li><li><a href="#atelier">Notre histoire</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Boutique de démonstration conçue par Luso. Ébène, ses cafés et ses avis sont fictifs.</span>
+      <a href="../index.html#contact">Vous voulez votre boutique en ligne&#8239;?</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Fiche produit -->
+<dialog class="pdp" id="pdp" aria-labelledby="pdp-name">
+  <button class="x" type="button" data-close aria-label="Fermer">✕</button>
+  <div class="pdp-in">
+    <div class="pdp-img"><img id="pdp-img" src="" alt="" width="640" height="640"></div>
+    <div class="pdp-info">
+      <span class="origin" id="pdp-origin"></span>
+      <h2 id="pdp-name"></h2>
+      <div class="chips" id="pdp-notes"></div>
+      <p id="pdp-desc" style="color:var(--muted)"></p>
+      <div class="profile" id="pdp-profile"></div>
+      <dl class="specs" id="pdp-specs"></dl>
+      <fieldset class="opt" id="pdp-grind-wrap"><legend>Mouture</legend><div class="opts" id="pdp-grind"></div></fieldset>
+      <fieldset class="opt" id="pdp-weight-wrap"><legend>Poids</legend><div class="opts" id="pdp-weight"></div></fieldset>
+      <div class="buy">
+        <div class="qty"><button type="button" id="pdp-minus" aria-label="Retirer un sachet">−</button><output id="pdp-qty" aria-live="polite">1</output><button type="button" id="pdp-plus" aria-label="Ajouter un sachet">+</button></div>
+        <button class="btn btn-dark" id="pdp-add" type="button">Ajouter au panier</button>
+      </div>
+      <div class="ship-info"><span>Torréfié la semaine de l'envoi</span><span>Expédié sous 24&nbsp;h ouvrées</span><span>Livraison offerte dès 39&nbsp;€</span></div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Panier -->
+<div class="scrim" id="scrim"></div>
+<div class="drawer" id="drawer" aria-labelledby="cart-title" role="dialog" aria-modal="true" tabindex="-1">
+  <div class="drawer-head"><h2 id="cart-title">Votre panier</h2><button class="x" type="button" id="cart-close" aria-label="Fermer le panier">✕</button></div>
+  <div class="ship-bar" id="ship-bar"></div>
+  <div class="lines" id="lines"></div>
+  <div class="drawer-foot" id="drawer-foot">
+    <div class="sum"><span>Sous-total</span><span id="s-sub"></span></div>
+    <div class="sum"><span>Livraison</span><span id="s-ship"></span></div>
+    <div class="sum total"><span>Total TTC</span><span id="s-total"></span></div>
+    <button class="btn btn-copper btn-block" id="checkout-btn">Passer commande</button>
+    <p class="secure"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Paiement sécurisé · données chiffrées</p>
+  </div>
+</div>
+
+<!-- Paiement -->
+<dialog class="checkout" id="checkout" aria-labelledby="co-title">
+  <button class="x" type="button" data-close aria-label="Fermer">✕</button>
+  <form class="co" id="co" novalidate></form>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var PRODUCTS = [
+    { id: "ethiopie", name: "Uraga", origin: "Éthiopie · Guji", notes: ["Pêche", "Jasmin", "Bergamote"], cats: ["filtre"], p250: 13.5, p1k: 46, rating: 4.9, reviews: 128, pop: 1, badge: "Best-seller",
+      desc: "Un café lavé d'une grande finesse, cultivé à plus de 2 000 m par une coopérative de 600 familles. Idéal en filtre pour révéler ses notes florales.", prof: [5, 2, 4], specs: ["Lavé", "2 100 m", "Heirloom"] },
+    { id: "colombie", name: "La Plata", origin: "Colombie · Huila", notes: ["Caramel", "Pomme rouge", "Cacao"], cats: ["filtre", "espresso"], p250: 12.9, p1k: 43, rating: 4.8, reviews: 96, pop: 3,
+      desc: "Un café rond et gourmand, aussi bon en filtre qu'en espresso. Notre recommandation pour découvrir le café de spécialité.", prof: [3, 3, 4], specs: ["Lavé", "1 750 m", "Caturra"] },
+    { id: "bresil", name: "Mineiro", origin: "Brésil · Cerrado", notes: ["Noisette", "Chocolat au lait"], cats: ["espresso"], p250: 11.5, p1k: 38, rating: 4.7, reviews: 211, pop: 4, badge: "Tout doux",
+      desc: "Peu d'acidité, beaucoup de douceur : un café réconfortant qui se marie parfaitement avec le lait.", prof: [1, 4, 4], specs: ["Nature", "1 100 m", "Mundo Novo"] },
+    { id: "kenya", name: "Nyeri AA", origin: "Kenya · Nyeri", notes: ["Cassis", "Pamplemousse", "Rhubarbe"], cats: ["filtre"], p250: 15.9, p1k: 54, rating: 4.9, reviews: 64, pop: 6, badge: "Édition limitée", limited: true,
+      desc: "Un cru éclatant et juteux, en quantité limitée cette saison. Pour les amateurs de cafés vifs et fruités.", prof: [5, 3, 3], specs: ["Lavé", "1 800 m", "SL28 · SL34"] },
+    { id: "guatemala", name: "Las Nubes", origin: "Guatemala · Huehuetenango", notes: ["Chocolat noir", "Prune", "Cannelle"], cats: ["espresso", "filtre"], p250: 12.5, p1k: 42, rating: 4.8, reviews: 77, pop: 5,
+      desc: "Un café structuré aux notes chocolatées et épicées, superbe en espresso comme en cafetière italienne.", prof: [3, 4, 3], specs: ["Lavé", "1 650 m", "Bourbon"] },
+    { id: "nuit", name: "Nuit Ébène", origin: "Assemblage espresso", notes: ["Cacao", "Réglisse", "Épices douces"], cats: ["espresso"], p250: 10.9, p1k: 36, rating: 4.8, reviews: 342, pop: 2, badge: "Best-seller",
+      desc: "Notre assemblage signature (Brésil, Guatemala, Inde), pensé pour les machines à espresso et les boissons lactées.", prof: [2, 5, 3], specs: ["Assemblage", "3 origines", "Torréfaction médium"] },
+    { id: "deca", name: "Sugarcane", origin: "Décaféiné · Colombie", notes: ["Caramel", "Cerise", "Miel"], cats: ["deca", "filtre", "espresso"], p250: 12.9, p1k: 44, rating: 4.6, reviews: 58, pop: 7,
+      desc: "Décaféiné naturellement à l'acétate d'éthyle issu de la canne à sucre : tout le goût, sans la caféine.", prof: [2, 3, 5], specs: ["Décaféiné", "1 700 m", "Castillo"] },
+    { id: "coffret", name: "Trois origines", origin: "Coffret découverte · 3 × 100 g", notes: ["Éthiopie", "Colombie", "Brésil"], cats: ["coffret"], fixed: 24, rating: 4.9, reviews: 143, pop: 8, badge: "Idée cadeau",
+      desc: "Trois cafés pour faire le tour du monde en trois tasses, avec une fiche de dégustation pour chacun. Idéal à offrir.", prof: [3, 3, 4], specs: ["3 × 100 g", "Fiches incluses", "Carte cadeau"] }
+  ];
+  var GRINDS = ["Grains", "Espresso", "Filtre", "Italienne", "Piston"];
+  var FREE = 39, SHIP = 4.9;
+  var byId = {}; PRODUCTS.forEach(function (p) { byId[p.id] = p; });
+  function euro(n) { return n.toLocaleString("fr-FR", { style: "currency", currency: "EUR" }); }
+  function img(p) { return "img/ebene/p-" + p.id + ".webp"; }
+  function priceOf(p, w) { return p.fixed || (w === "1 kg" ? p.p1k : p.p250); }
+  function stars(r) { var n = Math.round(r); return "★★★★★".slice(0, n) + '<span style="opacity:.3">' + "★★★★★".slice(n) + "</span>"; }
+
+  // ---- Menu mobile ----
+  var menuBtn = document.getElementById("menu-btn"), nav = document.getElementById("nav");
+  menuBtn.addEventListener("click", function () { var o = !nav.classList.contains("open"); nav.classList.toggle("open", o); menuBtn.setAttribute("aria-expanded", String(o)); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  // ---- Catalogue ----
+  var grid = document.getElementById("grid"), filter = "all", sortSel = document.getElementById("sort");
+  function renderGrid() {
+    var list = PRODUCTS.filter(function (p) { return filter === "all" || p.cats.indexOf(filter) > -1; });
+    var s = sortSel.value;
+    list.sort(function (a, b) {
+      if (s === "asc") return priceOf(a) - priceOf(b);
+      if (s === "desc") return priceOf(b) - priceOf(a);
+      if (s === "rate") return b.rating - a.rating;
+      return a.pop - b.pop;
+    });
+    grid.innerHTML = list.map(function (p, i) {
+      return '<li class="card" style="animation-delay:' + (i * .05) + 's">' +
+        '<div class="card-media"><button class="card-img" data-open="' + p.id + '" tabindex="-1" aria-hidden="true"><img src="' + img(p) + '" width="640" height="640" alt="" loading="lazy">' +
+        (p.badge ? '<span class="badge' + (p.limited ? " limited" : "") + '">' + p.badge + "</span>" : "") + "</button>" +
+        '<button class="btn btn-dark quick" data-add="' + p.id + '">Ajout rapide · ' + (p.fixed ? "coffret" : "250 g en grains") + "</button></div>" +
+        '<div class="card-body"><span class="origin">' + p.origin + '</span><h3><button data-open="' + p.id + '">' + p.name + '</button></h3><p class="notes">' + p.notes.join(" · ") + "</p>" +
+        '<div class="card-foot"><span class="price">' + (p.fixed ? euro(p.fixed) : "<small>dès</small> " + euro(p.p250)) + '</span><span class="rate"><span class="stars" aria-hidden="true">★</span> ' + p.rating.toLocaleString("fr-FR") + " (" + p.reviews + ")</span></div>" +
+        '<button class="btn btn-dark mobile-add quick-add" data-add="' + p.id + '">Ajouter · ' + euro(priceOf(p)) + "</button></div></li>";
+    }).join("");
+    document.getElementById("result-count").textContent = list.length + " cafés affichés";
+  }
+  document.getElementById("filters").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    filter = b.getAttribute("data-f");
+    this.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    renderGrid();
+  });
+  document.querySelectorAll("[data-jump]").forEach(function (a) {
+    a.addEventListener("click", function () { var b = document.querySelector('[data-f="' + a.getAttribute("data-jump") + '"]'); if (b) b.click(); });
+  });
+  sortSel.addEventListener("change", renderGrid);
+  renderGrid();
+
+  // ---- Panier (gardé dans le navigateur) ----
+  var cart = [];
+  try { cart = JSON.parse(localStorage.getItem("ebene-cart") || "[]").filter(function (l) { return byId[l.id]; }); } catch (e) { cart = []; }
+  function save() { try { localStorage.setItem("ebene-cart", JSON.stringify(cart)); } catch (e) {} }
+  function count() { return cart.reduce(function (n, l) { return n + l.q; }, 0); }
+  function subtotal() { return cart.reduce(function (s, l) { return s + priceOf(byId[l.id], l.w) * l.q; }, 0); }
+  function add(id, grind, weight, q) {
+    var p = byId[id], w = p.fixed ? "3 × 100 g" : weight;
+    var line = cart.filter(function (l) { return l.id === id && l.g === grind && l.w === w; })[0];
+    if (line) line.q += q; else cart.push({ id: id, g: grind, w: w, q: q });
+    save(); renderCart();
+    var c = document.getElementById("count"); c.classList.remove("bump"); void c.offsetWidth; c.classList.add("bump");
+    toast('<img src="' + img(p) + '" alt=""><span><b>' + p.name + "</b> ajouté au panier</span><button type=\"button\" id=\"toast-open\">Voir le panier</button>");
+  }
+  var countEl = document.getElementById("count"), cartBtn = document.getElementById("cart-btn");
+  function renderCart() {
+    var n = count(), sub = subtotal(), ship = sub >= FREE || sub === 0 ? 0 : SHIP;
+    countEl.hidden = n === 0; countEl.textContent = n;
+    cartBtn.setAttribute("aria-label", "Ouvrir le panier, " + n + " article" + (n > 1 ? "s" : ""));
+    var left = Math.max(0, FREE - sub);
+    document.getElementById("ship-bar").innerHTML = (sub === 0 ? "Livraison offerte dès " + euro(FREE) : left > 0 ? "Plus que <b>" + euro(left) + "</b> pour la livraison offerte" : "<b>Livraison offerte</b> sur votre commande") +
+      '<div class="track"><div class="fill" style="width:' + Math.min(100, sub / FREE * 100) + '%"></div></div>';
+    var lines = document.getElementById("lines");
+    if (!cart.length) {
+      lines.innerHTML = '<div class="cart-empty"><svg aria-hidden="true"><use href="#i-bag"/></svg><p>Votre panier est vide.</p><button class="btn btn-dark" type="button" id="empty-shop">Découvrir nos cafés</button></div>';
+      document.getElementById("drawer-foot").hidden = true;
+    } else {
+      lines.innerHTML = cart.map(function (l, i) {
+        var p = byId[l.id];
+        return '<div class="line"><img src="' + img(p) + '" alt=""><div><b>' + p.name + "</b><small>" + l.g + " · " + l.w + "</small>" +
+          '<div class="qty"><button type="button" data-dec="' + i + '" aria-label="Retirer un ' + p.name + '">−</button><output>' + l.q + '</output><button type="button" data-inc="' + i + '" aria-label="Ajouter un ' + p.name + '">+</button></div></div>' +
+          '<div class="line-right"><b style="font-family:var(--body);font-size:1rem">' + euro(priceOf(p, l.w) * l.q) + '</b><button class="rm" type="button" data-rm="' + i + '">Retirer</button></div></div>';
+      }).join("");
+      document.getElementById("drawer-foot").hidden = false;
+    }
+    document.getElementById("s-sub").textContent = euro(sub);
+    document.getElementById("s-ship").textContent = ship ? euro(ship) : "Offerte";
+    document.getElementById("s-total").textContent = euro(sub + ship);
+  }
+  document.getElementById("lines").addEventListener("click", function (e) {
+    var t = e.target.closest("button"); if (!t) return;
+    if (t.id === "empty-shop") { closeCart(); location.hash = "#cafes"; return; }
+    var i;
+    if ((i = t.getAttribute("data-inc")) !== null) cart[i].q++;
+    else if ((i = t.getAttribute("data-dec")) !== null) { cart[i].q--; if (cart[i].q < 1) cart.splice(i, 1); }
+    else if ((i = t.getAttribute("data-rm")) !== null) cart.splice(i, 1);
+    save(); renderCart();
+  });
+  var drawer = document.getElementById("drawer"), lastFocus = null;
+  function openCart() { lastFocus = document.activeElement; document.body.classList.add("cart-open", "locked"); drawer.focus(); hideToast(); }
+  function closeCart() { document.body.classList.remove("cart-open", "locked"); if (lastFocus) lastFocus.focus(); }
+  cartBtn.addEventListener("click", openCart);
+  document.getElementById("cart-close").addEventListener("click", closeCart);
+  document.getElementById("scrim").addEventListener("click", closeCart);
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && document.body.classList.contains("cart-open")) closeCart(); });
+  renderCart();
+
+  // ---- Notification ----
+  var toastEl = document.getElementById("toast"), toastTimer;
+  function toast(html) {
+    toastEl.innerHTML = html; toastEl.classList.add("show");
+    var b = document.getElementById("toast-open"); if (b) b.addEventListener("click", openCart);
+    clearTimeout(toastTimer); toastTimer = setTimeout(hideToast, 3800);
+  }
+  function hideToast() { toastEl.classList.remove("show"); }
+
+  // ---- Fiche produit ----
+  var pdp = document.getElementById("pdp"), current = null, qty = 1;
+  function radios(name, values, checked) {
+    return values.map(function (v) { return '<label><input type="radio" name="' + name + '" value="' + v + '"' + (v === checked ? " checked" : "") + "><span>" + v + "</span></label>"; }).join("");
+  }
+  function pdpPrice() {
+    var w = (pdp.querySelector('input[name="w"]:checked') || {}).value;
+    document.getElementById("pdp-add").textContent = "Ajouter au panier · " + euro(priceOf(current, w) * qty);
+  }
+  function openPdp(id) {
+    var p = current = byId[id]; qty = 1;
+    document.getElementById("pdp-img").src = img(p); document.getElementById("pdp-img").alt = "Sachet de café " + p.name;
+    document.getElementById("pdp-origin").textContent = p.origin;
+    document.getElementById("pdp-name").textContent = p.name;
+    document.getElementById("pdp-notes").innerHTML = p.notes.map(function (n) { return "<span>" + n + "</span>"; }).join("");
+    document.getElementById("pdp-desc").textContent = p.desc;
+    document.getElementById("pdp-profile").innerHTML = ["Acidité", "Corps", "Douceur"].map(function (l, i) {
+      var bars = ""; for (var k = 1; k <= 5; k++) bars += '<i class="' + (k <= p.prof[i] ? "on" : "") + '"></i>';
+      return "<div><span>" + l + '</span><span class="bar" role="img" aria-label="' + l + " " + p.prof[i] + ' sur 5">' + bars + "</span></div>";
+    }).join("");
+    document.getElementById("pdp-specs").innerHTML = ["Procédé", "Altitude", "Variété"].map(function (l, i) { return "<div><dt>" + l + "</dt><dd>" + p.specs[i] + "</dd></div>"; }).join("");
+    document.getElementById("pdp-grind").innerHTML = radios("g", GRINDS, p.cats.indexOf("espresso") > -1 && p.cats.indexOf("filtre") < 0 ? "Espresso" : "Grains");
+    document.getElementById("pdp-weight-wrap").hidden = !!p.fixed;
+    document.getElementById("pdp-weight").innerHTML = p.fixed ? "" : radios("w", ["250 g", "1 kg"], "250 g").replace("1 kg</span>", "1 kg <small style=\"font-weight:500;opacity:.7\">· −15&nbsp;%</small></span>");
+    document.getElementById("pdp-qty").textContent = qty;
+    pdpPrice();
+    pdp.showModal();
+  }
+  pdp.addEventListener("change", pdpPrice);
+  document.getElementById("pdp-minus").addEventListener("click", function () { qty = Math.max(1, qty - 1); document.getElementById("pdp-qty").textContent = qty; pdpPrice(); });
+  document.getElementById("pdp-plus").addEventListener("click", function () { qty = Math.min(20, qty + 1); document.getElementById("pdp-qty").textContent = qty; pdpPrice(); });
+  document.getElementById("pdp-add").addEventListener("click", function () {
+    var g = pdp.querySelector('input[name="g"]:checked').value, w = (pdp.querySelector('input[name="w"]:checked') || {}).value || "250 g";
+    add(current.id, g, w, qty); pdp.close();
+  });
+  grid.addEventListener("click", function (e) {
+    var o = e.target.closest("[data-open]"); if (o) { openPdp(o.getAttribute("data-open")); return; }
+    var a = e.target.closest("[data-add]"); if (a) add(a.getAttribute("data-add"), "Grains", "250 g", 1);
+  });
+  document.querySelectorAll("dialog").forEach(function (d) {
+    d.addEventListener("click", function (e) { if (e.target === d || e.target.closest("[data-close]")) d.close(); });
+  });
+
+  // ---- Abonnement ----
+  var weeks = 2;
+  document.querySelector(".freq").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    weeks = +b.getAttribute("data-w");
+    this.querySelectorAll("button").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    document.getElementById("sub-txt").innerHTML = "par envoi · environ " + (weeks === 2 ? "25" : "12,60") + "&nbsp;€/mois";
+  });
+  document.getElementById("sub-btn").addEventListener("click", function () {
+    toast("<span>Démo : l'abonnement s'ouvrirait ici, avec le choix du café et le paiement récurrent.</span>");
+  });
+
+  // ---- Lettre d'information ----
+  document.getElementById("news-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var input = document.getElementById("news-email"), msg = document.getElementById("news-msg");
+    if (!input.value || !input.checkValidity()) { msg.textContent = "Indiquez une adresse email valide."; input.focus(); return; }
+    msg.textContent = "Merci ! Votre code BIENVENUE10 vous attend dans votre boîte mail (démo : aucun email envoyé)."; this.reset();
+  });
+
+  // ---- Paiement en trois étapes (démo) ----
+  var co = document.getElementById("co"), checkout = document.getElementById("checkout"), step = 1;
+  var data = { email: "", name: "", addr: "", zip: "", city: "", ship: "relais" };
+  var SHIPS = { domicile: ["Colissimo à domicile", "48 h", 4.9], relais: ["Point relais", "48 à 72 h", 3.9], atelier: ["Retrait à l'atelier", "dès demain, Bordeaux", 0] };
+  function shipCost() { var s = subtotal(); return data.ship === "atelier" || s >= FREE ? 0 : SHIPS[data.ship][2]; }
+  function progress() { return '<div class="progress" aria-hidden="true">' + ["Coordonnées", "Livraison", "Paiement"].map(function (l, i) { return '<span class="' + (i < step ? "on" : "") + '">' + (i + 1) + ". " + l + "</span>"; }).join("") + "</div>"; }
+  function f(id, label, type, val, full, ac) { return '<div class="f' + (full ? " full" : "") + '"><label for="' + id + '">' + label + '</label><input id="' + id + '" type="' + type + '" value="' + (val || "") + '" required' + (ac ? ' autocomplete="' + ac + '"' : "") + "></div>"; }
+  function renderCo() {
+    var h = "";
+    if (step === 1) {
+      h = '<h2 id="co-title">Vos coordonnées</h2>' + progress() + '<div class="fields">' + f("c-email", "Email", "email", data.email, true, "email") + f("c-name", "Nom complet", "text", data.name, true, "name") +
+        f("c-addr", "Adresse", "text", data.addr, true, "street-address") + f("c-zip", "Code postal", "text", data.zip, false, "postal-code") + f("c-city", "Ville", "text", data.city, false, "address-level2") + "</div>";
+    } else if (step === 2) {
+      h = '<h2 id="co-title">Livraison</h2>' + progress() + '<div class="radios">' + Object.keys(SHIPS).map(function (k) {
+        var s = SHIPS[k], cost = k === "atelier" || subtotal() >= FREE ? "Offerte" : euro(s[2]);
+        return '<label><input type="radio" name="ship" value="' + k + '"' + (data.ship === k ? " checked" : "") + "><span><b>" + s[0] + "</b><small>" + s[1] + "</small></span><b>" + cost + "</b></label>";
+      }).join("") + "</div>";
+    } else if (step === 3) {
+      var sub = subtotal(), ship = shipCost();
+      h = '<h2 id="co-title">Paiement</h2>' + progress() + '<div class="recap"><div class="sum"><span>' + count() + " article" + (count() > 1 ? "s" : "") + "</span><span>" + euro(sub) + '</span></div><div class="sum"><span>' + SHIPS[data.ship][0] + "</span><span>" + (ship ? euro(ship) : "Offerte") + '</span></div><div class="sum total"><span>Total TTC</span><span>' + euro(sub + ship) + "</span></div></div>" +
+        '<div class="fields">' + f("c-card", "Numéro de carte", "text", "4242 4242 4242 4242", true, "cc-number") + f("c-exp", "Expiration", "text", "12/29", false, "cc-exp") + f("c-cvc", "Cryptogramme", "text", "123", false, "cc-csc") + "</div>" +
+        '<p class="demo-note">Démo : la carte de test est déjà remplie et aucun paiement n\'est effectué. Sur la vraie boutique, le paiement passe par Stripe, PayPal ou Apple Pay.</p>';
+    } else {
+      var num = "EB-" + Math.floor(10000 + Math.random() * 89999);
+      h = '<div style="display:grid;justify-items:start;gap:1rem"><span class="done-ic"><svg width="30" height="30" aria-hidden="true"><use href="#i-check"/></svg></span><h2 id="co-title" tabindex="-1">Merci ' + (data.name.split(" ")[0] || "") + " !</h2>" +
+        "<p>Votre commande <b>" + num + "</b> est confirmée. Elle sera torréfiée mardi et expédiée en " + SHIPS[data.ship][0].toLowerCase() + ". Un email de confirmation serait envoyé à <b>" + data.email + "</b>.</p>" +
+        '<p class="demo-note">Démo : aucune commande n\'a été passée et aucun email n\'a été envoyé.</p><button class="btn btn-dark" type="button" data-close>Continuer mes achats</button></div>';
+      cart = []; save(); renderCart();
+    }
+    if (step <= 3) h += '<p class="co-msg" id="co-msg" role="alert"></p><div class="co-nav">' + (step > 1 ? '<button class="btn btn-line" type="button" id="co-back">Retour</button>' : "<span></span>") +
+      '<button class="btn btn-copper" type="submit">' + (step === 3 ? "Payer " + euro(subtotal() + shipCost()) : "Continuer") + "</button></div>" + (step === 3 ? '<p class="secure">🔒 Paiement chiffré · vos données ne sont jamais conservées</p>' : "");
+    co.innerHTML = h;
+    var first = co.querySelector("input, [tabindex='-1']"); if (first) first.focus();
+    var back = document.getElementById("co-back"); if (back) back.addEventListener("click", function () { step--; renderCo(); });
+  }
+  co.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var msg = document.getElementById("co-msg");
+    if (step === 1) {
+      var bad = Array.prototype.filter.call(co.querySelectorAll("input"), function (i) { return !i.value.trim() || !i.checkValidity(); })[0];
+      if (bad) { msg.textContent = "Merci de compléter tous les champs (email valide)."; bad.focus(); return; }
+      data.email = co.querySelector("#c-email").value.trim(); data.name = co.querySelector("#c-name").value.trim();
+      data.addr = co.querySelector("#c-addr").value.trim(); data.zip = co.querySelector("#c-zip").value.trim(); data.city = co.querySelector("#c-city").value.trim();
+    }
+    if (step === 2) data.ship = co.querySelector('input[name="ship"]:checked').value;
+    step++; renderCo();
+  });
+  document.getElementById("checkout-btn").addEventListener("click", function () {
+    if (!cart.length) return;
+    closeCart(); step = 1; renderCo(); checkout.showModal();
+  });
+})();
+</script>
+</body>
+</html>

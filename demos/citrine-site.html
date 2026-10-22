@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="robots" content="noindex">
-<title>Citrine · Démo site vitrine</title>
-<meta name="description" content="Démo Luso : site vitrine d'un restaurant fictif, Citrine. Carte, horaires en direct, accès et réservation.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23F3CF45'/%3E%3Ccircle cx='16' cy='16' r='11' fill='%23FBE68A'/%3E%3Cpath d='M16 5v22M5 16h22M8.2 8.2l15.6 15.6M23.8 8.2L8.2 23.8' stroke='%23fff' stroke-width='1.6'/%3E%3C/svg%3E">
+<title>Citrine · Table méditerranéenne à Lyon</title>
+<meta name="description" content="Démo Luso : site vitrine d'un restaurant fictif, Citrine. Carte en photos, galerie, chef, avis, horaires en direct et réservation en ligne.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23F2C94C'/%3E%3Ccircle cx='16' cy='16' r='12' fill='%23FBE8A6'/%3E%3Cpath d='M16 4v24M4 16h24M7.5 7.5l17 17M24.5 7.5l-17 17' stroke='%23F7F3EA' stroke-width='1.4'/%3E%3C/svg%3E">
 <style>
 /* Polices hébergées sur le site Luso (aucun appel à un service tiers). */
 @font-face { font-family: "Fraunces"; font-style: normal; font-weight: 100 900; font-display: swap; src: url("../assets/fonts/fraunces-latin-opsz-normal.woff2") format("woff2"); }
@@ -15,186 +15,295 @@
 @font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
 @font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2"); }
 
-/* Layout : restaurant méditerranéen — grand titre en Fraunces italique face à une assiette illustrée ; carte en onglets avec points de conduite ; horaires + plan stylisé ; réservation. Identité unique en clair (pas de thème sombre, choix de marque). */
+/* Citrine : crème, olive profond et jaune citron. Grandes photos, titres Fraunces, beaucoup d'air. */
 :root {
-  --paper: #FBFBF6;
-  --surface: #FFFFFF;
-  --ink: #1E2414;
-  --muted: #5D6450;
-  --line: #DCDFCC;
-  --olive: #4E5D2B;
-  --olive-soft: #E9ECDB;
-  --lemon: #F3CF45;
-  --lemon-soft: #FBF1C4;
-  --sea: #2E5E8C;
-  --luso: #101733;
-  --luso-ink: #FFFFFF;
-  --luso-accent: #8299FF;
+  --paper: #F7F3EA;
+  --surface: #FFFDF8;
+  --ink: #1C2117;
+  --muted: #5E6452;
+  --line: #E2DCCB;
+  --olive: #3F4B22;
+  --olive-soft: #E8E9D6;
+  --lemon: #F2C94C;
+  --lemon-soft: #FBE8A6;
+  --clay: #B65C3A;
   --display: "Fraunces", Georgia, "Times New Roman", serif;
   --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .24, 1);
   color-scheme: light;
 }
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 120px; }
-body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
-h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1.05; margin: 0; text-wrap: balance; font-optical-sizing: auto; }
-p, ul, ol, dl, dd { margin: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+h1, h2, h3 { font-family: var(--display); font-weight: 450; line-height: 1.04; margin: 0; text-wrap: balance; letter-spacing: -.015em; }
+h2 em, h1 em { font-style: italic; font-weight: 400; color: var(--olive); }
+p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 ul, ol { list-style: none; padding: 0; }
 a { color: inherit; }
-button, input, select { font: inherit; color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
 img, svg { display: block; max-width: 100%; }
+img { height: auto; }
 :focus-visible { outline: 2px solid var(--olive); outline-offset: 3px; border-radius: 4px; }
 [hidden] { display: none !important; }
-.wrap { width: 100%; max-width: 1180px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.section { padding-block: clamp(72px, 10vw, 128px); }
+.kicker { display: inline-flex; align-items: center; gap: .6rem; font-size: .75rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--olive); }
+.kicker::before { content: ""; width: 22px; height: 1.5px; background: currentColor; }
+.head { display: grid; gap: 1rem; max-width: 42rem; margin-bottom: clamp(36px, 5vw, 56px); }
+.head h2 { font-size: clamp(2.3rem, 5vw, 3.8rem); }
+.head p { color: var(--muted); font-size: 1.125rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 50px; padding: 0 1.6rem; border-radius: 999px; border: 1.5px solid transparent; font-weight: 600; text-decoration: none; cursor: pointer; transition: background-color .25s, color .25s, border-color .25s, transform .25s var(--ease); }
+.btn:active { transform: scale(.97); }
+.btn-fill { background: var(--ink); color: var(--paper); }
+.btn-fill:hover { background: var(--olive); }
+.btn-lemon { background: var(--lemon); color: var(--ink); }
+.btn-lemon:hover { background: #FFE07A; }
+.btn-line { border-color: currentColor; background: transparent; }
+.btn-line:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.btn svg { width: 18px; height: 18px; }
 
 /* Bandeau Luso */
-.demo-bar { background: var(--luso); color: var(--luso-ink); font-family: "Bricolage Grotesque", var(--body); font-size: .875rem; }
-.demo-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1.25rem; padding-block: 10px; }
+.demo-bar { position: relative; z-index: 60; background: #0E0E0F; color: #F4F2EE; font-family: "Bricolage Grotesque", var(--body); font-size: .875rem; }
+.demo-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1.25rem; padding-block: 9px; }
 .demo-bar p { display: flex; align-items: center; gap: .55rem; }
 .demo-bar svg { width: 20px; height: 20px; flex: none; }
 .demo-bar nav { display: flex; gap: 1.1rem; }
-.demo-bar a { color: var(--luso-ink); text-decoration: none; font-weight: 600; }
-.demo-bar a:hover { color: var(--luso-accent); }
-.demo-bar .tag { font-weight: 400; opacity: .75; }
+.demo-bar a { color: inherit; text-decoration: none; font-weight: 600; }
+.demo-bar a:hover { color: #F2AE3A; }
+.demo-bar .tag { opacity: .7; font-weight: 400; }
 
-/* En-tête */
-.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: color-mix(in srgb, var(--paper) 90%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
-.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 68px; }
-.brand { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font-family: var(--display); font-style: italic; font-weight: 600; font-size: 1.75rem; letter-spacing: -.01em; }
-.brand svg { width: 30px; height: 30px; }
-.top nav { display: flex; align-items: center; gap: 1.6rem; }
-.top nav a:not(.btn) { text-decoration: none; color: var(--muted); font-weight: 500; }
-.top nav a:not(.btn):hover { color: var(--ink); }
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 48px; padding: 0 1.35rem; border-radius: 999px; border: 1.5px solid var(--ink); font-weight: 600; text-decoration: none; cursor: pointer; background: transparent; transition: background-color .2s, color .2s; }
-.btn-fill { background: var(--ink); color: var(--paper); }
-.btn-fill:hover { background: var(--olive); border-color: var(--olive); }
-.btn-line:hover { background: var(--ink); color: var(--paper); }
-.top .btn { min-height: 42px; }
-@media (max-width: 760px) { .top nav a:not(.btn) { display: none; } }
+/* Logo */
+.brand { display: inline-flex; align-items: center; gap: .7rem; text-decoration: none; }
+.brand svg { width: 40px; height: 40px; flex: none; }
+.brand b { display: block; font-family: var(--display); font-style: italic; font-weight: 500; font-size: 1.75rem; line-height: 1; letter-spacing: -.02em; }
+.brand small { display: block; margin-top: 3px; font-size: .5625rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; opacity: .75; }
 
-/* Hero */
-.hero { padding-block: clamp(40px, 6vw, 80px) clamp(48px, 7vw, 96px); }
-.hero .facts-wrap { display: block; }
-.hero .wrap:not(.facts-wrap) { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
-.hero-copy { display: grid; gap: 1.4rem; justify-items: start; }
-.status { display: inline-flex; align-items: center; gap: .55rem; padding: .35rem .85rem .35rem .65rem; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); font-size: .9375rem; font-weight: 500; }
-.status i { width: 9px; height: 9px; border-radius: 50%; background: #9AA08A; }
-.status.open i { background: #3F9A3A; box-shadow: 0 0 0 4px rgba(63, 154, 58, .18); }
-.hero h1 { font-size: clamp(2.8rem, 7vw, 5.4rem); letter-spacing: -.025em; }
-.hero h1 em { font-style: italic; color: var(--olive); }
-.hero-copy > p { font-size: 1.1875rem; color: var(--muted); max-width: 32rem; }
+/* En-tête : transparent sur la photo, plein au défilement */
+.top { position: sticky; top: 0; z-index: 50; color: #FFFDF8; transition: background-color .3s, color .3s, box-shadow .3s; }
+.top .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 78px; }
+.top nav { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; }
+.top nav a:not(.btn) { text-decoration: none; font-weight: 500; opacity: .9; }
+.top nav a:not(.btn):hover { opacity: 1; text-decoration: underline; text-underline-offset: 6px; }
+.top .btn-fill { background: var(--lemon); color: var(--ink); }
+.top.solid { background: rgba(247, 243, 234, .94); color: var(--ink); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.top.solid .btn-fill { background: var(--ink); color: var(--paper); }
+.menu-btn { display: none; margin-left: auto; width: 46px; height: 46px; border: 1.5px solid currentColor; border-radius: 50%; background: transparent; cursor: pointer; }
+.menu-btn svg { width: 20px; height: 20px; margin: auto; }
+@media (max-width: 900px) {
+  .menu-btn { display: grid; }
+  .top nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0; padding: 8px clamp(16px, 4vw, 40px) 20px; background: var(--paper); color: var(--ink); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, .3); }
+  .top nav:not(.open) { display: none; }
+  .top nav a:not(.btn) { padding: .85rem 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 1.4rem; }
+  .top nav .btn { margin-top: 16px; background: var(--ink); color: var(--paper); }
+  .top.menu-open { background: var(--paper); color: var(--ink); }
+}
+
+/* Héros */
+.hero { position: relative; margin-top: -78px; min-height: min(100svh, 920px); display: grid; align-items: end; color: #FFFDF8; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; }
+.hero-img img { width: 100%; height: 100%; object-fit: cover; object-position: center 60%; transform: scale(1.06); animation: settle 2.4s var(--ease) forwards; }
+@keyframes settle { to { transform: none; } }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 18, 10, .55) 0%, rgba(14, 18, 10, .1) 35%, rgba(14, 18, 10, .78) 100%); }
+.hero .wrap { position: relative; z-index: 1; padding-block: 140px clamp(40px, 7vw, 80px); }
+.status { display: inline-flex; align-items: center; gap: .55rem; padding: .4rem .9rem; border-radius: 999px; background: rgba(255, 253, 248, .16); border: 1px solid rgba(255, 253, 248, .3); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); font-size: .875rem; font-weight: 500; }
+.status i { width: 8px; height: 8px; border-radius: 50%; background: #D7A13A; }
+.status.open i { background: #5FD38A; box-shadow: 0 0 0 4px rgba(95, 211, 138, .25); }
+.hero h1 { margin-top: 1.25rem; font-size: clamp(3rem, 8.4vw, 7rem); font-weight: 400; max-width: 11ch; letter-spacing: -.03em; }
+.hero h1 em { color: var(--lemon); }
+.hero-row { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1.5rem 3rem; margin-top: 1.5rem; }
+.hero-row p { max-width: 30rem; font-size: 1.125rem; opacity: .92; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-.hero-art { position: relative; overflow: hidden; }
-.hero-art svg { width: 100%; height: auto; }
-.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: clamp(40px, 6vw, 72px); padding-top: 28px; border-top: 1px solid var(--line); }
-.facts div { display: grid; gap: .15rem; min-width: 0; }
-.facts strong { font-family: var(--display); font-size: 1.5rem; font-weight: 500; }
-.facts span { color: var(--muted); font-size: .9375rem; }
-@media (max-width: 860px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .hero-art { max-width: 460px; justify-self: center; width: 100%; } }
-@media (max-width: 560px) { .facts { grid-template-columns: minmax(0, 1fr); } }
+.hero .btn-line { color: #FFFDF8; }
+.hero .btn-line:hover { background: #FFFDF8; color: var(--ink); border-color: #FFFDF8; }
+.hero-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.75rem; margin-top: 2.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(255, 253, 248, .25); font-size: .9375rem; }
+.hero-meta span { display: inline-flex; align-items: center; gap: .45rem; }
+.hero-meta svg { width: 16px; height: 16px; }
+.stars { color: var(--lemon); letter-spacing: .1em; }
 
-/* Sections */
-.section { padding-block: clamp(64px, 8vw, 112px); }
-.kicker { font-size: .8125rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--olive); }
-.head { display: grid; gap: .8rem; margin-bottom: clamp(28px, 4vw, 48px); max-width: 40rem; }
-.head h2 { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -.02em; }
-.head p { color: var(--muted); }
+/* Notre cuisine */
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.story-pics { position: relative; aspect-ratio: 1 / 1.05; }
+.story-pics img { position: absolute; object-fit: cover; border-radius: 6px; box-shadow: 0 30px 60px -30px rgba(28, 33, 23, .5); }
+.story-pics img:first-child { inset: 0 22% 18% 0; width: 78%; height: 82%; }
+.story-pics img:last-child { right: 0; bottom: 0; width: 52%; height: 50%; border: 8px solid var(--paper); }
+.story-copy { display: grid; gap: 1.25rem; }
+.story-copy h2 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); }
+.story-copy > p { color: var(--muted); font-size: 1.125rem; }
+.numbers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: .75rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.numbers strong { display: block; font-family: var(--display); font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 400; line-height: 1; color: var(--olive); }
+.numbers span { display: block; margin-top: .4rem; font-size: .875rem; color: var(--muted); }
+@media (max-width: 860px) { .story { grid-template-columns: minmax(0, 1fr); } }
 
-/* Carte */
+/* La carte */
 .menu-band { background: var(--surface); border-block: 1px solid var(--line); }
-.menu-tools { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 28px; }
-.tabs { display: flex; flex-wrap: wrap; gap: .4rem; padding: 4px; border-radius: 99px; background: var(--olive-soft); }
-.tabs button { border: 0; background: transparent; padding: .55rem 1.1rem; border-radius: 99px; font-weight: 600; cursor: pointer; color: var(--muted); }
+.menu-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-bottom: 32px; }
+.tabs { display: flex; gap: .4rem; padding: 5px; border-radius: 999px; background: var(--paper); border: 1px solid var(--line); }
+.tabs button { min-height: 42px; padding: 0 1.2rem; border: 0; border-radius: 999px; background: transparent; font-weight: 600; cursor: pointer; transition: background-color .2s, color .2s; }
 .tabs button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
-.veg { display: inline-flex; align-items: center; gap: .6rem; cursor: pointer; font-weight: 500; }
-.veg { position: relative; }
-.veg input, .slots label input { position: absolute; left: 0; top: 0; width: 1px; height: 1px; opacity: 0; margin: 0; }
-.slots label { position: relative; }
-.veg .sw { width: 44px; height: 26px; border-radius: 99px; background: var(--line); position: relative; transition: background-color .2s; }
-.veg .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface); transition: transform .2s; box-shadow: 0 1px 2px rgba(0,0,0,.2); }
+.veg { display: inline-flex; align-items: center; gap: .65rem; font-weight: 500; cursor: pointer; }
+.veg input { position: absolute; opacity: 0; }
+.sw { position: relative; width: 44px; height: 26px; border-radius: 99px; background: var(--line); transition: background-color .2s; }
+.sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: #fff; box-shadow: 0 1px 2px rgba(0, 0, 0, .2); transition: transform .2s var(--ease); }
 .veg input:checked + .sw { background: var(--olive); }
 .veg input:checked + .sw::after { transform: translateX(18px); }
 .veg input:focus-visible + .sw { outline: 2px solid var(--olive); outline-offset: 2px; }
-.dishes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 56px; }
-.dish { display: grid; gap: .3rem; padding-block: 18px; border-bottom: 1px dashed var(--line); min-width: 0; }
-.dish-top { display: flex; align-items: baseline; gap: .6rem; }
+.dishes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); }
+.dish { display: flex; flex-direction: column; animation: rise .5s var(--ease) both; }
+.dish:nth-child(2) { animation-delay: .05s; } .dish:nth-child(3) { animation-delay: .1s; } .dish:nth-child(4) { animation-delay: .15s; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+.dish-img { position: relative; overflow: hidden; border-radius: 6px; aspect-ratio: 4 / 3; background: var(--olive-soft); }
+.dish-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.dish:hover .dish-img img { transform: scale(1.05); }
+.dish-img .labels { position: absolute; left: 10px; top: 10px; display: flex; gap: 6px; }
+.labels span { padding: .2rem .6rem; border-radius: 999px; background: rgba(255, 253, 248, .92); font-size: .75rem; font-weight: 600; color: var(--olive); }
+.dish-top { display: flex; align-items: baseline; gap: .75rem; margin-top: 1rem; }
 .dish h3 { font-size: 1.35rem; font-weight: 500; }
-.dish .lead { flex: 1; border-bottom: 2px dotted var(--line); transform: translateY(-5px); min-width: 1rem; }
-.dish .price { font-family: var(--display); font-size: 1.3rem; font-variant-numeric: tabular-nums; }
-.dish p { color: var(--muted); font-size: .9688rem; }
-.labels { display: flex; gap: .35rem; flex-wrap: wrap; }
-.labels span { font-size: .75rem; font-weight: 600; padding: .1rem .55rem; border-radius: 99px; background: var(--olive-soft); color: var(--olive); }
-.menu-note { margin-top: 24px; font-size: .875rem; color: var(--muted); }
-@media (max-width: 760px) { .dishes { grid-template-columns: minmax(0, 1fr); } }
+.dish .lead { flex: 1; border-bottom: 1.5px dotted var(--line); transform: translateY(-5px); }
+.dish .price { font-family: var(--display); font-size: 1.25rem; color: var(--olive); white-space: nowrap; }
+.dish p { margin-top: .3rem; color: var(--muted); font-size: .9375rem; }
+.empty { grid-column: 1 / -1; padding: 40px; text-align: center; color: var(--muted); border: 1px dashed var(--line); border-radius: 6px; }
+.lunch { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-top: 40px; padding: 24px 28px; border-radius: 6px; background: var(--olive); color: var(--paper); }
+.lunch h3 { font-size: 1.6rem; }
+.lunch h3 em { color: var(--lemon); }
+.lunch p { opacity: .85; }
+.lunch strong { font-family: var(--display); font-size: 2.4rem; font-weight: 400; color: var(--lemon); }
+.menu-note { margin-top: 18px; font-size: .875rem; color: var(--muted); }
+@media (max-width: 960px) { .dishes { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .dishes { grid-template-columns: minmax(0, 1fr); } .tabs { width: 100%; } .tabs button { flex: 1; padding: 0 .5rem; } }
 
-/* Le lieu */
-.place { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
-.place-art { aspect-ratio: 4 / 3; max-width: 100%; border-radius: 28px; overflow: hidden; background: var(--olive); }
-.place-art svg { width: 100%; height: 100%; }
-.place-copy { display: grid; gap: 1rem; }
-.place-copy p { color: var(--muted); }
-.place-copy ul { display: grid; gap: .6rem; margin-top: .4rem; }
-.place-copy li { display: flex; gap: .7rem; align-items: baseline; }
-.place-copy li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--lemon); flex: none; transform: translateY(1px); }
-@media (max-width: 860px) { .place { grid-template-columns: minmax(0, 1fr); } }
+/* Galerie */
+.gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: clamp(140px, 17vw, 230px); gap: 12px; }
+.gallery button { position: relative; padding: 0; border: 0; border-radius: 6px; overflow: hidden; cursor: zoom-in; background: var(--olive-soft); }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease), filter .4s; }
+.gallery button:hover img { transform: scale(1.05); }
+.gallery button::after { content: attr(data-caption); position: absolute; left: 12px; bottom: 10px; padding: .25rem .65rem; border-radius: 999px; background: rgba(28, 33, 23, .7); color: #fff; font-size: .8125rem; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s var(--ease); }
+.gallery button:hover::after, .gallery button:focus-visible::after { opacity: 1; transform: none; }
+.g1 { grid-column: span 2; grid-row: span 2; }
+.g4 { grid-column: span 2; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 150px; } .g4 { grid-column: span 2; } }
+.lightbox { width: min(1100px, 94vw); max-height: 92vh; padding: 0; border: 0; border-radius: 8px; background: #111; color: #fff; overflow: hidden; }
+.lightbox::backdrop { background: rgba(10, 12, 8, .86); backdrop-filter: blur(4px); }
+.lightbox img { width: 100%; max-height: 80vh; object-fit: contain; background: #111; }
+.lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 12px 16px; }
+.lb-bar p { font-size: .9375rem; opacity: .85; }
+.lb-bar div { display: flex; gap: 6px; }
+.lb-bar button { width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 1.1rem; }
+.lb-bar button:hover { background: rgba(255, 255, 255, .12); }
 
-/* Horaires & accès */
+/* Le chef */
+.chef { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); min-height: 560px; background: var(--ink); color: var(--paper); }
+.chef-img img { width: 100%; height: 100%; object-fit: cover; }
+.chef-copy { display: grid; align-content: center; gap: 1.5rem; padding: clamp(40px, 7vw, 96px); }
+.chef .kicker { color: var(--lemon); }
+.chef blockquote { font-family: var(--display); font-size: clamp(1.7rem, 3.2vw, 2.6rem); font-weight: 350; line-height: 1.2; }
+.chef blockquote em { color: var(--lemon); }
+.chef p { opacity: .8; max-width: 32rem; }
+.sign { display: flex; align-items: center; gap: 1rem; }
+.sign b { font-family: var(--display); font-style: italic; font-size: 1.5rem; font-weight: 400; }
+.sign span { font-size: .875rem; opacity: .7; }
+@media (max-width: 860px) { .chef { grid-template-columns: minmax(0, 1fr); } .chef-img { height: 360px; } }
+
+/* Avis */
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.review { display: flex; flex-direction: column; gap: 1rem; padding: 28px; border-radius: 6px; background: var(--surface); border: 1px solid var(--line); }
+.review p { font-size: 1.0625rem; }
+.review footer { display: flex; align-items: center; gap: .75rem; margin-top: auto; font-size: .875rem; color: var(--muted); }
+.review footer b { color: var(--ink); }
+.avatar { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--olive-soft); color: var(--olive); font-weight: 700; }
+.rating { display: flex; align-items: center; gap: 1rem; margin-bottom: 32px; font-size: .9375rem; color: var(--muted); }
+.rating strong { font-family: var(--display); font-size: 3rem; font-weight: 400; line-height: 1; color: var(--ink); }
+@media (max-width: 900px) { .reviews { grid-template-columns: minmax(0, 1fr); max-width: 560px; } }
+
+/* Infos pratiques */
 .visit-band { background: var(--olive-soft); }
-.visit { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
-.hours { background: var(--surface); border-radius: 24px; padding: 8px 24px; }
-.hours div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 12px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.visit { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 4vw, 48px); align-items: start; }
+.hours { display: grid; border-radius: 6px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+.hours div { display: flex; justify-content: space-between; gap: 1rem; padding: 14px 20px; border-bottom: 1px solid var(--line); }
 .hours div:last-child { border-bottom: 0; }
 .hours dt { font-weight: 600; }
 .hours dd { color: var(--muted); text-align: right; }
-.hours .today dt, .hours .today dd { color: var(--ink); }
-.hours .today dt::after { content: "Aujourd'hui"; margin-left: .5rem; font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; background: var(--lemon); padding: .1rem .45rem; border-radius: 99px; vertical-align: 2px; }
-.map { border-radius: 24px; overflow: hidden; background: #F4F6EA; border: 1px solid var(--line); }
+.hours .today { background: var(--lemon-soft); }
+.hours .today dt::after { content: " · aujourd'hui"; font-weight: 500; color: var(--olive); }
+.map { border-radius: 6px; overflow: hidden; border: 1px solid var(--line); }
 .map svg { width: 100%; height: auto; }
-.access { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 20px; }
-.access div { display: grid; gap: .1rem; min-width: 0; }
-.access strong { font-size: .9375rem; }
-.access span { font-size: .9375rem; color: var(--muted); }
-@media (max-width: 860px) { .visit { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 560px) { .access { grid-template-columns: minmax(0, 1fr); } }
+.access { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.access div { display: grid; gap: .2rem; font-size: .9375rem; }
+.access strong { font-size: .75rem; letter-spacing: .14em; text-transform: uppercase; color: var(--olive); }
+.access a { font-weight: 600; text-decoration: none; }
+@media (max-width: 860px) { .visit { grid-template-columns: minmax(0, 1fr); } .access { grid-template-columns: minmax(0, 1fr); } }
 
 /* Réservation */
-.book { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 72px); align-items: start; }
-.book-card { background: var(--surface); border: 1px solid var(--line); border-radius: 28px; padding: clamp(22px, 3.5vw, 36px); display: grid; gap: 18px; }
+.book { position: relative; color: var(--paper); overflow: hidden; }
+.book-bg { position: absolute; inset: 0; }
+.book-bg img { width: 100%; height: 100%; object-fit: cover; }
+.book-bg::after { content: ""; position: absolute; inset: 0; background: rgba(20, 24, 14, .72); }
+.book .wrap { position: relative; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 80px); align-items: center; }
+.book .head { margin: 0; }
+.book .head p { color: rgba(247, 243, 234, .8); }
+.book .kicker, .book h2 em { color: var(--lemon); }
+.book-card { padding: clamp(24px, 3.4vw, 40px); border-radius: 8px; background: var(--paper); color: var(--ink); box-shadow: 0 40px 80px -40px rgba(0, 0, 0, .6); }
 .row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.field { display: grid; gap: 6px; min-width: 0; }
-.field label, .field .lbl { font-size: .9375rem; font-weight: 600; }
-.field input, .field select { width: 100%; min-height: 48px; padding: .6rem .85rem; border-radius: 12px; border: 1.5px solid var(--line); background: var(--paper); }
-.field input:focus, .field select:focus { outline: none; border-color: var(--olive); }
-.stepper { display: flex; align-items: center; gap: .5rem; }
-.stepper button { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--paper); font-size: 1.25rem; cursor: pointer; }
-.stepper output { min-width: 5.5rem; text-align: center; font-weight: 600; font-variant-numeric: tabular-nums; }
+.field { display: grid; gap: .4rem; min-width: 0; }
+.field > label, .lbl { font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.field input { min-height: 50px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); }
+.field input:focus { outline: none; border-color: var(--olive); box-shadow: 0 0 0 4px rgba(63, 75, 34, .14); }
+.stepper { display: flex; align-items: center; justify-content: space-between; min-height: 50px; padding: 4px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); }
+.stepper button { width: 40px; height: 40px; border: 0; border-radius: 4px; background: var(--olive-soft); font-size: 1.25rem; cursor: pointer; }
+.stepper output { font-weight: 600; }
 .slots { display: flex; flex-wrap: wrap; gap: 8px; }
-.slots span { display: inline-flex; min-height: 40px; align-items: center; padding: 0 .9rem; border-radius: 99px; border: 1.5px solid var(--line); cursor: pointer; font-variant-numeric: tabular-nums; }
+.slots label { position: relative; }
+.slots input { position: absolute; opacity: 0; }
+.slots span { display: inline-flex; min-height: 40px; align-items: center; padding: 0 .9rem; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; font-size: .9375rem; cursor: pointer; transition: background-color .2s, border-color .2s, color .2s; }
 .slots input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .slots input:focus-visible + span { outline: 2px solid var(--olive); outline-offset: 2px; }
-.form-msg { font-size: .9375rem; color: #A3321F; }
+.form-msg { color: var(--clay); font-weight: 600; font-size: .9375rem; }
 .form-msg:empty { display: none; }
-.done { display: grid; gap: 1rem; justify-items: start; }
-.done .check { width: 56px; height: 56px; border-radius: 50%; background: var(--lemon); display: grid; place-items: center; }
+.done { display: grid; justify-items: start; gap: 1rem; }
+.check { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--lemon); }
 .done h3 { font-size: 1.8rem; }
-.done p { color: var(--muted); }
-.done .demo-note { font-size: .875rem; padding: 12px 14px; border-radius: 12px; background: var(--olive-soft); color: var(--ink); }
-@media (max-width: 860px) { .book { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 480px) { .row { grid-template-columns: minmax(0, 1fr); } }
+.demo-note { padding: 12px 14px; border-radius: 6px; background: var(--olive-soft); font-size: .875rem; color: var(--muted); }
+@media (max-width: 860px) { .book .wrap { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 520px) { .row { grid-template-columns: minmax(0, 1fr); } }
 
 /* Pied de page */
-.foot { background: var(--ink); color: var(--paper); padding-block: 48px 32px; }
-.foot .wrap { display: grid; gap: 28px; }
-.foot-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; }
+.foot { padding-block: 64px 28px; background: var(--ink); color: rgba(247, 243, 234, .75); }
+.foot-grid { display: grid; grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)); gap: 32px; }
 .foot .brand { color: var(--paper); }
-.foot p { color: #C9CDBB; font-size: .9375rem; }
-.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1.5rem; padding-top: 20px; border-top: 1px solid #3A4130; font-size: .875rem; color: #C9CDBB; }
-.foot-bottom a { color: var(--lemon); }
+.foot .fh { font-family: var(--body); line-height: 1.4; font-weight: 700; margin: 0 0 .75rem; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--lemon); }
+.foot li { margin-bottom: .35rem; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--paper); }
+.social { display: flex; gap: 10px; margin-top: 1rem; }
+.social a { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(247, 243, 234, .25); }
+.social svg { width: 18px; height: 18px; }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: 48px; padding-top: 20px; border-top: 1px solid rgba(247, 243, 234, .15); font-size: .875rem; }
+.foot-bottom a { color: var(--lemon); font-weight: 600; }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-grid > div:first-child { grid-column: 1 / -1; } }
 
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+/* Apparition au défilement */
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
 </style>
+<script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 48 48">
+    <circle cx="22" cy="26" r="19" fill="#F2C94C"/>
+    <circle cx="22" cy="26" r="15.5" fill="#FBE8A6"/>
+    <g stroke="#FFFDF8" stroke-width="1.6" stroke-linecap="round"><path d="M22 11.5v29M7.5 26h29M11.7 15.7l20.6 20.6M32.3 15.7L11.7 36.3"/></g>
+    <circle cx="22" cy="26" r="2.4" fill="#FFFDF8"/>
+    <path d="M33 9c4-5 10-5 13-4-1 5-6 9-12 8z" fill="#5C6B2E"/>
+    <path d="M32 12c4-2 8-4 12-6" stroke="#3F4B22" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </symbol>
+</svg>
 
 <div class="demo-bar" role="note">
   <div class="wrap">
@@ -204,85 +313,74 @@ img, svg { display: block; max-width: 100%; }
     </p>
     <nav aria-label="Navigation Luso">
       <a href="citrine-app.html">Voir l'application</a>
-      <a href="../index.html#demos">Retour à Luso</a>
+      <a href="../index.html#realisations">Retour à Luso</a>
     </nav>
   </div>
 </div>
 
-<header class="top">
+<header class="top" id="top">
   <div class="wrap">
     <a class="brand" href="#accueil">
-      <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#F3CF45"/><circle cx="16" cy="16" r="11" fill="#FBE68A"/><path d="M16 5v22M5 16h22M8.2 8.2l15.6 15.6M23.8 8.2L8.2 23.8" stroke="#fff" stroke-width="1.6"/></svg>
-      Citrine
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>Citrine</b><small>Table méditerranéenne</small></span>
     </a>
-    <nav aria-label="Navigation du restaurant">
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+    <nav id="nav" aria-label="Navigation du restaurant">
       <a href="#carte">La carte</a>
-      <a href="#lieu">Le lieu</a>
-      <a href="#horaires">Horaires &amp; accès</a>
+      <a href="#galerie">Le lieu</a>
+      <a href="#chef">Le chef</a>
+      <a href="#infos">Infos pratiques</a>
       <a class="btn btn-fill" href="#reserver">Réserver</a>
     </nav>
   </div>
 </header>
 
 <main id="accueil">
-  <section class="hero">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-img"><img src="img/citrine/hero.webp" width="1100" height="1466" alt="La salle de Citrine, ses banquettes et ses plantes, tables dressées pour le déjeuner" fetchpriority="high"></div>
     <div class="wrap">
-      <div class="hero-copy">
-        <span class="status" id="status"><i></i><span id="status-text">Horaires d'ouverture</span></span>
-        <h1>La Méditerranée, <em>de saison</em> et à partager.</h1>
+      <span class="status" id="status"><i></i><span id="status-text">Horaires d'ouverture</span></span>
+      <h1 id="hero-title">La Méditerranée, <em>de saison</em> et à partager.</h1>
+      <div class="hero-row">
         <p>Une cuisine du marché, des assiettes à partager et une cave de vins nature du pourtour méditerranéen, au cœur de Lyon.</p>
         <div class="hero-actions">
-          <a class="btn btn-fill" href="#reserver">Réserver une table</a>
-          <a class="btn btn-line" href="#carte">Voir la carte</a>
+          <a class="btn btn-lemon" href="#reserver">Réserver une table</a>
+          <a class="btn btn-line" href="#carte">Découvrir la carte</a>
         </div>
       </div>
-      <div class="hero-art" aria-hidden="true">
-        <svg viewBox="0 0 500 480">
-          <circle cx="238" cy="262" r="196" fill="#E9ECDB"/>
-          <circle cx="232" cy="254" r="192" fill="#FFFFFF" stroke="#DCDFCC" stroke-width="2"/>
-          <circle cx="232" cy="254" r="150" fill="none" stroke="#EEF0E3" stroke-width="2"/>
-          <circle cx="232" cy="254" r="122" fill="#ECDCAB"/>
-          <circle cx="232" cy="254" r="84" fill="none" stroke="#D9BF7E" stroke-width="12" stroke-dasharray="70 26" stroke-linecap="round"/>
-          <circle cx="232" cy="254" r="46" fill="none" stroke="#DFC88D" stroke-width="10" stroke-dasharray="40 18" stroke-linecap="round"/>
-          <ellipse cx="236" cy="250" rx="34" ry="26" fill="#C7AE2E" opacity=".5"/>
-          <g fill="#E2B65A">
-            <circle cx="172" cy="214" r="10"/><circle cx="190" cy="198" r="9"/><circle cx="292" cy="222" r="10"/><circle cx="300" cy="296" r="9"/><circle cx="182" cy="306" r="10"/><circle cx="262" cy="330" r="9"/><circle cx="160" cy="262" r="8"/>
-          </g>
-          <g fill="#B5482E"><circle cx="210" cy="230" r="3"/><circle cx="256" cy="282" r="3"/><circle cx="276" cy="244" r="2.5"/><circle cx="222" cy="292" r="2.5"/><circle cx="246" cy="214" r="2.5"/></g>
-          <g fill="#5E7A2E"><ellipse cx="200" cy="268" rx="7" ry="3" transform="rotate(-30 200 268)"/><ellipse cx="270" cy="270" rx="7" ry="3" transform="rotate(40 270 270)"/><ellipse cx="236" cy="206" rx="7" ry="3" transform="rotate(10 236 206)"/></g>
-          <g transform="translate(408 102)">
-            <circle r="80" fill="#F3CF45"/><circle r="68" fill="#FBE68A"/>
-            <g stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"><path d="M0 -62V62M-62 0H62M-44 -44L44 44M44 -44L-44 44"/></g>
-            <circle r="7" fill="#FFFFFF"/>
-          </g>
-          <g transform="translate(40 440) rotate(-38)">
-            <path d="M0 0 C 60 -6 130 -4 210 0" stroke="#4E5D2B" stroke-width="4" fill="none" stroke-linecap="round"/>
-            <g fill="#4E5D2B">
-              <ellipse cx="40" cy="-14" rx="26" ry="8" transform="rotate(-24 40 -14)"/><ellipse cx="58" cy="14" rx="26" ry="8" transform="rotate(24 58 14)"/>
-              <ellipse cx="100" cy="-15" rx="26" ry="8" transform="rotate(-22 100 -15)"/><ellipse cx="120" cy="14" rx="26" ry="8" transform="rotate(22 120 14)"/>
-              <ellipse cx="160" cy="-13" rx="24" ry="7.5" transform="rotate(-20 160 -13)"/><ellipse cx="178" cy="12" rx="22" ry="7" transform="rotate(20 178 12)"/>
-              <ellipse cx="218" cy="-2" rx="20" ry="7"/>
-            </g>
-            <circle cx="84" cy="22" r="11" fill="#2F361C"/><circle cx="142" cy="-24" r="10" fill="#6B7A34"/>
-          </g>
-        </svg>
+      <div class="hero-meta">
+        <span><span class="stars" aria-hidden="true">★★★★★</span> 4,8 sur 5 · 612 avis</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>12 rue des Oliviers, Lyon 2e</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11"/></svg>Terrasse chauffée</span>
       </div>
     </div>
-    <div class="wrap facts-wrap">
-      <div class="facts">
-        <div><strong>Carte de saison</strong><span>renouvelée chaque mois avec nos producteurs</span></div>
-        <div><strong>Cuisine ouverte</strong><span>40 couverts et une terrasse l'été</span></div>
-        <div><strong>À emporter</strong><span>commandez depuis notre application</span></div>
+  </section>
+
+  <section class="section" aria-labelledby="story-title">
+    <div class="wrap story">
+      <div class="story-pics reveal">
+        <img src="img/citrine/marche.webp" width="900" height="600" alt="Légumes, herbes et épices du marché étalés sur une table" loading="lazy">
+        <img src="img/citrine/table.webp" width="900" height="600" alt="Assiette dressée et verres de vin" loading="lazy">
+      </div>
+      <div class="story-copy reveal">
+        <span class="kicker">Notre cuisine</span>
+        <h2 id="story-title">Le marché du matin, <em>dans l'assiette</em> le soir.</h2>
+        <p>Chez Citrine, la carte suit les saisons et les arrivages. Légumes des maraîchers des monts du Lyonnais, poissons de Méditerranée, huile d'olive de Nyons : nous cuisinons simplement des produits qui ont du goût, pour des assiettes généreuses que l'on partage au centre de la table.</p>
+        <div class="numbers">
+          <div><strong>12</strong><span>producteurs partenaires</span></div>
+          <div><strong>40</strong><span>couverts et une terrasse</span></div>
+          <div><strong>80</strong><span>vins nature à la carte</span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="section menu-band" id="carte" aria-labelledby="carte-title">
     <div class="wrap">
-      <div class="head">
+      <div class="head reveal">
         <span class="kicker">La carte</span>
-        <h2 id="carte-title">Ce que nous cuisinons en ce moment</h2>
-        <p>Les assiettes sont pensées pour être partagées. Comptez deux à trois assiettes par personne.</p>
+        <h2 id="carte-title">Ce que nous cuisinons <em>en ce moment</em></h2>
+        <p>Des assiettes pensées pour être partagées : comptez deux à trois assiettes par personne.</p>
       </div>
       <div class="menu-tools">
         <div class="tabs" role="tablist" aria-label="Catégories">
@@ -293,80 +391,111 @@ img, svg { display: block; max-width: 100%; }
         <label class="veg"><input type="checkbox" id="veg-only"><span class="sw" aria-hidden="true"></span>Végétarien uniquement</label>
       </div>
       <div id="dishes" role="tabpanel" aria-labelledby="tab-entrees" tabindex="0"><ul class="dishes" id="dishes-list"></ul></div>
+      <div class="lunch reveal">
+        <div>
+          <h3>Le menu du <em>midi</em></h3>
+          <p>Entrée, plat ou plat, dessert · du mardi au vendredi</p>
+        </div>
+        <strong>23 €</strong>
+      </div>
       <p class="menu-note">Prix nets, service compris. Liste des allergènes disponible sur demande.</p>
     </div>
   </section>
 
-  <section class="section" id="lieu" aria-labelledby="lieu-title">
-    <div class="wrap place">
-      <div class="place-art" aria-hidden="true">
-        <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
-          <rect width="400" height="300" fill="#4E5D2B"/>
-          <g fill="#5E6E36"><circle cx="0" cy="0" r="60"/><circle cx="100" cy="100" r="60"/><circle cx="200" cy="0" r="60"/><circle cx="300" cy="100" r="60"/><circle cx="400" cy="0" r="60"/><circle cx="0" cy="200" r="60"/><circle cx="200" cy="200" r="60"/><circle cx="400" cy="200" r="60"/><circle cx="100" cy="300" r="60"/><circle cx="300" cy="300" r="60"/></g>
-          <g fill="#F3CF45"><circle cx="100" cy="100" r="26"/><circle cx="300" cy="100" r="26"/><circle cx="200" cy="200" r="26"/><circle cx="0" cy="200" r="26"/><circle cx="400" cy="200" r="26"/></g>
-          <g fill="#FBFBF6"><circle cx="200" cy="0" r="10"/><circle cx="0" cy="0" r="10"/><circle cx="400" cy="0" r="10"/><circle cx="100" cy="300" r="10"/><circle cx="300" cy="300" r="10"/></g>
-        </svg>
-      </div>
-      <div class="place-copy">
+  <section class="section" id="galerie" aria-labelledby="galerie-title">
+    <div class="wrap">
+      <div class="head reveal">
         <span class="kicker">Le lieu</span>
-        <h2 style="font-size:clamp(2rem,4.4vw,3.2rem)">Une table de quartier, des produits qui ont du goût</h2>
-        <p>Citrine travaille avec une dizaine de producteurs de la région et quelques importateurs de confiance pour l'huile d'olive, les agrumes et les épices. La carte change avec les saisons, et la cuisine est ouverte sur la salle.</p>
-        <ul>
-          <li>Privatisation possible jusqu'à 40 personnes</li>
-          <li>Menu enfant et options sans gluten</li>
-          <li>Accessible aux personnes à mobilité réduite</li>
-        </ul>
+        <h2 id="galerie-title">Une table de quartier, <em>baignée de lumière</em></h2>
+        <p>Une salle de 40 couverts, une cuisine ouverte et une terrasse chauffée. Privatisation possible pour vos événements.</p>
+      </div>
+      <div class="gallery reveal" id="gallery">
+        <button class="g1" data-caption="La salle"><img src="img/citrine/salle-3.webp" width="900" height="600" alt="La salle lumineuse de Citrine" loading="lazy"></button>
+        <button data-caption="Le bar"><img src="img/citrine/cocktail.webp" width="800" height="1000" alt="Cocktail maison au romarin" loading="lazy"></button>
+        <button data-caption="Le soir"><img src="img/citrine/salle-1.webp" width="900" height="600" alt="La salle le soir, lumière tamisée" loading="lazy"></button>
+        <button class="g4" data-caption="Tables dressées"><img src="img/citrine/salle-2.webp" width="900" height="600" alt="Tables dressées en nappes blanches" loading="lazy"></button>
       </div>
     </div>
   </section>
 
-  <section class="section visit-band" id="horaires" aria-labelledby="horaires-title">
+  <section class="chef" id="chef" aria-labelledby="chef-title">
+    <div class="chef-img"><img src="img/citrine/chef.webp" width="900" height="600" alt="Le chef Julien Carrel dresse une assiette en cuisine" loading="lazy"></div>
+    <div class="chef-copy reveal">
+      <span class="kicker">Le chef</span>
+      <h2 id="chef-title" class="sr-only">Le chef Julien Carrel</h2>
+      <blockquote>« Une bonne assiette, c'est <em>trois produits justes</em> et l'envie de la partager. »</blockquote>
+      <p>Passé par Marseille et Naples, Julien Carrel ouvre Citrine en 2019 avec une idée simple : une cuisine méditerranéenne sincère, au prix d'une table de quartier. Il passe chaque mardi chez ses producteurs pour composer la carte de la semaine.</p>
+      <div class="sign"><b>Julien Carrel</b><span>Chef et fondateur</span></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="avis-title">
     <div class="wrap">
-      <div class="head">
-        <span class="kicker">Horaires &amp; accès</span>
-        <h2 id="horaires-title">Venir chez Citrine</h2>
+      <div class="head reveal">
+        <span class="kicker">Ils sont venus</span>
+        <h2 id="avis-title">Ce qu'en disent <em>nos clients</em></h2>
+      </div>
+      <div class="rating reveal"><strong>4,8</strong><div><span class="stars" aria-hidden="true">★★★★★</span><br>Note moyenne sur 612 avis</div></div>
+      <div class="reviews">
+        <article class="review reveal">
+          <span class="stars" aria-label="5 étoiles sur 5">★★★★★</span>
+          <p>« Le tartare de truite et le tiramisu valent à eux seuls le détour. Service attentionné, ambiance chaleureuse : on reviendra avec des amis. »</p>
+          <footer><span class="avatar" aria-hidden="true">CM</span><span><b>Camille M.</b><br>dîner à deux · septembre</span></footer>
+        </article>
+        <article class="review reveal">
+          <span class="stars" aria-label="5 étoiles sur 5">★★★★★</span>
+          <p>« Le menu du midi est une vraie affaire. Produits frais, assiettes généreuses et une terrasse au calme en plein centre. »</p>
+          <footer><span class="avatar" aria-hidden="true">TB</span><span><b>Thomas B.</b><br>déjeuner d'équipe · octobre</span></footer>
+        </article>
+        <article class="review reveal">
+          <span class="stars" aria-label="4 étoiles sur 5">★★★★<span style="opacity:.3">★</span></span>
+          <p>« Belle carte des vins nature, très bons conseils. Réservation en ligne pratique, on a eu une table en terrasse le soir même. »</p>
+          <footer><span class="avatar" aria-hidden="true">SL</span><span><b>Sarah L.</b><br>anniversaire · août</span></footer>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section visit-band" id="infos" aria-labelledby="infos-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Infos pratiques</span>
+        <h2 id="infos-title">Venir <em>chez Citrine</em></h2>
       </div>
       <div class="visit">
-        <dl class="hours" id="hours"></dl>
-        <div>
-          <div class="map" role="img" aria-label="Plan d'accès stylisé : le restaurant se trouve près des quais, à deux minutes du métro.">
-            <svg viewBox="0 0 600 360" aria-hidden="true">
-              <rect width="600" height="360" fill="#F4F6EA"/>
-              <path d="M-20 300 C 120 250 220 330 360 280 S 560 230 640 260 L 640 380 L -20 380 Z" fill="#CFE0EE"/>
-              <g stroke="#FFFFFF" stroke-width="18" fill="none" stroke-linecap="round">
-                <path d="M40 40 L560 40"/><path d="M40 150 L560 130"/><path d="M120 0 L160 360"/><path d="M330 0 L300 260"/><path d="M470 0 L520 240"/><path d="M0 220 L600 200"/>
-              </g>
-              <g stroke="#E3E7D2" stroke-width="6" fill="none"><path d="M220 40 L230 150"/><path d="M400 40 L395 135"/><path d="M40 95 L560 85"/></g>
-              <g fill="#E1E6CC"><rect x="180" y="60" width="110" height="60" rx="6"/><rect x="350" y="55" width="90" height="60" rx="6"/><rect x="40" y="165" width="70" height="40" rx="6"/><rect x="185" y="160" width="100" height="32" rx="6"/><rect x="350" y="150" width="100" height="40" rx="6"/></g>
+        <dl class="hours reveal" id="hours"></dl>
+        <div class="reveal">
+          <div class="map" role="img" aria-label="Plan d'accès : le restaurant se trouve près des quais, à deux minutes du métro.">
+            <svg viewBox="0 0 600 340" aria-hidden="true">
+              <rect width="600" height="340" fill="#F1EFE3"/>
+              <path d="M-20 280 C 120 230 220 310 360 260 S 560 210 640 240 L 640 360 L -20 360 Z" fill="#CFE0EE"/>
+              <g stroke="#FFFFFF" stroke-width="18" fill="none" stroke-linecap="round"><path d="M40 40 L560 40"/><path d="M40 150 L560 130"/><path d="M120 0 L160 340"/><path d="M330 0 L300 250"/><path d="M470 0 L520 230"/><path d="M0 210 L600 190"/></g>
+              <g stroke="#E4E1D2" stroke-width="6" fill="none"><path d="M220 40 L230 150"/><path d="M400 40 L395 135"/><path d="M40 95 L560 85"/></g>
+              <g fill="#E3E0CF"><rect x="180" y="60" width="110" height="60" rx="6"/><rect x="350" y="55" width="90" height="60" rx="6"/><rect x="40" y="165" width="70" height="30" rx="6"/><rect x="185" y="160" width="100" height="22" rx="6"/></g>
+              <circle cx="470" cy="160" r="30" fill="#D6DDBF"/>
               <g transform="translate(150 150)"><circle r="16" fill="#2E5E8C"/><text y="6" text-anchor="middle" font-family="Instrument Sans, Arial, sans-serif" font-weight="700" font-size="17" fill="#FFFFFF">M</text></g>
               <path d="M166 150 C 220 160 270 150 312 142" stroke="#2E5E8C" stroke-width="4" stroke-dasharray="2 9" stroke-linecap="round" fill="none"/>
-              <g transform="translate(320 142)">
-                <path d="M0 0 C -24 -26 -24 -58 0 -64 C 24 -58 24 -26 0 0 Z" fill="#1E2414"/>
-                <circle cy="-42" r="12" fill="#F3CF45"/>
-              </g>
-              <g font-family="Instrument Sans, Arial, sans-serif" font-size="15" fill="#5D6450">
-                <text x="342" y="92" font-weight="700" fill="#1E2414">Citrine</text>
-                <text x="440" y="320" font-style="italic">Les quais</text>
-                <text x="128" y="190">Métro · 2 min</text>
-              </g>
+              <g transform="translate(320 142)"><path d="M0 0 C -24 -26 -24 -58 0 -64 C 24 -58 24 -26 0 0 Z" fill="#1C2117"/><circle cy="-42" r="12" fill="#F2C94C"/></g>
+              <g font-family="Instrument Sans, Arial, sans-serif" font-size="15" fill="#5E6452"><text x="342" y="92" font-weight="700" fill="#1C2117">Citrine</text><text x="440" y="310" font-style="italic">Les quais</text><text x="128" y="190">Métro · 2 min</text><text x="440" y="208">Square</text></g>
             </svg>
           </div>
           <div class="access">
-            <div><strong>Adresse</strong><span>12 rue des Oliviers, Lyon 2e</span></div>
-            <div><strong>Métro</strong><span>Station à 2 minutes à pied</span></div>
-            <div><strong>Parking</strong><span>Parking public à 150 m</span></div>
+            <div><strong>Adresse</strong><span>12 rue des Oliviers<br>69002 Lyon</span></div>
+            <div><strong>Téléphone</strong><a href="tel:+33465712026">04 65 71 20 26</a></div>
+            <div><strong>Accès</strong><span>Métro à 2 min · parking à 150 m · accessible PMR</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section" id="reserver" aria-labelledby="reserver-title">
-    <div class="wrap book">
-      <div class="head" style="margin-bottom:0">
+  <section class="section book" id="reserver" aria-labelledby="reserver-title">
+    <div class="book-bg"><img src="img/citrine/salle-1.webp" width="900" height="600" alt="" loading="lazy"></div>
+    <div class="wrap">
+      <div class="head reveal">
         <span class="kicker">Réservation</span>
-        <h2 id="reserver-title">Réservez votre table en 30 secondes</h2>
-        <p>Choisissez une date, un horaire et le nombre de convives. Pour un groupe de plus de 10 personnes, écrivez-nous.</p>
+        <h2 id="reserver-title">Votre table en <em>30 secondes</em></h2>
+        <p>Choisissez une date, un horaire et le nombre de convives : la confirmation arrive aussitôt par email. Pour un groupe de plus de 10 personnes, appelez-nous.</p>
       </div>
       <div class="book-card">
         <form id="book-form" novalidate>
@@ -386,7 +515,7 @@ img, svg { display: block; max-width: 100%; }
               </div>
             </div>
             <fieldset class="field" style="border:0;padding:0;margin:0">
-              <legend class="lbl" style="padding:0;margin-bottom:6px">Horaire</legend>
+              <legend class="lbl" style="padding:0;margin-bottom:8px">Horaire</legend>
               <div class="slots" id="slots"></div>
             </fieldset>
             <div class="row">
@@ -400,11 +529,11 @@ img, svg { display: block; max-width: 100%; }
               </div>
             </div>
             <p class="form-msg" id="book-msg" role="alert"></p>
-            <button class="btn btn-fill" type="submit" style="justify-self:start">Réserver la table</button>
+            <button class="btn btn-fill" type="submit" style="justify-self:start">Confirmer la réservation</button>
           </div>
         </form>
         <div class="done" id="book-done" hidden>
-          <span class="check" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1E2414" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span class="check" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1C2117" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
           <h3 id="done-title" tabindex="-1">Table réservée</h3>
           <p id="done-text"></p>
           <p class="demo-note">Ceci est une démo : aucune réservation n'a été envoyée. Sur un vrai site, la demande arrive par email au restaurant ou directement dans son logiciel de réservation, et le client reçoit une confirmation.</p>
@@ -415,20 +544,35 @@ img, svg { display: block; max-width: 100%; }
   </section>
 </main>
 
+<dialog class="lightbox" id="lightbox" aria-label="Photo agrandie">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-bar">
+    <p id="lb-cap"></p>
+    <div>
+      <button type="button" id="lb-prev" aria-label="Photo précédente">←</button>
+      <button type="button" id="lb-next" aria-label="Photo suivante">→</button>
+      <button type="button" id="lb-close" aria-label="Fermer">✕</button>
+    </div>
+  </div>
+</dialog>
+
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
-      <div style="display:grid;gap:.6rem">
-        <a class="brand" href="#accueil">
-          <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15" fill="#F3CF45"/><circle cx="16" cy="16" r="11" fill="#FBE68A"/><path d="M16 5v22M5 16h22M8.2 8.2l15.6 15.6M23.8 8.2L8.2 23.8" stroke="#fff" stroke-width="1.6"/></svg>
-          Citrine
-        </a>
-        <p>Cuisine méditerranéenne de saison · Lyon 2e</p>
+      <div>
+        <a class="brand" href="#accueil"><svg aria-hidden="true"><use href="#logo"/></svg><span><b>Citrine</b><small>Table méditerranéenne</small></span></a>
+        <p style="margin-top:1rem;max-width:22rem">Cuisine méditerranéenne de saison, assiettes à partager et vins nature, au cœur de Lyon.</p>
+        <div class="social">
+          <a href="#accueil" aria-label="Instagram (démo)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+          <a href="#accueil" aria-label="Facebook (démo)"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H8v4h2v8h4v-8h3l1-4h-4V8z"/></svg></a>
+        </div>
       </div>
-      <p>Du mardi au dimanche<br>Réservation en ligne 24&nbsp;h/24</p>
+      <div><h3 class="fh">Le restaurant</h3><ul><li><a href="#carte">La carte</a></li><li><a href="#galerie">Le lieu</a></li><li><a href="#chef">Le chef</a></li><li><a href="citrine-app.html">Commander à emporter</a></li></ul></div>
+      <div><h3 class="fh">Horaires</h3><ul><li>Mar.–ven. · midi et soir</li><li>Samedi · midi et soir</li><li>Dimanche · midi</li><li>Lundi · fermé</li></ul></div>
+      <div><h3 class="fh">Contact</h3><ul><li>12 rue des Oliviers, Lyon 2e</li><li><a href="tel:+33465712026">04 65 71 20 26</a></li><li><a href="#reserver">Réserver en ligne</a></li></ul></div>
     </div>
     <div class="foot-bottom">
-      <span>Site de démonstration conçu par Luso. Citrine est une entreprise fictive.</span>
+      <span>Site de démonstration conçu par Luso. Citrine, son chef et ses avis sont fictifs.</span>
       <a href="../index.html#contact">Vous voulez le même pour votre activité&#8239;?</a>
     </div>
   </div>
@@ -436,25 +580,41 @@ img, svg { display: block; max-width: 100%; }
 
 <script>
 (function () {
+  // ---- En-tête : plein au défilement, menu mobile ----
+  var top = document.getElementById("top");
+  var hero = document.querySelector(".hero");
+  function onScroll() { top.classList.toggle("solid", hero.getBoundingClientRect().bottom < 90); }
+  window.addEventListener("scroll", onScroll, { passive: true }); onScroll();
+  var menuBtn = document.getElementById("menu-btn"), nav = document.getElementById("nav");
+  function setMenu(open) { nav.classList.toggle("open", open); top.classList.toggle("menu-open", open); menuBtn.setAttribute("aria-expanded", String(open)); menuBtn.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu"); }
+  menuBtn.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+
+  // ---- Apparition au défilement ----
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" }) : null;
+  document.querySelectorAll(".reveal").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in"); });
+
   // ---- Carte ----
   var MENU = {
     entrees: [
-      { n: "Burrata, tomates anciennes", d: "Basilic, huile d'olive de Nyons, pain grillé", p: 12, v: true },
-      { n: "Houmous rôti", d: "Pois chiches croquants, za'atar, galette chaude", p: 9, v: true, g: true },
-      { n: "Poulpe grillé", d: "Pommes de terre fumées, citron confit, paprika", p: 15, g: true },
-      { n: "Panisses dorées", d: "Aïoli safrané, fleur de sel", p: 8, v: true, g: true }
+      { n: "Salade du marché", d: "Oignons rouges, herbes fraîches, vinaigrette au citron", p: 11, v: true, g: true, img: "d-salade" },
+      { n: "Bol de pois chiches rôtis", d: "Légumes croquants, tahini, za'atar", p: 10, v: true, g: true, img: "d-bol" },
+      { n: "Tartare de truite", d: "Avocat, basilic, citron vert", p: 14, g: true, img: "d-tartare" }
     ],
     plats: [
-      { n: "Dorade entière au four", d: "Fenouil rôti, agrumes, herbes fraîches", p: 26, g: true },
-      { n: "Agneau confit sept heures", d: "Semoule aux herbes, jus aux épices douces", p: 24 },
-      { n: "Risotto à l'artichaut", d: "Pecorino, citron, roquette", p: 19, v: true, g: true },
-      { n: "Orecchiette au brocoli", d: "Piment doux, chapelure à l'ail", p: 17, v: true }
+      { n: "Truite rôtie", d: "Légumes du moment, beurre blanc aux agrumes", p: 24, g: true, img: "d-truite" },
+      { n: "Linguine aux gambas", d: "Tomates confites, ail, persil plat", p: 22, img: "d-linguine" },
+      { n: "Tagliatelles au ragù d'agneau", d: "Agneau confit sept heures, pecorino", p: 21, img: "d-tagliatelles" },
+      { n: "Onglet grillé", d: "Frites maison, sauce vierge", p: 26, g: true, img: "d-onglet" },
+      { n: "Penne all'arrabbiata", d: "Tomates San Marzano, piment, basilic", p: 17, v: true, img: "d-penne" },
+      { n: "Côte de porc confite", d: "Pommes grenaille, jus au romarin", p: 23, g: true, img: "d-porc" }
     ],
     desserts: [
-      { n: "Tarte au citron de Menton", d: "Meringue brûlée, zestes confits", p: 9, v: true },
-      { n: "Panna cotta aux figues", d: "Figues rôties, miel de thym", p: 8, v: true, g: true },
-      { n: "Glace à l'huile d'olive", d: "Fleur de sel, biscuit aux amandes", p: 7, v: true },
-      { n: "Assiette d'agrumes", d: "Fleur d'oranger, pistaches torréfiées", p: 7, v: true, g: true }
+      { n: "Panna cotta aux fraises", d: "Coulis de fraises, basilic", p: 8, v: true, g: true, img: "d-pannacotta" },
+      { n: "Tiramisu maison", d: "Mascarpone, café torréfié à Lyon", p: 9, v: true, img: "d-tiramisu" },
+      { n: "Entremets framboise", d: "Biscuit amande, crème légère vanille", p: 9, v: true, img: "d-framboise" }
     ]
   };
   var current = "entrees";
@@ -462,22 +622,18 @@ img, svg { display: block; max-width: 100%; }
   var list = document.getElementById("dishes-list");
   var vegOnly = document.getElementById("veg-only");
   var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
-
-  function euro(n) { return n.toLocaleString("fr-FR") + " €"; }
+  function euro(n) { return n.toLocaleString("fr-FR") + " €"; }
   function renderMenu() {
     var items = MENU[current].filter(function (d) { return !vegOnly.checked || d.v; });
     list.innerHTML = items.map(function (d) {
       var labels = (d.v ? "<span>Végétarien</span>" : "") + (d.g ? "<span>Sans gluten</span>" : "");
-      return '<li class="dish"><div class="dish-top"><h3>' + d.n + '</h3><span class="lead"></span><span class="price">' + euro(d.p) +
-        "</span></div><p>" + d.d + "</p>" + (labels ? '<div class="labels">' + labels + "</div>" : "") + "</li>";
-    }).join("") || '<li class="dish"><p>Aucun plat végétarien dans cette catégorie pour le moment.</p></li>';
+      return '<li class="dish"><div class="dish-img"><img src="img/citrine/' + d.img + '.webp" width="800" height="600" alt="' + d.n + '" loading="lazy">' +
+        (labels ? '<div class="labels">' + labels + "</div>" : "") + '</div><div class="dish-top"><h3>' + d.n + '</h3><span class="lead"></span><span class="price">' + euro(d.p) +
+        "</span></div><p>" + d.d + "</p></li>";
+    }).join("") || '<li class="empty">Aucun plat végétarien dans cette catégorie pour le moment.</li>';
   }
   function selectTab(tab, focus) {
-    tabs.forEach(function (t) {
-      var on = t === tab;
-      t.setAttribute("aria-selected", String(on));
-      t.tabIndex = on ? 0 : -1;
-    });
+    tabs.forEach(function (t) { var on = t === tab; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; });
     current = tab.getAttribute("data-cat");
     panel.setAttribute("aria-labelledby", tab.id);
     if (focus) tab.focus();
@@ -486,14 +642,26 @@ img, svg { display: block; max-width: 100%; }
   tabs.forEach(function (t, i) {
     t.addEventListener("click", function () { selectTab(t); });
     t.addEventListener("keydown", function (e) {
-      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
-        var next = tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length];
-        selectTab(next, true);
-      }
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") selectTab(tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length], true);
     });
   });
   vegOnly.addEventListener("change", renderMenu);
   renderMenu();
+
+  // ---- Galerie et visionneuse ----
+  var shots = Array.prototype.slice.call(document.querySelectorAll("#gallery button"));
+  var lb = document.getElementById("lightbox"), lbImg = document.getElementById("lb-img"), lbCap = document.getElementById("lb-cap"), idx = 0;
+  function show(i) {
+    idx = (i + shots.length) % shots.length;
+    var img = shots[idx].querySelector("img");
+    lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = shots[idx].getAttribute("data-caption") + " · " + (idx + 1) + "/" + shots.length;
+  }
+  shots.forEach(function (b, i) { b.addEventListener("click", function () { show(i); if (lb.showModal) lb.showModal(); }); });
+  document.getElementById("lb-prev").addEventListener("click", function () { show(idx - 1); });
+  document.getElementById("lb-next").addEventListener("click", function () { show(idx + 1); });
+  document.getElementById("lb-close").addEventListener("click", function () { lb.close(); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(idx + 1); if (e.key === "ArrowLeft") show(idx - 1); });
 
   // ---- Horaires (jour 0 = dimanche) ----
   var DAYS = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
@@ -508,10 +676,7 @@ img, svg { display: block; max-width: 100%; }
   };
   function mins(t) { var p = t.split(":"); return +p[0] * 60 + +p[1]; }
   function fmt(t) { return t.replace(":", "h"); }
-  var now = new Date();
-  var today = now.getDay();
-  var nowMin = now.getHours() * 60 + now.getMinutes();
-
+  var now = new Date(), today = now.getDay(), nowMin = now.getHours() * 60 + now.getMinutes();
   var hoursEl = document.getElementById("hours");
   [2, 3, 4, 5, 6, 0, 1].forEach(function (d) {
     var div = document.createElement("div");
@@ -520,9 +685,7 @@ img, svg { display: block; max-width: 100%; }
     div.innerHTML = "<dt>" + DAYS[d] + "</dt><dd>" + txt + "</dd>";
     hoursEl.appendChild(div);
   });
-
-  var statusEl = document.getElementById("status");
-  var statusText = document.getElementById("status-text");
+  var statusEl = document.getElementById("status"), statusText = document.getElementById("status-text");
   var openRange = HOURS[today].filter(function (r) { return nowMin >= mins(r[0]) && nowMin < mins(r[1]); })[0];
   if (openRange) {
     statusEl.classList.add("open");
@@ -530,35 +693,25 @@ img, svg { display: block; max-width: 100%; }
   } else {
     var later = HOURS[today].filter(function (r) { return mins(r[0]) > nowMin; })[0];
     if (later) statusText.textContent = "Fermé · ouvre aujourd'hui à " + fmt(later[0]);
-    else {
-      for (var k = 1; k <= 7; k++) {
-        var d = (today + k) % 7;
-        if (HOURS[d].length) { statusText.textContent = "Fermé · ouvre " + (k === 1 ? "demain" : DAYS[d].toLowerCase()) + " à " + fmt(HOURS[d][0][0]); break; }
-      }
+    else for (var k = 1; k <= 7; k++) {
+      var d = (today + k) % 7;
+      if (HOURS[d].length) { statusText.textContent = "Fermé · ouvre " + (k === 1 ? "demain" : DAYS[d].toLowerCase()) + " à " + fmt(HOURS[d][0][0]); break; }
     }
   }
 
   // ---- Réservation (démo) ----
-  var dateIn = document.getElementById("b-date");
-  var slotsEl = document.getElementById("slots");
+  var dateIn = document.getElementById("b-date"), slotsEl = document.getElementById("slots");
   function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
-  function nextOpenDay(from) {
-    var d = new Date(from);
-    for (var i = 0; i < 8; i++) { if (HOURS[d.getDay()].length) return d; d.setDate(d.getDate() + 1); }
-    return d;
-  }
+  function nextOpenDay(from) { var d = new Date(from); for (var i = 0; i < 8; i++) { if (HOURS[d.getDay()].length) return d; d.setDate(d.getDate() + 1); } return d; }
   var max = new Date(); max.setDate(max.getDate() + 60);
   dateIn.min = iso(now); dateIn.max = iso(max);
   var first = nextOpenDay(new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1));
   dateIn.value = iso(first);
-
   function renderSlots() {
     var parts = dateIn.value.split("-");
     var day = parts.length === 3 ? new Date(+parts[0], +parts[1] - 1, +parts[2]).getDay() : -1;
-    var ranges = HOURS[day] || [];
-    var html = "";
-    var firstSlot = true;
-    ranges.forEach(function (r) {
+    var html = "", firstSlot = true;
+    (HOURS[day] || []).forEach(function (r) {
       for (var m = mins(r[0]); m <= mins(r[1]) - 90; m += 30) {
         var t = String(Math.floor(m / 60)).padStart(2, "0") + "h" + String(m % 60).padStart(2, "0");
         html += '<label><input type="radio" name="slot" value="' + t + '"' + (firstSlot && m >= 19 * 60 ? " checked" : "") + "><span>" + t + "</span></label>";
@@ -570,23 +723,17 @@ img, svg { display: block; max-width: 100%; }
   }
   dateIn.addEventListener("change", renderSlots);
   renderSlots();
-
-  var guests = 2;
-  var guestsOut = document.getElementById("guests");
+  var guests = 2, guestsOut = document.getElementById("guests");
   function setGuests(n) { guests = Math.min(10, Math.max(1, n)); guestsOut.textContent = guests + (guests > 1 ? " personnes" : " personne"); }
   document.getElementById("g-minus").addEventListener("click", function () { setGuests(guests - 1); });
   document.getElementById("g-plus").addEventListener("click", function () { setGuests(guests + 1); });
-
-  var form = document.getElementById("book-form");
-  var msg = document.getElementById("book-msg");
-  var done = document.getElementById("book-done");
+  var form = document.getElementById("book-form"), msg = document.getElementById("book-msg"), done = document.getElementById("book-done");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     var slot = form.querySelector('input[name="slot"]:checked');
-    var name = document.getElementById("b-name");
-    var email = document.getElementById("b-email");
+    var name = document.getElementById("b-name"), email = document.getElementById("b-email");
     if (!slot) { msg.textContent = "Choisissez une date où le restaurant est ouvert, puis un horaire."; return; }
-    if (!name.value.trim() || !email.checkValidity() || !email.value) { msg.textContent = "Indiquez votre nom et une adresse email valide pour recevoir la confirmation."; (name.value.trim() ? email : name).focus(); return; }
+    if (!name.value.trim() || !email.value || !email.checkValidity()) { msg.textContent = "Indiquez votre nom et une adresse email valide pour recevoir la confirmation."; (name.value.trim() ? email : name).focus(); return; }
     msg.textContent = "";
     var p = dateIn.value.split("-");
     var dateTxt = new Date(+p[0], +p[1] - 1, +p[2]).toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });

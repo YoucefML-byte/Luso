@@ -9,13 +9,17 @@ Site statique (HTML, CSS, JavaScript), sans cookie ni traceur : les polices sont
 | Fichier | Rôle |
 | --- | --- |
 | `index.html` | Page d'accueil |
-| `demos/citrine-site.html` | Démo de site vitrine (restaurant fictif) |
-| `demos/citrine-app.html` | Démo d'application mobile de commande |
+| `demos/citrine-site.html` | Démo restaurant : carte en photos, galerie, chef, avis, horaires en direct, réservation |
+| `demos/citrine-app.html` | Démo d'application mobile de commande à emporter (même restaurant) |
+| `demos/ebene-boutique.html` | Démo boutique en ligne d'un torréfacteur : catalogue filtrable, fiche produit, panier, paiement simulé |
+| `demos/copeau-menuiserie.html` | Démo artisan menuisier : réalisations, croquis/réalisation, zone d'intervention, devis en étapes |
+| `demos/ondine-coiffure.html` | Démo salon de coiffure : tarifs, équipe, galerie, prise de rendez-vous avec export agenda |
+| `demos/img/` | Photos des démos (Unsplash, licence Unsplash) et sachets Ébène générés pour la démo |
 | `mentions-legales.html` | Mentions légales (LCEN) |
 | `confidentialite.html` | Politique de confidentialité (RGPD) |
 | `contact.php` | Envoi des demandes de devis par email (hébergement PHP uniquement) |
 | `assets/styles.css` | Styles communs |
-| `assets/img/` | Captures des démos Citrine affichées sur l'accueil (à régénérer si les démos changent) |
+| `assets/img/` | Captures des démos affichées dans la section Réalisations de l'accueil (à régénérer si les démos changent) |
 | `assets/img/hero/` | 20 photos Unsplash (licence Unsplash) du héros animé, en WebP 216 × 306 |
 | `assets/data/world-110m.json` | Tracés des pays pour le globe de la section contact (Natural Earth via world-atlas 2.0.2, arcs TopoJSON quantifiés) |
 | `404.html` | Page d'erreur aux couleurs du site, servie par GitHub Pages pour toute adresse inconnue |

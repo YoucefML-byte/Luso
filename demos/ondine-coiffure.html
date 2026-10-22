@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>Ondine · Coiffure &amp; soins à Paris 11e</title>
+<meta name="description" content="Démo Luso : site d'un salon de coiffure fictif, Ondine. Prestations et tarifs, équipe, galerie et prise de rendez-vous en ligne.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%2333232B'/%3E%3Cpath d='M10 22c4 0 4-5 6-8s4-6 7-6' stroke='%23E6B8A6' stroke-width='2.4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* Polices hébergées sur le site Luso (aucun appel à un service tiers). */
+@font-face { font-family: "Cormorant Garamond"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/cormorant-garamond-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Cormorant Garamond"; font-style: italic; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/cormorant-garamond-latin-wght-italic.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2"); }
+
+/* Ondine : rose poudré, prune et or rosé. Titres Cormorant en italique, photos lumineuses, prise de rendez-vous au centre. */
+:root {
+  --paper: #F7EFEA;
+  --surface: #FFFAF7;
+  --ink: #33232B;
+  --muted: #7A6670;
+  --line: #EADCD5;
+  --rose: #A3624F;
+  --rose-deep: #8E4E5A;
+  --rose-soft: #F3E1D9;
+  --display: "Cormorant Garamond", Georgia, serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .24, 1);
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+h1, h2, h3 { font-family: var(--display); font-weight: 500; line-height: 1; margin: 0; text-wrap: balance; letter-spacing: -.01em; }
+h1 em, h2 em { font-style: italic; color: var(--rose-deep); }
+p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { list-style: none; padding: 0; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+:focus-visible { outline: 2px solid var(--rose-deep); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.section { padding-block: clamp(72px, 10vw, 128px); }
+.kicker { font-size: .75rem; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--rose); }
+.head { display: grid; gap: 1rem; max-width: 42rem; margin-bottom: clamp(32px, 5vw, 52px); }
+.head.center { margin-inline: auto; text-align: center; justify-items: center; }
+.head h2 { font-size: clamp(2.6rem, 6vw, 4.4rem); }
+.head p { color: var(--muted); font-size: 1.125rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .5rem; min-height: 50px; padding: 0 1.6rem; border: 1.5px solid transparent; border-radius: 999px; font-weight: 600; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--ease); }
+.btn:active { transform: scale(.98); }
+.btn-plum { background: var(--ink); color: var(--surface); }
+.btn-plum:hover { background: var(--rose-deep); }
+.btn-rose { background: var(--rose); color: #fff; }
+.btn-rose:hover { background: var(--rose-deep); }
+.btn-line { border-color: currentColor; background: transparent; }
+.btn-line:hover { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.btn:disabled { opacity: .45; cursor: not-allowed; }
+.stars { color: var(--rose); letter-spacing: .1em; }
+
+/* Bandeau Luso */
+.demo-bar { background: #0E0E0F; color: #F4F2EE; font-family: "Bricolage Grotesque", var(--body); font-size: .875rem; }
+.demo-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1.25rem; padding-block: 9px; }
+.demo-bar p { display: flex; align-items: center; gap: .55rem; }
+.demo-bar svg { width: 20px; height: 20px; flex: none; }
+.demo-bar a { color: inherit; text-decoration: none; font-weight: 600; }
+.demo-bar a:hover { color: #F2AE3A; }
+.demo-bar .t { opacity: .7; font-weight: 400; }
+
+/* En-tête */
+.top { position: sticky; top: 0; z-index: 40; background: rgba(247, 239, 234, .94); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.top .wrap { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 1rem; min-height: 80px; }
+.top nav { display: flex; gap: 1.6rem; }
+.top nav a { text-decoration: none; font-weight: 500; font-size: .9375rem; }
+.top nav a:hover { color: var(--rose-deep); }
+.brand { display: inline-flex; flex-direction: column; align-items: center; text-decoration: none; line-height: 1; }
+.brand-mark { display: inline-flex; align-items: center; gap: .5rem; }
+.brand svg { width: 30px; height: 30px; }
+.brand b { font-family: var(--display); font-style: italic; font-weight: 600; font-size: 2.1rem; letter-spacing: -.01em; }
+.brand small { margin-top: 4px; font-size: .5625rem; font-weight: 700; letter-spacing: .32em; text-transform: uppercase; color: var(--muted); }
+.top-right { display: flex; justify-content: flex-end; align-items: center; gap: .6rem; }
+.menu-btn { display: none; width: 46px; height: 46px; border: 1.5px solid var(--line); border-radius: 50%; background: var(--surface); cursor: pointer; }
+.menu-btn svg { width: 20px; height: 20px; margin: auto; }
+@media (max-width: 960px) {
+  .top .wrap { grid-template-columns: auto 1fr; }
+  .brand { align-items: flex-start; }
+  .top-right .btn { min-height: 44px; padding: 0 1rem; font-size: .875rem; }
+  .menu-btn { display: grid; }
+  .top nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 6px clamp(16px, 4vw, 40px) 16px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .top nav:not(.open) { display: none; }
+  .top nav a { padding: .8rem 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 1.5rem; font-style: italic; }
+}
+@media (max-width: 420px) { .top-right .btn span { display: none; } }
+
+/* Héros */
+.hero { position: relative; min-height: min(88svh, 820px); display: grid; align-items: center; color: var(--surface); overflow: hidden; }
+.hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 40%; }
+.hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(40, 24, 30, .78) 0%, rgba(40, 24, 30, .4) 55%, rgba(40, 24, 30, .1) 100%); }
+.hero .wrap { position: relative; z-index: 1; padding-block: 80px; }
+.hero-in { display: grid; gap: 1.4rem; max-width: 36rem; }
+.open-now { display: inline-flex; align-items: center; gap: .5rem; width: fit-content; padding: .35rem .9rem; border-radius: 999px; background: rgba(255, 250, 247, .16); border: 1px solid rgba(255, 250, 247, .3); font-size: .875rem; }
+.open-now i { width: 8px; height: 8px; border-radius: 50%; background: #E9B44C; }
+.open-now.on i { background: #7DDB9A; }
+.hero h1 { font-size: clamp(3.4rem, 8vw, 6.4rem); font-weight: 500; }
+.hero h1 em { color: #F1C3B3; }
+.hero p { font-size: 1.1875rem; opacity: .92; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.hero .btn-line { color: var(--surface); }
+.hero .btn-line:hover { background: var(--surface); color: var(--ink); border-color: var(--surface); }
+.hero-rate { display: flex; align-items: center; gap: .6rem; font-size: .9375rem; }
+.hero-rate .stars { color: #F1C3B3; }
+
+/* Le salon */
+.intro { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.intro-pics { position: relative; height: clamp(380px, 46vw, 560px); }
+.intro-pics img { position: absolute; object-fit: cover; border-radius: 200px 200px 12px 12px; }
+.intro-pics img:first-child { left: 0; top: 0; width: 64%; height: 86%; }
+.intro-pics img:last-child { right: 0; bottom: 0; width: 46%; height: 58%; border-radius: 12px; border: 8px solid var(--paper); }
+.values { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--line); }
+.values svg { width: 26px; height: 26px; color: var(--rose); margin-bottom: .5rem; }
+.values b { display: block; font-family: var(--display); font-size: 1.35rem; font-weight: 600; line-height: 1.1; }
+.values span { font-size: .875rem; color: var(--muted); }
+@media (max-width: 900px) { .intro { grid-template-columns: minmax(0, 1fr); } .values { grid-template-columns: minmax(0, 1fr); } }
+
+/* Prestations */
+.services-band { background: var(--surface); border-block: 1px solid var(--line); }
+.tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-bottom: 36px; }
+.tabs button { min-height: 44px; padding: 0 1.3rem; border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper); font-weight: 600; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+.tabs button[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--surface); }
+.menu { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.menu-img { position: sticky; top: 110px; border-radius: 200px 200px 12px 12px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--rose-soft); }
+.menu-img img { width: 100%; height: 100%; object-fit: cover; animation: fade .6s var(--ease); }
+@keyframes fade { from { opacity: 0; transform: scale(1.03); } }
+.prices li { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: .5rem 1.25rem; align-items: center; padding-block: 18px; border-bottom: 1px solid var(--line); animation: rise .45s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }
+.prices b { display: block; font-family: var(--display); font-size: 1.5rem; font-weight: 600; line-height: 1.1; }
+.prices small { color: var(--muted); font-size: .875rem; }
+.prices .p { font-family: var(--display); font-size: 1.5rem; font-weight: 600; color: var(--rose-deep); white-space: nowrap; }
+.prices button { min-height: 38px; padding: 0 .9rem; border: 1.5px solid var(--ink); border-radius: 999px; background: transparent; font-size: .8125rem; font-weight: 700; cursor: pointer; }
+.prices button:hover { background: var(--ink); color: var(--surface); }
+.gift { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 28px; padding: 20px 24px; border-radius: 12px; background: var(--rose-soft); }
+.gift b { font-family: var(--display); font-size: 1.5rem; font-style: italic; }
+@media (max-width: 860px) { .menu { grid-template-columns: minmax(0, 1fr); } .menu-img { position: static; aspect-ratio: 16 / 10; border-radius: 12px; } }
+@media (max-width: 520px) { .prices li { grid-template-columns: minmax(0, 1fr) auto; } .prices button { grid-column: 1 / -1; justify-self: start; } }
+
+/* Équipe */
+.team { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.member { display: grid; gap: .5rem; }
+.member img { width: 100%; aspect-ratio: 5 / 6; object-fit: cover; border-radius: 160px 160px 12px 12px; filter: saturate(.9); transition: filter .4s, transform .6s var(--ease); }
+.member:hover img { filter: none; transform: translateY(-4px); }
+.member b { margin-top: .5rem; font-family: var(--display); font-size: 1.7rem; font-weight: 600; line-height: 1; }
+.member span { color: var(--rose-deep); font-size: .875rem; font-weight: 600; }
+.member p { color: var(--muted); font-size: .9375rem; }
+@media (max-width: 900px) { .team { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Galerie */
+.gallery { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: clamp(160px, 18vw, 240px); gap: 12px; }
+.gallery figure { position: relative; overflow: hidden; border-radius: 12px; }
+.gallery figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+.gallery figure:nth-child(2), .gallery figure:nth-child(3) { grid-column: span 2; }
+.gallery figure:nth-child(n+4) { grid-column: span 2; }
+.gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.gallery figure:hover img { transform: scale(1.05); }
+.gallery figcaption { position: absolute; left: 10px; bottom: 10px; padding: .2rem .7rem; border-radius: 999px; background: rgba(255, 250, 247, .92); font-size: .8125rem; font-weight: 600; }
+@media (max-width: 760px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 170px; } .gallery figure:nth-child(n) { grid-column: span 1; grid-row: span 1; } .gallery figure:nth-child(1) { grid-column: span 2; grid-row: span 2; } }
+
+/* Prise de rendez-vous */
+.book-band { background: var(--ink); color: var(--surface); }
+.book-band .head p { color: rgba(255, 250, 247, .72); }
+.book-band .kicker { color: #E6B8A6; }
+.book-band h2 em { color: #F1C3B3; }
+.booking { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, .8fr); gap: 20px; align-items: start; }
+.panel { padding: clamp(20px, 3vw, 32px); border-radius: 16px; background: var(--surface); color: var(--ink); }
+.bstep + .bstep { margin-top: 26px; padding-top: 22px; border-top: 1px solid var(--line); }
+.bstep h3 { display: flex; align-items: center; gap: .6rem; font-size: 1.6rem; font-weight: 600; margin-bottom: 14px; }
+.bstep h3 .n { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--rose-soft); color: var(--rose-deep); font-family: var(--body); font-size: .875rem; font-weight: 700; }
+.bstep.locked { opacity: .45; pointer-events: none; }
+.svc-select { width: 100%; min-height: 52px; padding: 0 2.6rem 0 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2333232B' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center / 16px; appearance: none; font-weight: 600; }
+.pros { display: flex; flex-wrap: wrap; gap: 8px; }
+.pros label { position: relative; }
+.pros input { position: absolute; opacity: 0; }
+.pros span { display: inline-flex; align-items: center; gap: .55rem; min-height: 48px; padding: 4px 14px 4px 4px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--paper); font-weight: 600; font-size: .9375rem; cursor: pointer; }
+.pros img, .pros .any { width: 38px; height: 38px; border-radius: 50%; object-fit: cover; }
+.pros .any { display: grid; place-items: center; background: var(--rose-soft); color: var(--rose-deep); font-size: 1.1rem; }
+.pros input:checked + span { border-color: var(--ink); background: var(--ink); color: var(--surface); }
+.pros input:disabled + span { opacity: .35; cursor: not-allowed; text-decoration: line-through; }
+.pros input:focus-visible + span, .days input:focus-visible + span, .times input:focus-visible + span { outline: 2px solid var(--rose-deep); outline-offset: 2px; }
+.days { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 6px; scroll-snap-type: x mandatory; }
+.days label { position: relative; flex: none; scroll-snap-align: start; }
+.days input { position: absolute; opacity: 0; }
+.days span { display: grid; justify-items: center; gap: 2px; width: 68px; padding: 10px 0; border: 1.5px solid var(--line); border-radius: 12px; background: var(--paper); cursor: pointer; }
+.days small { font-size: .75rem; color: var(--muted); text-transform: capitalize; }
+.days b { font-family: var(--display); font-size: 1.6rem; font-weight: 600; line-height: 1; }
+.days input:checked + span { border-color: var(--ink); background: var(--ink); color: var(--surface); }
+.days input:checked + span small { color: rgba(255, 250, 247, .7); }
+.days input:disabled + span { opacity: .35; cursor: not-allowed; }
+.times { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; margin-top: 14px; }
+.times label { position: relative; }
+.times input { position: absolute; opacity: 0; }
+.times span { display: grid; place-items: center; min-height: 42px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper); font-weight: 600; font-size: .9375rem; cursor: pointer; }
+.times input:checked + span { border-color: var(--rose-deep); background: var(--rose-deep); color: #fff; }
+.times input:disabled + span { opacity: .35; text-decoration: line-through; cursor: not-allowed; }
+.times-empty { margin-top: 12px; color: var(--muted); font-size: .9375rem; }
+.fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.f { display: grid; gap: .35rem; }
+.f.full { grid-column: 1 / -1; }
+.f label { font-size: .8125rem; font-weight: 700; color: var(--muted); }
+.f input, .f textarea { min-height: 48px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 10px; background: var(--paper); }
+.f textarea { min-height: 80px; resize: vertical; }
+.f input:focus, .f textarea:focus, .svc-select:focus { outline: none; border-color: var(--rose-deep); box-shadow: 0 0 0 4px rgba(142, 78, 90, .14); }
+.check { display: flex; align-items: center; gap: .6rem; font-size: .9375rem; }
+.check input { width: 18px; height: 18px; accent-color: var(--rose-deep); }
+.summary { position: sticky; top: 104px; display: grid; gap: 14px; padding: 24px; border-radius: 16px; background: #432F38; }
+.summary h3 { font-size: 1.8rem; font-weight: 600; }
+.summary dl { display: grid; gap: 10px; }
+.summary dl div { display: flex; justify-content: space-between; gap: 1rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255, 250, 247, .15); font-size: .9375rem; }
+.summary dt { opacity: .7; }
+.summary dd { font-weight: 600; text-align: right; }
+.summary .total { font-family: var(--display); font-size: 2rem; }
+.bmsg { color: #F1C3B3; font-weight: 600; font-size: .9375rem; }
+.bmsg:empty { display: none; }
+.small-note { font-size: .8125rem; opacity: .7; }
+.confirm { display: grid; justify-items: start; gap: 1rem; }
+.confirm .ic { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--rose-soft); color: var(--rose-deep); }
+.confirm h3 { font-size: 2.2rem; font-weight: 600; }
+.confirm .actions { display: flex; flex-wrap: wrap; gap: .6rem; }
+.demo-note { padding: 12px 14px; border-radius: 10px; background: var(--rose-soft); font-size: .875rem; color: var(--muted); }
+@media (max-width: 900px) { .booking { grid-template-columns: minmax(0, 1fr); } .summary { position: static; } }
+@media (max-width: 520px) { .fields { grid-template-columns: minmax(0, 1fr); } }
+
+/* Avis */
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.review { display: grid; gap: .9rem; align-content: start; padding: 28px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.review p { font-family: var(--display); font-size: 1.35rem; line-height: 1.3; }
+.review footer { font-size: .875rem; color: var(--muted); }
+.review footer b { color: var(--ink); }
+@media (max-width: 900px) { .reviews { grid-template-columns: minmax(0, 1fr); } }
+
+/* Infos */
+.infos { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.info { padding: 26px; border-radius: 16px; background: var(--surface); border: 1px solid var(--line); }
+.info h3 { margin-bottom: 1rem; font-size: 1.7rem; font-weight: 600; }
+.hours div { display: flex; justify-content: space-between; gap: 1rem; padding-block: 6px; border-bottom: 1px dashed var(--line); font-size: .9375rem; }
+.hours .today { font-weight: 700; color: var(--rose-deep); }
+.info p { color: var(--muted); }
+.info a:not(.btn) { font-weight: 600; text-decoration: none; color: var(--ink); }
+.info .btn { margin-top: 1rem; }
+@media (max-width: 900px) { .infos { grid-template-columns: minmax(0, 1fr); } }
+
+/* Pied de page */
+.foot { padding-block: 56px 28px; background: #251A1F; color: rgba(255, 250, 247, .72); font-size: .9375rem; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)); gap: 32px; }
+.foot .brand { align-items: flex-start; color: var(--surface); }
+.foot .brand small { color: rgba(255, 250, 247, .55); }
+.foot .fh { font-family: var(--body); line-height: 1.4; font-weight: 700; margin: 0 0 .8rem; font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: #E6B8A6; }
+.foot li { margin-bottom: .35rem; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--surface); }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: 44px; padding-top: 18px; border-top: 1px solid rgba(255, 250, 247, .15); font-size: .875rem; }
+.foot-bottom a { color: #E6B8A6; font-weight: 600; }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-grid > div:first-child { grid-column: 1 / -1; } }
+
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .js .reveal { opacity: 1; transform: none; } }
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 40 40"><circle cx="20" cy="20" r="18.5" fill="none" stroke="currentColor" stroke-width="1.2"/><path d="M11 28c5 0 5.5-6 8.5-10s5-7.5 9.5-7.5" fill="none" stroke="#B9806E" stroke-width="2.4" stroke-linecap="round"/><path d="M14 31c4-.5 5-4 7.5-7.5S26 17 30 16.5" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="demo-bar" role="note">
+  <div class="wrap">
+    <p>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2747F5"/><path d="M16 6a10 10 0 0 1 10 10H16z" fill="#F2AE3A"/><path d="M16 26A10 10 0 0 1 6 16h10z" fill="#fff"/></svg>
+      <span>Démo réalisée par Luso <span class="t">· Ondine est une entreprise fictive</span></span>
+    </p>
+    <a href="../index.html#realisations">Retour à Luso</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <nav id="nav" aria-label="Navigation du salon">
+      <a href="#prestations">Prestations</a>
+      <a href="#equipe">L'équipe</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#infos">Infos</a>
+    </nav>
+    <a class="brand" href="#accueil">
+      <span class="brand-mark"><svg aria-hidden="true"><use href="#logo"/></svg><b>Ondine</b></span>
+      <small>Coiffure &amp; soins</small>
+    </a>
+    <div class="top-right">
+      <a class="btn btn-plum" href="#rdv">Prendre<span>rendez-vous</span></a>
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main id="accueil">
+  <section class="hero" aria-labelledby="hero-title">
+    <img src="img/ondine/hero.webp" width="1600" height="1067" alt="Une cliente profite d'un shampoing soin au bac du salon Ondine" fetchpriority="high">
+    <div class="wrap">
+      <div class="hero-in">
+        <span class="open-now" id="open-now"><i></i><span id="open-txt">Horaires du salon</span></span>
+        <h1 id="hero-title">Prenez le temps, <em>on s'occupe</em> du reste.</h1>
+        <p>Coupes, couleurs et soins sur mesure dans un salon lumineux du 11e arrondissement, avec des produits d'origine végétale.</p>
+        <div class="hero-actions">
+          <a class="btn btn-rose" href="#rdv">Prendre rendez-vous</a>
+          <a class="btn btn-line" href="#prestations">Voir les tarifs</a>
+        </div>
+        <p class="hero-rate"><span class="stars" aria-hidden="true">★★★★★</span>4,9/5 · 438 avis</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="intro-title">
+    <div class="wrap intro">
+      <div class="intro-pics reveal">
+        <img src="img/ondine/salon-1.webp" width="900" height="600" alt="Le salon Ondine, ses arches blanches et ses fauteuils" loading="lazy">
+        <img src="img/ondine/produits.webp" width="800" height="533" alt="Produits de soin et serviette" loading="lazy">
+      </div>
+      <div class="reveal">
+        <div class="head" style="margin-bottom:0">
+          <span class="kicker">Le salon</span>
+          <h2 id="intro-title">Une parenthèse <em>douce</em> au cœur du 11e.</h2>
+          <p>Chez Ondine, chaque rendez-vous commence par un vrai temps d'échange. Nous écoutons vos envies, nous regardons vos cheveux, puis nous vous proposons la coupe ou la couleur qui vous ressemble, sans jamais forcer la main.</p>
+        </div>
+        <div class="values">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21c-5-3-8-7-8-11a8 8 0 0 1 16 0c0 4-3 8-8 11z"/><path d="M12 21V9"/></svg><b>Produits végétaux</b><span>colorations sans ammoniaque</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><b>Diagnostic offert</b><span>avant chaque prestation</span></div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 7v5l3 2"/><circle cx="12" cy="12" r="9"/></svg><b>Ouvert tard</b><span>jusqu'à 20h le jeudi</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section services-band" id="prestations" aria-labelledby="prest-title">
+    <div class="wrap">
+      <div class="head center reveal">
+        <span class="kicker">Prestations &amp; tarifs</span>
+        <h2 id="prest-title">À chacun <em>sa</em> prestation</h2>
+        <p>Tous nos tarifs incluent le diagnostic, le shampoing et un soin adapté.</p>
+      </div>
+      <div class="tabs" role="tablist" aria-label="Catégories de prestations" id="tabs"></div>
+      <div class="menu">
+        <div class="menu-img"><img id="menu-img" src="img/ondine/coupe.webp" width="800" height="533" alt="" loading="lazy"></div>
+        <div id="panel" role="tabpanel" tabindex="0"><ul class="prices" id="prices"></ul></div>
+      </div>
+      <div class="gift reveal"><span><b>La carte cadeau Ondine</b><br><span style="color:var(--muted)">Valable un an sur toutes nos prestations, à offrir dès 30&nbsp;€.</span></span><a class="btn btn-line" href="#infos">Nous demander</a></div>
+    </div>
+  </section>
+
+  <section class="section" id="equipe" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">L'équipe</span>
+        <h2 id="team-title">Quatre passionnés, <em>à votre écoute</em></h2>
+      </div>
+      <div class="team" id="team"></div>
+    </div>
+  </section>
+
+  <section class="section" id="galerie" aria-labelledby="gal-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="kicker">Galerie</span>
+        <h2 id="gal-title">Nos dernières <em>créations</em></h2>
+        <p>Retrouvez toutes nos réalisations sur Instagram, @ondine.coiffure.</p>
+      </div>
+      <div class="gallery reveal">
+        <figure><img src="img/ondine/g-lavande.webp" width="700" height="700" alt="Longues ondulations couleur lavande" loading="lazy"><figcaption>Couleur fantaisie</figcaption></figure>
+        <figure><img src="img/ondine/couleur.webp" width="800" height="533" alt="Ondulations naturelles vues de dos" loading="lazy"><figcaption>Balayage miel</figcaption></figure>
+        <figure><img src="img/ondine/g-boucles.webp" width="700" height="700" alt="Cheveux bouclés naturels" loading="lazy"><figcaption>Soin boucles</figcaption></figure>
+        <figure><img src="img/ondine/g-carre.webp" width="700" height="700" alt="Carré roux coupé net" loading="lazy"><figcaption>Carré flou</figcaption></figure>
+        <figure><img src="img/ondine/g-rose.webp" width="700" height="700" alt="Cheveux rose corail en mouvement" loading="lazy"><figcaption>Rose corail</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="section book-band" id="rdv" aria-labelledby="rdv-title">
+    <div class="wrap">
+      <div class="head center">
+        <span class="kicker">Rendez-vous en ligne</span>
+        <h2 id="rdv-title">Réservez <em>en une minute</em></h2>
+        <p>Choisissez votre prestation, votre coiffeur et un créneau libre : la confirmation est immédiate, 24&nbsp;h/24.</p>
+      </div>
+      <div class="booking" id="booking">
+        <form class="panel" id="bform" novalidate>
+          <div class="bstep">
+            <h3><span class="n">1</span>La prestation</h3>
+            <label class="sr-only" for="b-svc">Prestation</label>
+            <select class="svc-select" id="b-svc"></select>
+          </div>
+          <div class="bstep">
+            <h3><span class="n">2</span>Avec qui&#8239;?</h3>
+            <div class="pros" id="b-pros" role="radiogroup" aria-label="Coiffeur ou esthéticienne"></div>
+          </div>
+          <div class="bstep">
+            <h3><span class="n">3</span>Le jour et l'heure</h3>
+            <div class="days" id="b-days" role="radiogroup" aria-label="Jour"></div>
+            <div class="times" id="b-times" role="radiogroup" aria-label="Heure"></div>
+          </div>
+          <div class="bstep">
+            <h3><span class="n">4</span>Vos coordonnées</h3>
+            <div class="fields">
+              <div class="f"><label for="b-first">Prénom</label><input id="b-first" autocomplete="given-name" required></div>
+              <div class="f"><label for="b-last">Nom</label><input id="b-last" autocomplete="family-name" required></div>
+              <div class="f"><label for="b-tel">Téléphone</label><input id="b-tel" type="tel" autocomplete="tel" required></div>
+              <div class="f"><label for="b-mail">Email</label><input id="b-mail" type="email" autocomplete="email" required></div>
+              <div class="f full"><label for="b-note">Une précision&#8239;? (facultatif)</label><textarea id="b-note" placeholder="Longueur actuelle, photo d'inspiration, allergies…"></textarea></div>
+              <label class="check f full"><input type="checkbox" id="b-first-visit">C'est ma première visite chez Ondine</label>
+            </div>
+          </div>
+        </form>
+        <aside class="summary" aria-live="polite">
+          <h3>Votre rendez-vous</h3>
+          <dl id="b-sum"></dl>
+          <p class="bmsg" id="b-msg" role="alert"></p>
+          <button class="btn btn-rose" type="submit" form="bform" id="b-confirm">Confirmer le rendez-vous</button>
+          <p class="small-note">Annulation gratuite jusqu'à 24&nbsp;h avant. Aucun paiement en ligne : vous réglez au salon.</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="avis-title">
+    <div class="wrap">
+      <div class="head center reveal">
+        <span class="kicker">Avis</span>
+        <h2 id="avis-title">Elles et ils <em>en parlent</em></h2>
+        <p><span class="stars" aria-hidden="true">★★★★★</span> 4,9/5 sur 438 avis</p>
+      </div>
+      <div class="reviews">
+        <article class="review reveal"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><p>« Léa a enfin réussi le balayage que je cherchais depuis des années. Lumineux et naturel, je suis ravie. »</p><footer><b>Margaux</b> · balayage avec Léa</footer></article>
+        <article class="review reveal"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><p>« Réservation en ligne en deux minutes, accueil adorable et coupe parfaite. Mon nouveau salon. »</p><footer><b>Julien</b> · coupe et barbe avec Samir</footer></article>
+        <article class="review reveal"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><p>« Le soin visage de Clara est un vrai moment de détente. On ressort apaisée, la peau éclatante. »</p><footer><b>Sophie</b> · soin éclat avec Clara</footer></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="infos" aria-labelledby="infos-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal"><span class="kicker">Infos pratiques</span><h2 id="infos-title">Venir <em>chez Ondine</em></h2></div>
+      <div class="infos">
+        <div class="info reveal"><h3>Horaires</h3><div class="hours" id="hours"></div></div>
+        <div class="info reveal"><h3>Adresse</h3><p>18 rue des Lilas<br>75011 Paris</p><p style="margin-top:.8rem">Métro Parmentier (ligne 3) à 3 minutes. Salon accessible en fauteuil roulant.</p></div>
+        <div class="info reveal"><h3>Contact</h3><p><a href="tel:+33199002715">01 99 00 27 15</a><br><a href="mailto:bonjour@ondine.example">bonjour@ondine.example</a></p><p style="margin-top:.8rem">Une question avant de réserver&#8239;? Appelez-nous, nous répondons volontiers.</p><a class="btn btn-plum" href="#rdv">Prendre rendez-vous</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#accueil"><span class="brand-mark"><svg aria-hidden="true"><use href="#logo"/></svg><b>Ondine</b></span><small>Coiffure &amp; soins</small></a>
+        <p style="margin-top:1rem;max-width:22rem">Coiffure, couleur et soins dans le 11e arrondissement de Paris, avec des produits d'origine végétale.</p>
+      </div>
+      <div><h3 class="fh">Le salon</h3><ul><li><a href="#prestations">Prestations</a></li><li><a href="#equipe">L'équipe</a></li><li><a href="#galerie">Galerie</a></li></ul></div>
+      <div><h3 class="fh">Horaires</h3><ul><li>Mar.–sam. · 10h–19h</li><li>Jeudi · jusqu'à 20h</li><li>Dim. et lun. · fermé</li></ul></div>
+      <div><h3 class="fh">Contact</h3><ul><li>18 rue des Lilas, Paris 11e</li><li><a href="tel:+33199002715">01 99 00 27 15</a></li><li><a href="#rdv">Rendez-vous en ligne</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Site de démonstration conçu par Luso. Ondine, son équipe et ses avis sont fictifs.</span>
+      <a href="../index.html#contact">Vous voulez le même pour votre salon&#8239;?</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---- Menu mobile ----
+  var menuBtn = document.getElementById("menu-btn"), nav = document.getElementById("nav");
+  menuBtn.addEventListener("click", function () { var o = !nav.classList.contains("open"); nav.classList.toggle("open", o); menuBtn.setAttribute("aria-expanded", String(o)); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  // ---- Apparition au défilement ----
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" }) : null;
+  document.querySelectorAll(".reveal").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in"); });
+
+  // ---- Données ----
+  var TEAM = [
+    { id: "lea", n: "Léa", r: "Fondatrice · coloriste", d: "Balayages lumineux et couleurs végétales, 15 ans de métier.", skills: ["femme", "couleur", "soins"] },
+    { id: "ines", n: "Inès", r: "Coiffeuse", d: "Coupes précises, carrés et chignons de mariage.", skills: ["femme", "couleur"] },
+    { id: "clara", n: "Clara", r: "Esthéticienne", d: "Soins du visage, massages et rituels capillaires.", skills: ["soins"] },
+    { id: "samir", n: "Samir", r: "Barbier", d: "Coupes homme, dégradés et taille de barbe à l'ancienne.", skills: ["homme"] }
+  ];
+  var CATS = [
+    { id: "femme", n: "Femme", img: "coupe", items: [["Coupe et brushing · cheveux courts", 45, 48], ["Coupe et brushing · mi-longs", 60, 58], ["Coupe et brushing · longs", 75, 68], ["Brushing", 30, 32], ["Chignon ou coiffure d'événement", 45, 55]] },
+    { id: "homme", n: "Homme", img: "g-barbier", items: [["Coupe homme", 30, 28], ["Coupe et barbe", 45, 38], ["Taille de barbe", 20, 18], ["Coupe enfant (moins de 12 ans)", 25, 18]] },
+    { id: "couleur", n: "Couleur", img: "couleur", items: [["Couleur racines", 60, 45], ["Balayage", 150, 95, true], ["Mèches", 120, 80, true], ["Gloss brillance", 30, 25]] },
+    { id: "soins", n: "Soins", img: "soin-visage", items: [["Soin profond Ondine", 30, 25], ["Soin visage éclat", 50, 60], ["Massage crânien", 20, 22]] }
+  ];
+  var SERVICES = [];
+  CATS.forEach(function (c) { c.items.forEach(function (it, i) { SERVICES.push({ id: c.id + "-" + i, cat: c.id, n: it[0], dur: it[1], p: it[2], from: !!it[3] }); }); });
+  function svcById(id) { return SERVICES.filter(function (s) { return s.id === id; })[0]; }
+  function dur(m) { return m >= 60 ? Math.floor(m / 60) + " h" + (m % 60 ? " " + String(m % 60).padStart(2, "0") : "") : m + " min"; }
+  function price(s) { return (s.from ? "dès " : "") + s.p + " €"; }
+
+  // ---- Équipe ----
+  document.getElementById("team").innerHTML = TEAM.map(function (t) {
+    return '<article class="member reveal in"><img src="img/ondine/t-' + t.id + '.webp" width="500" height="600" alt="Portrait de ' + t.n + '" loading="lazy"><b>' + t.n + "</b><span>" + t.r + "</span><p>" + t.d + "</p></article>";
+  }).join("");
+
+  // ---- Prestations en onglets ----
+  var tabsEl = document.getElementById("tabs"), pricesEl = document.getElementById("prices"), panel = document.getElementById("panel"), menuImg = document.getElementById("menu-img");
+  tabsEl.innerHTML = CATS.map(function (c, i) { return '<button role="tab" id="tab-' + c.id + '" aria-controls="panel" aria-selected="' + (i === 0) + '"' + (i ? ' tabindex="-1"' : "") + ' data-c="' + c.id + '">' + c.n + "</button>"; }).join("");
+  var tabBtns = Array.prototype.slice.call(tabsEl.querySelectorAll("button"));
+  function showCat(id, focus) {
+    var c = CATS.filter(function (x) { return x.id === id; })[0];
+    tabBtns.forEach(function (b) { var on = b.getAttribute("data-c") === id; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+    panel.setAttribute("aria-labelledby", "tab-" + id);
+    menuImg.src = "img/ondine/" + c.img + ".webp"; menuImg.style.animation = "none"; void menuImg.offsetWidth; menuImg.style.animation = "";
+    pricesEl.innerHTML = SERVICES.filter(function (s) { return s.cat === id; }).map(function (s, i) {
+      return '<li style="animation-delay:' + (i * .05) + 's"><span><b>' + s.n + "</b><small>" + dur(s.dur) + '</small></span><span class="p">' + price(s) + '</span><button type="button" data-book="' + s.id + '">Réserver</button></li>';
+    }).join("");
+  }
+  tabBtns.forEach(function (b, i) {
+    b.addEventListener("click", function () { showCat(b.getAttribute("data-c")); });
+    b.addEventListener("keydown", function (e) { if (e.key === "ArrowRight" || e.key === "ArrowLeft") showCat(tabBtns[(i + (e.key === "ArrowRight" ? 1 : tabBtns.length - 1)) % tabBtns.length].getAttribute("data-c"), true); });
+  });
+  showCat("femme");
+
+  // ---- Horaires (jour 0 = dimanche) ----
+  var DAYS = ["Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi"];
+  var HOURS = { 0: null, 1: null, 2: [10, 19], 3: [10, 19], 4: [10, 20], 5: [10, 19], 6: [9, 18] };
+  var now = new Date(), today = now.getDay(), h = now.getHours() + now.getMinutes() / 60;
+  document.getElementById("hours").innerHTML = [2, 3, 4, 5, 6, 0, 1].map(function (d) {
+    return '<div class="' + (d === today ? "today" : "") + '"><span>' + DAYS[d] + "</span><span>" + (HOURS[d] ? HOURS[d][0] + "h – " + HOURS[d][1] + "h" : "Fermé") + "</span></div>";
+  }).join("");
+  var on = HOURS[today] && h >= HOURS[today][0] && h < HOURS[today][1];
+  document.getElementById("open-now").classList.toggle("on", !!on);
+  document.getElementById("open-txt").textContent = on ? "Ouvert aujourd'hui jusqu'à " + HOURS[today][1] + "h" : "Fermé pour le moment · réservation en ligne 24 h/24";
+
+  // ---- Prise de rendez-vous ----
+  var sel = document.getElementById("b-svc"), prosEl = document.getElementById("b-pros"), daysEl = document.getElementById("b-days"), timesEl = document.getElementById("b-times");
+  var st = { svc: "femme-1", pro: "any", day: null, time: null };
+  sel.innerHTML = CATS.map(function (c) { return '<optgroup label="' + c.n + '">' + SERVICES.filter(function (s) { return s.cat === c.id; }).map(function (s) { return '<option value="' + s.id + '">' + s.n + " · " + dur(s.dur) + " · " + price(s) + "</option>"; }).join("") + "</optgroup>"; }).join("");
+  sel.value = st.svc;
+  function renderPros() {
+    var s = svcById(st.svc), ok = TEAM.filter(function (t) { return t.skills.indexOf(s.cat) > -1; });
+    if (st.pro !== "any" && !ok.some(function (t) { return t.id === st.pro; })) st.pro = "any";
+    prosEl.innerHTML = '<label><input type="radio" name="pro" value="any"' + (st.pro === "any" ? " checked" : "") + '><span><i class="any" aria-hidden="true">✦</i>Peu importe</span></label>' +
+      TEAM.map(function (t) {
+        var can = ok.indexOf(t) > -1;
+        return '<label><input type="radio" name="pro" value="' + t.id + '"' + (st.pro === t.id ? " checked" : "") + (can ? "" : " disabled") + '><span><img src="img/ondine/t-' + t.id + '.webp" alt="" width="38" height="38">' + t.n + (can ? "" : '<span class="sr-only"> (ne réalise pas cette prestation)</span>') + "</span></label>";
+      }).join("");
+  }
+  // Créneaux occupés : pseudo-aléatoires mais stables pour un jour et un coiffeur donnés
+  function busy(dayKey, pro, slot) { var x = 0, k = dayKey + pro + slot; for (var i = 0; i < k.length; i++) x = (x * 31 + k.charCodeAt(i)) % 997; return x % 3 === 0; }
+  function dayKey(d) { return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate(); }
+  var dayList = [];
+  for (var i = 0; dayList.length < 14; i++) { var d = new Date(now.getFullYear(), now.getMonth(), now.getDate() + i); dayList.push(d); }
+  function renderDays() {
+    daysEl.innerHTML = dayList.map(function (d, i) {
+      var closed = !HOURS[d.getDay()];
+      return '<label><input type="radio" name="day" value="' + i + '"' + (closed ? " disabled" : "") + (st.day === i ? " checked" : "") + '><span><small>' + d.toLocaleDateString("fr-FR", { weekday: "short" }).replace(".", "") + "</small><b>" + d.getDate() + "</b><small>" + d.toLocaleDateString("fr-FR", { month: "short" }).replace(".", "") + "</small></span></label>";
+    }).join("");
+  }
+  function renderTimes() {
+    if (st.day === null) { timesEl.innerHTML = ""; timesEl.insertAdjacentHTML("afterend", ""); return; }
+    var d = dayList[st.day], hr = HOURS[d.getDay()], s = svcById(st.svc), html = "", free = 0;
+    var isToday = st.day === 0;
+    for (var m = hr[0] * 60; m + s.dur <= hr[1] * 60; m += 30) {
+      var t = String(Math.floor(m / 60)).padStart(2, "0") + "h" + String(m % 60).padStart(2, "0");
+      var past = isToday && m <= now.getHours() * 60 + now.getMinutes() + 30;
+      var taken = past || busy(dayKey(d), st.pro, t);
+      if (!taken) free++;
+      if (taken && st.time === t) st.time = null;
+      html += '<label><input type="radio" name="time" value="' + t + '"' + (taken ? " disabled" : "") + (st.time === t ? " checked" : "") + "><span>" + t + (taken ? '<span class="sr-only"> (indisponible)</span>' : "") + "</span></label>";
+    }
+    timesEl.innerHTML = free ? html : '<p class="times-empty">Plus aucun créneau ce jour-là. Essayez une autre date.</p>';
+  }
+  function renderSum() {
+    var s = svcById(st.svc), pro = st.pro === "any" ? "Le premier disponible" : TEAM.filter(function (t) { return t.id === st.pro; })[0].n;
+    var when = st.day === null ? "À choisir" : dayList[st.day].toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }) + (st.time ? " à " + st.time : "");
+    document.getElementById("b-sum").innerHTML = "<div><dt>Prestation</dt><dd>" + s.n + "</dd></div><div><dt>Durée</dt><dd>" + dur(s.dur) + "</dd></div><div><dt>Avec</dt><dd>" + pro + "</dd></div><div><dt>Quand</dt><dd>" + when + '</dd></div><div><dt>Prix</dt><dd class="total">' + price(s) + "</dd></div>";
+  }
+  function firstOpenDay() { for (var i = 0; i < dayList.length; i++) if (HOURS[dayList[i].getDay()]) { return i === 0 && now.getHours() >= 17 ? firstOpenAfter(1) : i; } return null; }
+  function firstOpenAfter(k) { for (var i = k; i < dayList.length; i++) if (HOURS[dayList[i].getDay()]) return i; return null; }
+  st.day = firstOpenDay();
+  function all() { renderPros(); renderDays(); renderTimes(); renderSum(); }
+  all();
+  sel.addEventListener("change", function () { st.svc = sel.value; all(); });
+  prosEl.addEventListener("change", function (e) { st.pro = e.target.value; renderTimes(); renderSum(); });
+  daysEl.addEventListener("change", function (e) { st.day = +e.target.value; st.time = null; renderTimes(); renderSum(); });
+  timesEl.addEventListener("change", function (e) { st.time = e.target.value; renderSum(); });
+  document.getElementById("bform").addEventListener("change", function () { document.getElementById("b-msg").textContent = ""; });
+  document.getElementById("prestations").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-book]"); if (!b) return;
+    st.svc = b.getAttribute("data-book"); sel.value = st.svc; all();
+    document.getElementById("rdv").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    setTimeout(function () { sel.focus({ preventScroll: true }); }, 500);
+  });
+
+  var form = document.getElementById("bform"), msg = document.getElementById("b-msg"), booking = document.getElementById("booking");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = function (id) { return document.getElementById(id); };
+    if (!st.time) { msg.textContent = "Choisissez un jour puis une heure disponible."; (timesEl.querySelector("input:not(:disabled)") || daysEl.querySelector("input:not(:disabled)")).focus(); return; }
+    if (!f("b-first").value.trim() || !f("b-last").value.trim()) { msg.textContent = "Indiquez votre prénom et votre nom."; f(f("b-first").value.trim() ? "b-last" : "b-first").focus(); return; }
+    if (f("b-tel").value.replace(/\D/g, "").length < 10) { msg.textContent = "Indiquez un numéro de téléphone à 10 chiffres pour le rappel SMS."; f("b-tel").focus(); return; }
+    if (!f("b-mail").value || !f("b-mail").checkValidity()) { msg.textContent = "L'adresse email semble incomplète."; f("b-mail").focus(); return; }
+    msg.textContent = "";
+    var s = svcById(st.svc), d = dayList[st.day], hm = st.time.split("h");
+    var start = new Date(d.getFullYear(), d.getMonth(), d.getDate(), +hm[0], +hm[1]), end = new Date(start.getTime() + s.dur * 60000);
+    var pro = st.pro === "any" ? TEAM.filter(function (t) { return t.skills.indexOf(s.cat) > -1; })[0] : TEAM.filter(function (t) { return t.id === st.pro; })[0];
+    var whenTxt = start.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" }) + " à " + st.time;
+    booking.innerHTML = '<div class="panel confirm" style="grid-column:1/-1"><span class="ic"><svg width="30" height="30" aria-hidden="true"><use href="#i-check"/></svg></span>' +
+      '<h3 id="b-done" tabindex="-1">À très vite, ' + f("b-first").value.trim() + "&#8239;!</h3><p>" + s.n + " avec " + pro.n + ", <b>" + whenTxt + "</b> au 18 rue des Lilas. Un SMS de rappel serait envoyé la veille au " + f("b-tel").value + ".</p>" +
+      '<div class="actions"><button class="btn btn-plum" type="button" id="ics">Ajouter à mon agenda</button><button class="btn btn-line" type="button" id="again">Prendre un autre rendez-vous</button></div>' +
+      '<p class="demo-note">Démo : aucun rendez-vous n\'a été enregistré. Sur un vrai site, il s\'inscrit directement dans l\'agenda du salon et le client reçoit une confirmation par email et SMS.</p></div>';
+    document.getElementById("b-done").focus();
+    document.getElementById("again").addEventListener("click", function () { location.reload(); });
+    document.getElementById("ics").addEventListener("click", function () {
+      function fmt(x) { return x.getFullYear() + String(x.getMonth() + 1).padStart(2, "0") + String(x.getDate()).padStart(2, "0") + "T" + String(x.getHours()).padStart(2, "0") + String(x.getMinutes()).padStart(2, "0") + "00"; }
+      var ics = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Ondine (démo Luso)//FR", "BEGIN:VEVENT", "UID:" + Date.now() + "@ondine.example", "DTSTAMP:" + fmt(new Date()), "DTSTART:" + fmt(start), "DTEND:" + fmt(end),
+        "SUMMARY:" + s.n + " · Ondine", "LOCATION:18 rue des Lilas, 75011 Paris", "DESCRIPTION:Rendez-vous avec " + pro.n + " (démo)", "END:VEVENT", "END:VCALENDAR"].join("\r\n");
+      var a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([ics], { type: "text/calendar" })); a.download = "rendez-vous-ondine.ics";
+      document.body.appendChild(a); a.click(); a.remove();
+    });
+  });
+})();
+</script>
+</body>
+</html>

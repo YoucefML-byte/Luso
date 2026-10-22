@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="noindex">
+<title>Copeau · Menuiserie et agencement sur mesure près de Nantes</title>
+<meta name="description" content="Démo Luso : site vitrine d'un menuisier-agenceur fictif, Copeau. Réalisations, du croquis à la réalisation, zone d'intervention et demande de devis en ligne.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231E2320'/%3E%3Cpath d='M9 22c0-7 5-12 11-12 3 0 5 2 5 4.5S23 19 20.5 19 17 17.5 17 16' stroke='%23C98B4B' stroke-width='2.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* Polices hébergées sur le site Luso (aucun appel à un service tiers). */
+@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("../assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("../assets/fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
+
+/* Copeau : blanc chaud, anthracite, chêne et vert sauge. Titres Bricolage serrés, grandes photos de réalisations. */
+:root {
+  --paper: #F6F4F0;
+  --surface: #FFFFFF;
+  --ink: #1E2320;
+  --muted: #646B66;
+  --line: #DDD8CF;
+  --oak: #8E5E2A;
+  --oak-light: #C98B4B;
+  --oak-soft: #F1E6D8;
+  --sage: #6F7F6A;
+  --sage-soft: #E5E9E1;
+  --display: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif;
+  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.22, .8, .24, 1);
+  color-scheme: light;
+}
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 86px; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1; margin: 0; letter-spacing: -.035em; text-wrap: balance; }
+h1 em, h2 em { font-style: normal; color: var(--oak); }
+p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+ul, ol { list-style: none; padding: 0; }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; color: inherit; }
+img, svg { display: block; max-width: 100%; }
+img { height: auto; }
+:focus-visible { outline: 2px solid var(--oak); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: 100%; max-width: 1240px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.section { padding-block: clamp(72px, 10vw, 128px); }
+.tag { display: inline-flex; align-items: center; gap: .5rem; font-size: .8125rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--oak); }
+.tag::before { content: ""; width: 8px; height: 8px; background: currentColor; transform: rotate(45deg); }
+.head { display: grid; gap: 1rem; max-width: 44rem; margin-bottom: clamp(32px, 5vw, 52px); }
+.head h2 { font-size: clamp(2.3rem, 5.4vw, 4rem); }
+.head p { color: var(--muted); font-size: 1.125rem; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 52px; padding: 0 1.5rem; border: 1.5px solid transparent; border-radius: 6px; font-weight: 600; text-decoration: none; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s, transform .2s var(--ease); }
+.btn:active { transform: scale(.98); }
+.btn svg { width: 18px; height: 18px; transition: transform .2s var(--ease); }
+.btn:hover svg { transform: translateX(3px); }
+.btn-oak { background: var(--oak); color: #fff; }
+.btn-oak:hover { background: #714A20; }
+.btn-dark { background: var(--ink); color: var(--paper); }
+.btn-dark:hover { background: var(--oak); }
+.btn-line { border-color: var(--ink); background: transparent; }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+
+/* Bandeau Luso */
+.demo-bar { background: #0E0E0F; color: #F4F2EE; font-family: var(--display); font-size: .875rem; letter-spacing: 0; }
+.demo-bar .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .4rem 1.25rem; padding-block: 9px; }
+.demo-bar p { display: flex; align-items: center; gap: .55rem; }
+.demo-bar svg { width: 20px; height: 20px; flex: none; }
+.demo-bar a { color: inherit; text-decoration: none; font-weight: 600; }
+.demo-bar a:hover { color: #F2AE3A; }
+.demo-bar .t { opacity: .7; font-weight: 400; }
+
+/* En-tête */
+.top { position: sticky; top: 0; z-index: 40; background: rgba(246, 244, 240, .95); border-bottom: 1px solid var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+.top .wrap { display: flex; align-items: center; gap: 1.5rem; min-height: 78px; }
+.brand { display: inline-flex; align-items: center; gap: .65rem; text-decoration: none; margin-right: auto; }
+.brand svg { width: 42px; height: 42px; flex: none; }
+.brand b { display: block; font-family: var(--display); font-weight: 800; font-size: 1.6rem; letter-spacing: .02em; line-height: 1; }
+.brand small { display: block; margin-top: 3px; font-size: .625rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--muted); }
+.top nav { display: flex; align-items: center; gap: 1.6rem; }
+.top nav a { text-decoration: none; font-weight: 500; }
+.top nav a:not(.btn):hover { color: var(--oak); }
+.phone { display: inline-flex; align-items: center; gap: .45rem; font-weight: 700 !important; }
+.phone svg { width: 18px; height: 18px; color: var(--oak); }
+.menu-btn { display: none; width: 46px; height: 46px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); cursor: pointer; }
+.menu-btn svg { width: 20px; height: 20px; margin: auto; }
+@media (max-width: 1000px) {
+  .menu-btn { display: grid; }
+  .top nav { position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 6px clamp(16px, 4vw, 40px) 18px; background: var(--paper); border-bottom: 1px solid var(--line); }
+  .top nav:not(.open) { display: none; }
+  .top nav a:not(.btn) { padding: .8rem 0; border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 1.3rem; font-weight: 600; }
+  .top nav .btn { margin-top: 14px; }
+}
+
+/* Héros */
+.hero { padding-block: clamp(40px, 6vw, 72px) clamp(64px, 8vw, 104px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { font-size: clamp(3rem, 7vw, 5.8rem); line-height: .94; letter-spacing: -.05em; }
+.hero-copy { display: grid; gap: 1.5rem; }
+.hero-copy > p { max-width: 32rem; font-size: 1.1875rem; color: var(--muted); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+.badges { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
+.badges li { display: inline-flex; align-items: center; gap: .5rem; font-weight: 600; font-size: .9375rem; }
+.badges svg { width: 20px; height: 20px; color: var(--sage); }
+.hero-media { position: relative; padding: 0 0 48px 48px; }
+.hero-media .main { width: 100%; aspect-ratio: 4 / 4.6; object-fit: cover; border-radius: 10px; }
+.hero-media .inset { position: absolute; left: 0; bottom: 0; width: 44%; aspect-ratio: 1; object-fit: cover; border-radius: 10px; border: 8px solid var(--paper); }
+.delivered { position: absolute; right: 18px; top: 18px; max-width: 240px; padding: 14px 16px; border-radius: 8px; background: rgba(255, 255, 255, .95); box-shadow: 0 20px 40px -20px rgba(0, 0, 0, .4); font-size: .875rem; }
+.delivered b { display: block; font-family: var(--display); font-size: 1rem; }
+.delivered span { color: var(--muted); }
+@media (max-width: 900px) { .hero .wrap { grid-template-columns: minmax(0, 1fr); } .hero-media { padding: 0 0 36px 28px; } .hero-media .main { aspect-ratio: 4 / 3.4; } }
+
+/* Savoir-faire */
+.services { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.svc { position: relative; display: flex; flex-direction: column; justify-content: flex-end; min-height: 340px; padding: 22px; border-radius: 10px; overflow: hidden; color: #fff; text-decoration: none; isolation: isolate; }
+.svc:nth-child(1), .svc:nth-child(2) { grid-column: span 3; min-height: 400px; }
+.svc:nth-child(n+3) { grid-column: span 2; }
+.svc img { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.svc::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(20, 22, 20, 0) 35%, rgba(20, 22, 20, .82)); }
+.svc:hover img { transform: scale(1.05); }
+.svc h3 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+.svc p { margin-top: .4rem; font-size: .9375rem; opacity: .88; max-width: 26rem; }
+.svc .from { align-self: flex-start; display: inline-block; margin-top: .8rem; padding: .25rem .7rem; border-radius: 999px; background: rgba(255, 255, 255, .18); backdrop-filter: blur(6px); font-size: .8125rem; font-weight: 600; }
+@media (max-width: 900px) { .services { grid-template-columns: minmax(0, 1fr); } .svc:nth-child(n) { grid-column: auto; min-height: 280px; } }
+
+/* Du croquis à la réalisation */
+.compare-band { background: var(--ink); color: var(--paper); }
+.compare-band .wrap { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.compare-band .head { margin: 0; }
+.compare-band .head p { color: rgba(246, 244, 240, .72); }
+.compare-band .tag { color: var(--oak-light); }
+.compare-band h2 em { color: var(--oak-light); }
+.compare { position: relative; overflow: hidden; border-radius: 10px; aspect-ratio: 900 / 593; --pos: 50%; user-select: none; touch-action: pan-y; }
+.compare img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.compare .after { clip-path: inset(0 0 0 var(--pos)); }
+.compare .handle { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; margin-left: -1.5px; background: #fff; pointer-events: none; }
+.compare .handle::after { content: "⟷"; position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%; background: #fff; color: var(--ink); font-size: 1.2rem; font-weight: 700; box-shadow: 0 6px 20px rgba(0, 0, 0, .3); }
+.compare input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize; }
+.compare input:focus-visible ~ .handle::after { outline: 3px solid var(--oak-light); outline-offset: 3px; }
+.lbl { position: absolute; top: 14px; padding: .25rem .7rem; border-radius: 999px; font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; pointer-events: none; }
+.lbl.l { left: 14px; background: var(--ink); color: var(--paper); }
+.lbl.r { right: 14px; background: #fff; color: var(--ink); }
+.compare-note { margin-top: 12px; font-size: .875rem; color: rgba(246, 244, 240, .6); }
+@media (max-width: 900px) { .compare-band .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* Réalisations */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 26px; }
+.filters button { min-height: 42px; padding: 0 1.1rem; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); font-weight: 600; cursor: pointer; transition: background-color .2s, color .2s, border-color .2s; }
+.filters button:hover { border-color: var(--ink); }
+.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.works { columns: 3 300px; column-gap: 16px; }
+.work { position: relative; display: block; width: 100%; margin: 0 0 16px; padding: 0; border: 0; border-radius: 10px; overflow: hidden; break-inside: avoid; cursor: zoom-in; background: var(--line); animation: rise .5s var(--ease) both; }
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } }
+.work img { width: 100%; transition: transform .8s var(--ease); }
+.work:hover img { transform: scale(1.04); }
+.work .cap { position: absolute; left: 0; right: 0; bottom: 0; display: grid; gap: .1rem; padding: 40px 16px 14px; background: linear-gradient(transparent, rgba(20, 22, 20, .8)); color: #fff; text-align: left; }
+.work b { font-family: var(--display); font-size: 1.15rem; letter-spacing: -.02em; }
+.work small { font-size: .8125rem; opacity: .85; }
+.more { display: none; margin: 8px auto 0; }
+@media (max-width: 700px) { .works.collapsed .work:nth-child(n+7) { display: none; } .works.collapsed + .more { display: flex; } }
+.lightbox { width: min(1100px, 94vw); max-height: 92vh; padding: 0; border: 0; border-radius: 10px; background: #111; color: #fff; overflow: hidden; }
+.lightbox::backdrop { background: rgba(14, 16, 14, .88); }
+.lightbox img { width: 100%; max-height: 78vh; object-fit: contain; }
+.lb-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 12px 16px; }
+.lb-bar b { font-family: var(--display); }
+.lb-bar small { display: block; opacity: .75; }
+.lb-bar div { display: flex; gap: 6px; }
+.lb-bar button { width: 42px; height: 42px; border: 1px solid rgba(255, 255, 255, .25); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; font-size: 1.05rem; }
+.lb-bar button:hover { background: rgba(255, 255, 255, .12); }
+
+/* Méthode */
+.method-band { background: var(--oak-soft); }
+.method { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.method-img { position: sticky; top: 110px; border-radius: 10px; overflow: hidden; }
+.method-img img { width: 100%; aspect-ratio: 4 / 3.6; object-fit: cover; }
+.steps { display: grid; gap: 0; }
+.steps li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 18px; padding-block: 24px; border-bottom: 1px solid rgba(176, 122, 62, .3); }
+.steps li:first-child { padding-top: 0; }
+.steps .n { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); color: var(--paper); font-family: var(--display); font-weight: 700; font-size: 1.25rem; }
+.steps h3 { font-size: 1.5rem; }
+.steps p { margin-top: .35rem; color: var(--muted); }
+.steps .when { display: inline-block; margin-top: .6rem; padding: .2rem .65rem; border-radius: 999px; background: var(--surface); font-size: .8125rem; font-weight: 700; color: var(--oak); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+.stats div { padding: 18px; border-radius: 10px; background: var(--surface); }
+.stats strong { display: block; font-family: var(--display); font-size: 2.4rem; line-height: 1; letter-spacing: -.04em; }
+.stats span { font-size: .875rem; color: var(--muted); }
+@media (max-width: 900px) { .method { grid-template-columns: minmax(0, 1fr); } .method-img { position: static; } }
+
+/* Zone d'intervention */
+.zone { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.zone-map { border-radius: 10px; overflow: hidden; border: 1px solid var(--line); background: var(--surface); }
+.zone-map svg { width: 100%; height: auto; }
+.towns { display: flex; flex-wrap: wrap; gap: 6px; margin-block: 1rem 1.5rem; }
+.towns li { padding: .25rem .7rem; border-radius: 999px; background: var(--sage-soft); font-size: .875rem; font-weight: 600; color: #4A5646; }
+.cp { display: flex; gap: 8px; }
+.cp input { flex: 1; min-width: 0; min-height: 52px; padding: 0 16px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); }
+.cp input:focus { outline: none; border-color: var(--oak); box-shadow: 0 0 0 4px rgba(176, 122, 62, .15); }
+.cp-result { min-height: 1.6em; margin-top: .8rem; font-weight: 600; }
+.cp-result.ok { color: #3F6B3A; }
+.cp-result.mid { color: var(--oak); }
+.cp-result.no { color: #A33B22; }
+@media (max-width: 900px) { .zone { grid-template-columns: minmax(0, 1fr); } }
+
+/* Avis */
+.reviews { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.review { display: grid; gap: .9rem; align-content: start; padding: 26px; border-radius: 10px; background: var(--surface); border: 1px solid var(--line); }
+.stars { color: var(--oak); letter-spacing: .08em; }
+.review footer { font-size: .875rem; color: var(--muted); }
+.review footer b { color: var(--ink); }
+.proj { display: inline-block; padding: .15rem .6rem; border-radius: 999px; background: var(--oak-soft); color: #7D5226; font-size: .75rem; font-weight: 700; }
+.score { display: flex; align-items: center; gap: 1rem; margin-bottom: 26px; color: var(--muted); font-size: .9375rem; }
+.score strong { font-family: var(--display); font-size: 3.2rem; line-height: 1; letter-spacing: -.04em; color: var(--ink); }
+@media (max-width: 900px) { .reviews { grid-template-columns: minmax(0, 1fr); } }
+
+/* Devis */
+.quote-band { background: var(--ink); color: var(--paper); }
+.quote { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 72px); align-items: start; }
+.quote .head { margin: 0; }
+.quote .head p { color: rgba(246, 244, 240, .72); }
+.quote .tag { color: var(--oak-light); }
+.quote h2 em { color: var(--oak-light); }
+.contact-lines { display: grid; gap: .7rem; margin-top: 1.5rem; }
+.contact-lines a, .contact-lines span { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; font-weight: 600; }
+.contact-lines svg { width: 20px; height: 20px; color: var(--oak-light); }
+.qcard { padding: clamp(22px, 3.4vw, 36px); border-radius: 10px; background: var(--paper); color: var(--ink); }
+.qprogress { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 22px; }
+.qprogress span { padding-top: 8px; border-top: 3px solid var(--line); font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.qprogress span.on { border-color: var(--oak); color: var(--ink); }
+.qstep { display: grid; gap: 18px; }
+.qstep h3 { font-size: 1.6rem; }
+.types { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.types label { position: relative; }
+.types input { position: absolute; opacity: 0; }
+.types span { display: grid; justify-items: center; gap: .5rem; min-height: 104px; padding: 16px 10px; border: 1.5px solid var(--line); border-radius: 8px; background: var(--surface); text-align: center; font-weight: 600; font-size: .9375rem; cursor: pointer; transition: border-color .2s, background-color .2s; }
+.types svg { width: 30px; height: 30px; color: var(--oak); }
+.types input:checked + span { border-color: var(--ink); background: var(--oak-soft); }
+.types input:focus-visible + span { outline: 2px solid var(--oak); outline-offset: 2px; }
+.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.f { display: grid; gap: .4rem; min-width: 0; }
+.f.full { grid-column: 1 / -1; }
+.f > label, .f > span, .chips legend { font-size: .8125rem; font-weight: 700; color: var(--muted); }
+.f input, .f select, .f textarea { min-height: 50px; padding: 10px 14px; border: 1.5px solid var(--line); border-radius: 6px; background: var(--surface); }
+.f textarea { min-height: 100px; resize: vertical; }
+.f input:focus, .f select:focus, .f textarea:focus { outline: none; border-color: var(--oak); box-shadow: 0 0 0 4px rgba(176, 122, 62, .15); }
+.chips { margin: 0; padding: 0; border: 0; }
+.chips legend { padding: 0; margin-bottom: .45rem; }
+.chips div { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips label { position: relative; }
+.chips input { position: absolute; opacity: 0; }
+.chips span { display: inline-flex; align-items: center; min-height: 40px; padding: 0 .9rem; border: 1.5px solid var(--line); border-radius: 999px; background: var(--surface); font-size: .9375rem; font-weight: 600; cursor: pointer; }
+.chips input:checked + span { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.chips input:focus-visible + span { outline: 2px solid var(--oak); outline-offset: 2px; }
+.estimate { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 16px 18px; border-radius: 8px; background: var(--oak-soft); }
+.estimate small { display: block; color: #7D5226; font-size: .8125rem; font-weight: 600; }
+.estimate strong { font-family: var(--display); font-size: 1.6rem; letter-spacing: -.03em; }
+.upload { display: flex; align-items: center; gap: .8rem; padding: 14px; border: 1.5px dashed var(--line); border-radius: 8px; background: var(--surface); cursor: pointer; font-size: .9375rem; }
+.upload svg { width: 24px; height: 24px; color: var(--oak); flex: none; }
+.upload input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.upload:focus-within { outline: 2px solid var(--oak); outline-offset: 2px; }
+.qnav { display: flex; justify-content: space-between; gap: 10px; }
+.qmsg { color: #A33B22; font-weight: 600; font-size: .9375rem; }
+.qmsg:empty { display: none; }
+.qdone { display: grid; justify-items: start; gap: 1rem; }
+.qdone .ic { display: grid; place-items: center; width: 60px; height: 60px; border-radius: 50%; background: var(--sage); color: #fff; }
+.qdone dl { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: .3rem 1rem; width: 100%; padding: 14px 16px; border-radius: 8px; background: var(--surface); font-size: .9375rem; }
+.qdone dt { color: var(--muted); }
+.qdone dd { font-weight: 600; }
+.demo-note { padding: 12px 14px; border-radius: 8px; background: var(--sage-soft); font-size: .875rem; color: var(--muted); }
+@media (max-width: 900px) { .quote { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 560px) { .types { grid-template-columns: repeat(2, minmax(0, 1fr)); } .grid2 { grid-template-columns: minmax(0, 1fr); } }
+
+/* FAQ */
+.faq { max-width: 860px; }
+.faq details { border-bottom: 1px solid var(--line); }
+.faq summary { display: flex; justify-content: space-between; gap: 1rem; padding: 20px 0; cursor: pointer; list-style: none; font-family: var(--display); font-size: 1.25rem; font-weight: 600; letter-spacing: -.02em; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; display: grid; place-items: center; flex: none; width: 32px; height: 32px; border-radius: 50%; background: var(--oak-soft); color: var(--oak); font-size: 1.3rem; transition: transform .3s var(--ease); }
+.faq details[open] summary::after { transform: rotate(45deg); }
+.faq details p { padding-bottom: 20px; color: var(--muted); }
+
+/* Pied de page */
+.foot { padding-block: 56px 28px; background: #141815; color: rgba(246, 244, 240, .72); font-size: .9375rem; }
+.foot-grid { display: grid; grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr)); gap: 32px; }
+.foot .brand { color: var(--paper); }
+.foot .brand small { color: rgba(246, 244, 240, .55); }
+.foot .fh { font-family: var(--body); line-height: 1.4; font-weight: 700; margin: 0 0 .8rem; font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; color: var(--oak-light); }
+.foot li { margin-bottom: .35rem; }
+.foot a { text-decoration: none; }
+.foot a:hover { color: var(--paper); }
+.foot-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 2rem; margin-top: 44px; padding-top: 18px; border-top: 1px solid rgba(246, 244, 240, .15); font-size: .875rem; }
+.foot-bottom a { color: var(--oak-light); font-weight: 600; }
+@media (max-width: 860px) { .foot-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .foot-grid > div:first-child { grid-column: 1 / -1; } }
+
+.js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
+.js .reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .js .reveal { opacity: 1; transform: none; } }
+</style>
+<script>document.documentElement.classList.add("js");</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="0 0 48 48">
+    <rect width="48" height="48" rx="10" fill="#1E2320"/>
+    <path d="M12 34c0-11 7.5-19 17-19 5 0 8 3 8 7s-3 7-7 7-6-2.5-6-5 1.8-4 3.8-4" stroke="#C98B4B" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+    <path d="M10 38h28" stroke="#F6F4F0" stroke-width="2.4" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+</svg>
+
+<div class="demo-bar" role="note">
+  <div class="wrap">
+    <p>
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#2747F5"/><path d="M16 6a10 10 0 0 1 10 10H16z" fill="#F2AE3A"/><path d="M16 26A10 10 0 0 1 6 16h10z" fill="#fff"/></svg>
+      <span>Démo réalisée par Luso <span class="t">· Copeau est une entreprise fictive</span></span>
+    </p>
+    <a href="../index.html#realisations">Retour à Luso</a>
+  </div>
+</div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#accueil">
+      <svg aria-hidden="true"><use href="#logo"/></svg>
+      <span><b>COPEAU</b><small>Menuiserie · Agencement</small></span>
+    </a>
+    <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="nav" aria-label="Ouvrir le menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg></button>
+    <nav id="nav" aria-label="Navigation principale">
+      <a href="#savoir-faire">Savoir-faire</a>
+      <a href="#realisations">Réalisations</a>
+      <a href="#methode">Méthode</a>
+      <a href="#zone">Zone</a>
+      <a class="phone" href="tel:+33261914518"><svg aria-hidden="true"><use href="#i-phone"/></svg>02 61 91 45 18</a>
+      <a class="btn btn-oak" href="#devis">Demander un devis</a>
+    </nav>
+  </div>
+</header>
+
+<main id="accueil">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="tag">Menuisier-agenceur près de Nantes</span>
+        <h1 id="hero-title">Du bois massif, <em>sur mesure</em>, pensé pour durer.</h1>
+        <p>Cuisines, dressings, bibliothèques et salles de bain dessinés pour votre intérieur, fabriqués dans notre atelier de Vertou et posés par nos soins.</p>
+        <div class="hero-actions">
+          <a class="btn btn-oak" href="#devis">Demander un devis gratuit <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+          <a class="btn btn-line" href="#realisations">Voir nos réalisations</a>
+        </div>
+        <ul class="badges">
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Artisan depuis 2009</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Garantie décennale</li>
+          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Devis détaillé sous 72&nbsp;h</li>
+        </ul>
+      </div>
+      <div class="hero-media">
+        <img class="main" src="img/copeau/hero.webp" width="1100" height="1202" alt="Cuisine sur mesure en bois et façades anthracite, îlot avec tabourets" fetchpriority="high">
+        <img class="inset" src="img/copeau/marteau.webp" width="900" height="600" alt="Marteau d'artisan posé sur des planches de bois brut" loading="lazy">
+        <div class="delivered"><b>Projet livré la semaine dernière</b><span>Cuisine en chêne et noyer · Rezé · fabriquée en 5 semaines</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="savoir-faire" aria-labelledby="sf-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Savoir-faire</span>
+        <h2 id="sf-title">Tout ce qui se fabrique <em>en bois</em>, chez vous.</h2>
+        <p>Chaque meuble est dessiné pour la pièce qui l'accueille, au millimètre, avec des essences françaises et européennes issues de forêts gérées durablement.</p>
+      </div>
+      <div class="services">
+        <a class="svc reveal" href="#realisations" data-go="cuisine"><img src="img/copeau/cuisine-ilot.webp" width="900" height="593" alt="" loading="lazy"><h3>Cuisines</h3><p>Îlots, façades en bois massif, plans de travail et rangements intégrés.</p><span class="from">dès 9&nbsp;500&nbsp;€ posée</span></a>
+        <a class="svc reveal" href="#realisations" data-go="rangement"><img src="img/copeau/dressing.webp" width="900" height="600" alt="" loading="lazy"><h3>Dressings &amp; placards</h3><p>Sous pente, en niche ou en pièce dédiée, chaque centimètre sert.</p><span class="from">dès 2&nbsp;400&nbsp;€</span></a>
+        <a class="svc reveal" href="#realisations" data-go="rangement"><img src="img/copeau/etageres.webp" width="900" height="600" alt="" loading="lazy"><h3>Bibliothèques</h3><p>Étagères murales, bibliothèques et meubles TV.</p><span class="from">dès 1&nbsp;800&nbsp;€</span></a>
+        <a class="svc reveal" href="#realisations" data-go="sdb"><img src="img/copeau/sdb-meuble.webp" width="900" height="600" alt="" loading="lazy"><h3>Salles de bain</h3><p>Meubles vasques et rangements résistants à l'humidité.</p><span class="from">dès 1&nbsp;600&nbsp;€</span></a>
+        <a class="svc reveal" href="#realisations" data-go="sejour"><img src="img/copeau/sejour.webp" width="900" height="600" alt="" loading="lazy"><h3>Aménagements</h3><p>Habillages muraux, banquettes, bureaux et escaliers.</p><span class="from">sur devis</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section compare-band" aria-labelledby="cmp-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Du croquis à la réalisation</span>
+        <h2 id="cmp-title">Vous validez tout <em>avant</em> la première coupe.</h2>
+        <p>Après la prise de mesures, nous dessinons votre projet et vous présentons un plan détaillé. Faites glisser le curseur pour comparer le croquis et la cuisine livrée.</p>
+      </div>
+      <div class="reveal">
+        <div class="compare" id="compare">
+          <img src="img/copeau/croquis-ilot.webp" width="900" height="593" alt="Croquis au crayon d'une cuisine avec îlot central" loading="lazy">
+          <img class="after" src="img/copeau/cuisine-ilot.webp" width="900" height="593" alt="La même cuisine une fois réalisée, îlot en bois et tabourets" loading="lazy">
+          <span class="lbl l">Croquis</span><span class="lbl r">Réalisé</span>
+          <input type="range" min="0" max="100" value="50" aria-label="Comparer le croquis et la réalisation">
+          <span class="handle" aria-hidden="true"></span>
+        </div>
+        <p class="compare-note">Cuisine avec îlot en chêne huilé · Saint-Sébastien-sur-Loire · 6 semaines de l'esquisse à la pose</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="realisations" aria-labelledby="real-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Réalisations</span>
+        <h2 id="real-title">Quelques projets <em>récents</em></h2>
+        <p>Plus de 420 projets livrés en Loire-Atlantique depuis 2009. Cliquez sur une photo pour l'agrandir.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filtrer les réalisations">
+        <button aria-pressed="true" data-f="all">Toutes</button>
+        <button aria-pressed="false" data-f="cuisine">Cuisines</button>
+        <button aria-pressed="false" data-f="rangement">Rangements</button>
+        <button aria-pressed="false" data-f="sdb">Salles de bain</button>
+        <button aria-pressed="false" data-f="sejour">Séjour</button>
+      </div>
+      <div class="works collapsed" id="works" aria-live="polite"></div>
+      <button class="btn btn-line more" id="more" type="button">Voir toutes les réalisations</button>
+    </div>
+  </section>
+
+  <section class="section method-band" id="methode" aria-labelledby="method-title">
+    <div class="wrap">
+      <div class="head reveal">
+        <span class="tag">Notre méthode</span>
+        <h2 id="method-title">Quatre étapes, <em>un seul interlocuteur</em>.</h2>
+      </div>
+      <div class="method">
+        <div class="method-img reveal"><img src="img/copeau/main.webp" width="900" height="600" alt="Mains d'artisan façonnant une pièce de bois à l'atelier" loading="lazy"></div>
+        <div>
+          <ol class="steps">
+            <li class="reveal"><span class="n">1</span><div><h3>Visite et prise de mesures</h3><p>Nous venons chez vous pour comprendre vos besoins, mesurer la pièce et parler matériaux.</p><span class="when">Gratuit · sous 10 jours</span></div></li>
+            <li class="reveal"><span class="n">2</span><div><h3>Plan et devis détaillé</h3><p>Croquis, plan coté et devis poste par poste, avec le choix des essences et des finitions.</p><span class="when">Sous 72&nbsp;h</span></div></li>
+            <li class="reveal"><span class="n">3</span><div><h3>Fabrication à l'atelier</h3><p>Débit, assemblage et finition à Vertou. Vous pouvez passer voir votre meuble prendre forme.</p><span class="when">3 à 6 semaines</span></div></li>
+            <li class="reveal"><span class="n">4</span><div><h3>Pose et finitions</h3><p>Pose soignée par l'équipe qui a fabriqué, chantier protégé et nettoyé chaque soir.</p><span class="when">1 à 3 jours</span></div></li>
+          </ol>
+          <div class="stats reveal">
+            <div><strong>15&nbsp;ans</strong><span>d'atelier à Vertou</span></div>
+            <div><strong>420+</strong><span>projets livrés</span></div>
+            <div><strong>4,9/5</strong><span>sur 186 avis</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="zone" aria-labelledby="zone-title">
+    <div class="wrap zone">
+      <div class="zone-map reveal" role="img" aria-label="Carte de la zone d'intervention : 50 km autour de Vertou, de Saint-Nazaire à Ancenis et Clisson">
+        <svg viewBox="0 0 600 420" aria-hidden="true">
+          <rect width="600" height="420" fill="#F3F1EC"/>
+          <path d="M0 210 C 80 200 140 170 210 190 S 330 230 380 200 S 520 150 600 160" stroke="#B9D0DE" stroke-width="16" fill="none" stroke-linecap="round"/>
+          <path d="M-10 120 L 60 150 L 40 260 L -10 280 Z" fill="#D7E5EE"/>
+          <circle cx="330" cy="225" r="175" fill="rgba(111,127,106,.10)" stroke="#6F7F6A" stroke-width="1.5" stroke-dasharray="6 6"/>
+          <circle cx="330" cy="225" r="95" fill="rgba(111,127,106,.16)" stroke="#6F7F6A" stroke-width="1.5"/>
+          <g font-family="Instrument Sans, Arial, sans-serif" font-size="14" fill="#1E2320">
+            <circle cx="300" cy="190" r="5"/><text x="292" y="200" font-weight="700" text-anchor="end">Nantes</text>
+            <circle cx="282" cy="215" r="3.5"/><text x="205" y="222">Rezé</text>
+            <circle cx="252" cy="170" r="3.5"/><text x="150" y="160">Saint-Herblain</text>
+            <circle cx="372" cy="182" r="3.5"/><text x="382" y="178">Carquefou</text>
+            <circle cx="350" cy="260" r="3.5"/><text x="360" y="264">Clisson</text>
+            <circle cx="470" cy="150" r="3.5"/><text x="480" y="146">Ancenis</text>
+            <circle cx="100" cy="190" r="3.5"/><text x="70" y="216">Saint-Nazaire</text>
+            <circle cx="300" cy="140" r="3.5"/><text x="310" y="136">Orvault</text>
+          </g>
+          <g transform="translate(330 225)"><path d="M0 0 C -20 -22 -20 -50 0 -54 C 20 -50 20 -22 0 0 Z" fill="#B07A3E"/><circle cy="-36" r="9" fill="#fff"/></g>
+          <text x="345" y="244" font-family="Instrument Sans, Arial, sans-serif" font-size="13" font-weight="700" fill="#7D5226">Atelier · Vertou</text>
+          <g font-family="Instrument Sans, Arial, sans-serif" font-size="12" fill="#4A5646"><text x="420" y="330">30 km · déplacement offert</text><text x="440" y="400">60 km</text></g>
+        </svg>
+      </div>
+      <div class="reveal">
+        <span class="tag">Zone d'intervention</span>
+        <h2 style="font-size:clamp(2.2rem,4.6vw,3.4rem);margin-top:1rem">Nous intervenons <em>autour de Nantes</em>.</h2>
+        <ul class="towns"><li>Nantes</li><li>Rezé</li><li>Vertou</li><li>Saint-Herblain</li><li>Orvault</li><li>Carquefou</li><li>Clisson</li><li>Ancenis</li><li>Saint-Nazaire</li></ul>
+        <form class="cp" id="cp-form" novalidate>
+          <label class="sr-only" for="cp-input">Votre code postal</label>
+          <input id="cp-input" inputmode="numeric" maxlength="5" placeholder="Votre code postal, ex. 44400" autocomplete="postal-code">
+          <button class="btn btn-dark" type="submit">Vérifier</button>
+        </form>
+        <p class="cp-result" id="cp-result" role="status"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="avis-title" style="padding-top:0">
+    <div class="wrap">
+      <div class="head reveal" style="margin-bottom:18px">
+        <span class="tag">Avis clients</span>
+        <h2 id="avis-title">Ils nous ont <em>confié leur intérieur</em></h2>
+      </div>
+      <div class="score reveal"><strong>4,9</strong><span><span class="stars" aria-hidden="true">★★★★★</span><br>186 avis Google</span></div>
+      <div class="reviews">
+        <article class="review reveal"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><span class="proj">Cuisine en chêne</span><p>« Du premier croquis à la pose, tout a été clair et dans les temps. La cuisine est encore plus belle que sur le plan. »</p><footer><b>Claire et Antoine</b> · Rezé</footer></article>
+        <article class="review reveal"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><span class="proj">Dressing sous pente</span><p>« Thomas a trouvé une solution pour une pièce mansardée impossible. Finitions impeccables, chantier laissé propre. »</p><footer><b>Mehdi R.</b> · Orvault</footer></article>
+        <article class="review reveal"><span class="stars" aria-label="5 étoiles sur 5">★★★★★</span><span class="proj">Bibliothèque murale</span><p>« Devis reçu en deux jours, très détaillé. On sent l'amour du bois et du travail bien fait. Je recommande sans hésiter. »</p><footer><b>Isabelle G.</b> · Nantes</footer></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section quote-band" id="devis" aria-labelledby="devis-title">
+    <div class="wrap quote">
+      <div class="head">
+        <span class="tag">Devis gratuit</span>
+        <h2 id="devis-title">Parlez-nous de <em>votre projet</em>.</h2>
+        <p>Trois questions, deux minutes. Vous obtenez une première estimation tout de suite, puis Thomas vous rappelle sous 48&nbsp;h pour fixer une visite.</p>
+        <div class="contact-lines">
+          <a href="tel:+33261914518"><svg aria-hidden="true"><use href="#i-phone"/></svg>02 61 91 45 18</a>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>Atelier · 8 rue des Tanneurs, 44120 Vertou</span>
+        </div>
+      </div>
+      <div class="qcard">
+        <form id="qform" novalidate></form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="head reveal"><span class="tag">Questions fréquentes</span><h2 id="faq-title">Bon à <em>savoir</em></h2></div>
+      <div class="faq reveal">
+        <details><summary>Combien coûte une cuisine sur mesure&#8239;?</summary><p>Nos cuisines démarrent à 9 500 € posées pour un linéaire de 3 mètres en chêne massif. Le prix dépend surtout des dimensions, des essences et de l'électroménager intégré.</p></details>
+        <details><summary>Quels sont vos délais&#8239;?</summary><p>Comptez 3 à 6 semaines de fabrication après validation du plan, puis 1 à 3 jours de pose. Nous vous donnons une date précise dès la signature du devis.</p></details>
+        <details><summary>Quelles essences de bois utilisez-vous&#8239;?</summary><p>Principalement du chêne, du frêne et du noyer français ou européens, issus de forêts gérées durablement. Nous proposons aussi des façades laquées.</p></details>
+        <details><summary>Êtes-vous assurés&#8239;?</summary><p>Oui, nous disposons d'une assurance responsabilité civile professionnelle et d'une garantie décennale, dont l'attestation est jointe à chaque devis.</p></details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<dialog class="lightbox" id="lightbox" aria-label="Photo agrandie">
+  <img id="lb-img" src="" alt="">
+  <div class="lb-bar">
+    <p><b id="lb-title"></b><small id="lb-sub"></small></p>
+    <div>
+      <button type="button" id="lb-prev" aria-label="Photo précédente">←</button>
+      <button type="button" id="lb-next" aria-label="Photo suivante">→</button>
+      <button type="button" id="lb-close" aria-label="Fermer">✕</button>
+    </div>
+  </div>
+</dialog>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="brand" href="#accueil"><svg aria-hidden="true"><use href="#logo"/></svg><span><b>COPEAU</b><small>Menuiserie · Agencement</small></span></a>
+        <p style="margin-top:1rem;max-width:22rem">Menuiserie et agencement sur mesure en bois massif, conçus et fabriqués à Vertou depuis 2009.</p>
+      </div>
+      <div><h3 class="fh">Savoir-faire</h3><ul><li><a href="#savoir-faire">Cuisines</a></li><li><a href="#savoir-faire">Dressings</a></li><li><a href="#savoir-faire">Bibliothèques</a></li><li><a href="#savoir-faire">Salles de bain</a></li></ul></div>
+      <div><h3 class="fh">L'atelier</h3><ul><li>8 rue des Tanneurs</li><li>44120 Vertou</li><li>Lun.–ven. · 8h–18h</li></ul></div>
+      <div><h3 class="fh">Contact</h3><ul><li><a href="tel:+33261914518">02 61 91 45 18</a></li><li><a href="#devis">Demander un devis</a></li><li><a href="#zone">Zone d'intervention</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>Site de démonstration conçu par Luso. Copeau, son équipe et ses avis sont fictifs.</span>
+      <a href="../index.html#contact">Vous voulez le même pour votre entreprise&#8239;?</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---- Menu mobile ----
+  var menuBtn = document.getElementById("menu-btn"), nav = document.getElementById("nav");
+  menuBtn.addEventListener("click", function () { var o = !nav.classList.contains("open"); nav.classList.toggle("open", o); menuBtn.setAttribute("aria-expanded", String(o)); });
+  nav.addEventListener("click", function (e) { if (e.target.closest("a")) { nav.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); } });
+
+  // ---- Apparition au défilement ----
+  var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+  }, { rootMargin: "0px 0px -8% 0px" }) : null;
+  document.querySelectorAll(".reveal").forEach(function (el) { if (io) io.observe(el); else el.classList.add("in"); });
+
+  // ---- Croquis / réalisation ----
+  var cmp = document.getElementById("compare"), range = cmp.querySelector("input");
+  range.addEventListener("input", function () { cmp.style.setProperty("--pos", range.value + "%"); });
+
+  // ---- Réalisations ----
+  var WORKS = [
+    { f: "cuisine", img: "cuisine-bois", t: "Cuisine chêne et noir", s: "Rezé · chêne huilé, façades anthracite" },
+    { f: "rangement", img: "dressing", t: "Dressing en noyer", s: "Nantes · noyer massif, poignées laiton" },
+    { f: "cuisine", img: "cuisine-blanche", t: "Cuisine avec îlot", s: "Carquefou · îlot en frêne, plan quartz" },
+    { f: "sdb", img: "sdb-meuble", t: "Meuble vasque", s: "Vertou · chêne vernis, double vasque" },
+    { f: "rangement", img: "etageres", t: "Étagères murales", s: "Orvault · frêne, fixations invisibles" },
+    { f: "cuisine", img: "cuisine-sombre", t: "Cuisine noire et bois", s: "Saint-Herblain · laque mate et chêne" },
+    { f: "sejour", img: "sejour", t: "Habillage mural", s: "Nantes · tasseaux de chêne, éclairage intégré" },
+    { f: "rangement", img: "niche", t: "Rangements en niche", s: "Clisson · chêne et laque crème" },
+    { f: "sdb", img: "sdb", t: "Salle de bain", s: "Rezé · meuble suspendu en noyer" },
+    { f: "cuisine", img: "etageres-cuisine", t: "Étagères de cuisine", s: "Nantes · chêne massif, consoles acier" },
+    { f: "sejour", img: "tables", t: "Tables gigognes", s: "Pièce unique · noyer massif" },
+    { f: "cuisine", img: "cuisine-rustique", t: "Cuisine de campagne", s: "Ancenis · frêne brossé, évier céramique" }
+  ];
+  var worksEl = document.getElementById("works"), shown = WORKS;
+  function renderWorks(f) {
+    shown = WORKS.filter(function (w) { return f === "all" || w.f === f; });
+    worksEl.innerHTML = shown.map(function (w, i) {
+      return '<button class="work" data-i="' + i + '" style="animation-delay:' + (i * .04) + 's"><img src="img/copeau/' + w.img + '.webp" width="900" height="600" alt="' + w.t + ", " + w.s + '" loading="lazy"><span class="cap"><b>' + w.t + "</b><small>" + w.s + "</small></span></button>";
+    }).join("");
+    document.getElementById("more").hidden = shown.length <= 6 || !worksEl.classList.contains("collapsed");
+  }
+  var filters = document.getElementById("filters");
+  function setFilter(f) {
+    filters.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-f") === f)); });
+    renderWorks(f);
+  }
+  filters.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) setFilter(b.getAttribute("data-f")); });
+  document.querySelectorAll("[data-go]").forEach(function (a) { a.addEventListener("click", function () { setFilter(a.getAttribute("data-go")); }); });
+  renderWorks("all");
+  document.getElementById("more").addEventListener("click", function () { worksEl.classList.remove("collapsed"); this.hidden = true; worksEl.querySelectorAll(".work")[6].focus(); });
+
+  var lb = document.getElementById("lightbox"), idx = 0;
+  function show(i) {
+    idx = (i + shown.length) % shown.length; var w = shown[idx];
+    var im = document.getElementById("lb-img"); im.src = "img/copeau/" + w.img + ".webp"; im.alt = w.t + ", " + w.s;
+    document.getElementById("lb-title").textContent = w.t;
+    document.getElementById("lb-sub").textContent = w.s + " · " + (idx + 1) + "/" + shown.length;
+  }
+  worksEl.addEventListener("click", function (e) { var b = e.target.closest(".work"); if (b) { show(+b.getAttribute("data-i")); lb.showModal(); } });
+  document.getElementById("lb-prev").addEventListener("click", function () { show(idx - 1); });
+  document.getElementById("lb-next").addEventListener("click", function () { show(idx + 1); });
+  document.getElementById("lb-close").addEventListener("click", function () { lb.close(); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) lb.close(); });
+  lb.addEventListener("keydown", function (e) { if (e.key === "ArrowRight") show(idx + 1); if (e.key === "ArrowLeft") show(idx - 1); });
+
+  // ---- Zone d'intervention ----
+  var TOWNS = { "44000": "Nantes", "44100": "Nantes", "44200": "Nantes", "44300": "Nantes", "44400": "Rezé", "44120": "Vertou", "44800": "Saint-Herblain", "44700": "Orvault", "44470": "Carquefou", "44190": "Clisson", "44150": "Ancenis", "44600": "Saint-Nazaire", "44230": "Saint-Sébastien-sur-Loire" };
+  document.getElementById("cp-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var v = document.getElementById("cp-input").value.trim(), out = document.getElementById("cp-result");
+    if (!/^\d{5}$/.test(v)) { out.className = "cp-result no"; out.textContent = "Indiquez un code postal à 5 chiffres."; return; }
+    var town = TOWNS[v] ? " (" + TOWNS[v] + ")" : "";
+    if (/^44/.test(v)) { out.className = "cp-result ok"; out.textContent = "✓ Bonne nouvelle : nous intervenons au " + v + town + ", déplacement offert."; }
+    else if (/^(49|85)/.test(v)) { out.className = "cp-result mid"; out.textContent = "✓ Nous intervenons au " + v + ", avec un forfait de déplacement de 45 €."; }
+    else { out.className = "cp-result no"; out.textContent = "Ce secteur est hors de notre zone habituelle. Appelez-nous, nous trouverons peut-être une solution."; }
+  });
+
+  // ---- Devis en trois étapes, avec estimation indicative ----
+  var TYPES = [
+    ["cuisine", "Cuisine", [9500, 16000], '<path d="M4 10h16v10H4zM4 14h16M9 10V4h6v6" fill="none" stroke="currentColor" stroke-width="1.6"/>'],
+    ["dressing", "Dressing", [2400, 5200], '<path d="M5 3h14v18H5zM12 3v18M9 11v2M15 11v2" fill="none" stroke="currentColor" stroke-width="1.6"/>'],
+    ["biblio", "Bibliothèque", [1800, 4200], '<path d="M4 3h16v18H4zM4 9h16M4 15h16M8 3v6M14 9v6" fill="none" stroke="currentColor" stroke-width="1.6"/>'],
+    ["sdb", "Salle de bain", [1600, 3800], '<path d="M3 12h18v3a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5zM6 12V5a2 2 0 0 1 4 0" fill="none" stroke="currentColor" stroke-width="1.6"/>'],
+    ["escalier", "Escalier", [5500, 12000], '<path d="M3 21h5v-5h5v-5h5V6h3" fill="none" stroke="currentColor" stroke-width="1.6"/>'],
+    ["autre", "Autre projet", [1200, 6000], '<path d="M12 5v14M5 12h14" fill="none" stroke="currentColor" stroke-width="1.6"/>']
+  ];
+  var WOODS = { "Chêne": 1, "Noyer": 1.3, "Frêne": .95, "Laqué": .9 };
+  var SIZES = { "Petit": .75, "Moyen": 1, "Grand": 1.4 };
+  var q = { type: "cuisine", wood: "Chêne", size: "Moyen", delay: "Dans 1 à 3 mois", files: 0, name: "", phone: "", email: "", cp: "", msg: "" }, qs = 1;
+  var qform = document.getElementById("qform");
+  function typeOf(id) { return TYPES.filter(function (t) { return t[0] === id; })[0]; }
+  function euro(n) { return (Math.round(n / 100) * 100).toLocaleString("fr-FR") + " €"; }
+  function est() { var t = typeOf(q.type), k = WOODS[q.wood] * SIZES[q.size]; return euro(t[2][0] * k) + " à " + euro(t[2][1] * k); }
+  function chips(name, values, current, legend) {
+    return '<fieldset class="chips"><legend>' + legend + "</legend><div>" + values.map(function (v) { return '<label><input type="radio" name="' + name + '" value="' + v + '"' + (v === current ? " checked" : "") + "><span>" + v + "</span></label>"; }).join("") + "</div></fieldset>";
+  }
+  function bar() { return '<div class="qprogress" aria-hidden="true">' + ["Projet", "Détails", "Coordonnées"].map(function (l, i) { return '<span class="' + (i < qs ? "on" : "") + '">' + (i + 1) + ". " + l + "</span>"; }).join("") + "</div>"; }
+  function stepNav(label) { return '<p class="qmsg" id="qmsg" role="alert"></p><div class="qnav">' + (qs > 1 ? '<button class="btn btn-line" type="button" id="qback">Retour</button>' : "<span></span>") + '<button class="btn btn-oak" type="submit">' + label + ' <svg aria-hidden="true"><use href="#i-arrow"/></svg></button></div>'; }
+  function renderQ(focus) {
+    var h = "";
+    if (qs === 1) {
+      h = bar() + '<div class="qstep"><h3>Quel est votre projet&#8239;?</h3><div class="types" role="radiogroup" aria-label="Type de projet">' + TYPES.map(function (t) {
+        return '<label><input type="radio" name="type" value="' + t[0] + '"' + (q.type === t[0] ? " checked" : "") + '><span><svg viewBox="0 0 24 24" aria-hidden="true">' + t[3] + "</svg>" + t[1] + "</span></label>";
+      }).join("") + "</div>" + stepNav("Continuer") + "</div>";
+    } else if (qs === 2) {
+      h = bar() + '<div class="qstep"><h3>' + typeOf(q.type)[1] + " : quelques détails</h3>" + chips("size", Object.keys(SIZES), q.size, "Taille du projet") + chips("wood", Object.keys(WOODS), q.wood, "Essence ou finition") +
+        '<div class="f"><label for="q-delay">Délai souhaité</label><select id="q-delay">' + ["Dès que possible", "Dans 1 à 3 mois", "Dans 3 à 6 mois", "Je me renseigne"].map(function (d) { return "<option" + (d === q.delay ? " selected" : "") + ">" + d + "</option>"; }).join("") + "</select></div>" +
+        '<label class="upload"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3M12 4v12M7 9l5-5 5 5"/></svg><span id="files-txt">' + (q.files ? q.files + " photo(s) ajoutée(s)" : "Ajoutez des photos de la pièce (facultatif)") + '</span><input type="file" id="q-files" accept="image/*" multiple></label>' +
+        '<div class="estimate" aria-live="polite"><span><small>Estimation indicative, pose comprise</small><strong id="est">' + est() + "</strong></span></div>" + stepNav("Continuer") + "</div>";
+    } else if (qs === 3) {
+      h = bar() + '<div class="qstep"><h3>Où pouvons-nous vous joindre&#8239;?</h3><div class="grid2">' +
+        '<div class="f"><label for="q-name">Nom</label><input id="q-name" autocomplete="name" value="' + q.name + '" required></div>' +
+        '<div class="f"><label for="q-phone">Téléphone</label><input id="q-phone" type="tel" autocomplete="tel" value="' + q.phone + '" required></div>' +
+        '<div class="f"><label for="q-email">Email</label><input id="q-email" type="email" autocomplete="email" value="' + q.email + '" required></div>' +
+        '<div class="f"><label for="q-cp">Code postal</label><input id="q-cp" inputmode="numeric" maxlength="5" autocomplete="postal-code" value="' + q.cp + '" required></div>' +
+        '<div class="f full"><label for="q-msg">Votre message (facultatif)</label><textarea id="q-msg" placeholder="Dimensions, contraintes, envies…">' + q.msg + "</textarea></div></div>" + stepNav("Envoyer ma demande") + "</div>";
+    } else {
+      h = '<div class="qdone"><span class="ic"><svg width="28" height="28" aria-hidden="true"><use href="#i-check"/></svg></span><h3 id="qdone-title" tabindex="-1" style="font-size:1.8rem">Merci ' + q.name.split(" ")[0] + ", c'est noté&#8239;!</h3>" +
+        "<p>Thomas vous rappelle sous 48&nbsp;h au " + q.phone + " pour convenir d'une visite gratuite.</p>" +
+        "<dl><dt>Projet</dt><dd>" + typeOf(q.type)[1] + " · " + q.size.toLowerCase() + " · " + q.wood.toLowerCase() + "</dd><dt>Délai</dt><dd>" + q.delay + "</dd><dt>Estimation</dt><dd>" + est() + "</dd>" + (q.files ? "<dt>Photos</dt><dd>" + q.files + "</dd>" : "") + "</dl>" +
+        '<p class="demo-note">Démo : aucune demande n\'a été envoyée. Sur un vrai site, elle arrive par email à l\'artisan, avec les photos jointes.</p><button class="btn btn-line" type="button" id="qagain">Faire une autre demande</button></div>';
+    }
+    qform.innerHTML = h;
+    var back = document.getElementById("qback"); if (back) back.addEventListener("click", function () { save(); qs--; renderQ(true); });
+    var again = document.getElementById("qagain"); if (again) again.addEventListener("click", function () { qs = 1; q.files = 0; renderQ(true); });
+    var files = document.getElementById("q-files"); if (files) files.addEventListener("change", function () { q.files = files.files.length; document.getElementById("files-txt").textContent = q.files ? q.files + " photo(s) ajoutée(s)" : "Ajoutez des photos de la pièce (facultatif)"; });
+    if (focus) { var el = qform.querySelector("#qdone-title, input, select"); if (el) el.focus(); }
+  }
+  function save() {
+    var v = function (s) { var el = qform.querySelector(s); return el ? el.value : null; };
+    if (qs === 1) q.type = v('input[name="type"]:checked') || q.type;
+    if (qs === 2) { q.size = v('input[name="size"]:checked'); q.wood = v('input[name="wood"]:checked'); q.delay = v("#q-delay"); }
+    if (qs === 3) { q.name = v("#q-name").trim(); q.phone = v("#q-phone").trim(); q.email = v("#q-email").trim(); q.cp = v("#q-cp").trim(); q.msg = v("#q-msg"); }
+  }
+  qform.addEventListener("change", function () { if (qs === 2) { save(); document.getElementById("est").textContent = est(); } });
+  qform.addEventListener("submit", function (e) {
+    e.preventDefault(); save();
+    if (qs === 3) {
+      var msg = document.getElementById("qmsg"), email = document.getElementById("q-email");
+      if (!q.name || q.phone.replace(/\D/g, "").length < 10) { msg.textContent = "Indiquez votre nom et un numéro de téléphone à 10 chiffres."; (q.name ? document.getElementById("q-phone") : document.getElementById("q-name")).focus(); return; }
+      if (!q.email || !email.checkValidity()) { msg.textContent = "L'adresse email semble incomplète."; email.focus(); return; }
+      if (!/^\d{5}$/.test(q.cp)) { msg.textContent = "Indiquez un code postal à 5 chiffres."; document.getElementById("q-cp").focus(); return; }
+    }
+    qs++; renderQ(true);
+  });
+  renderQ(false);
+})();
+</script>
+</body>
+</html>
