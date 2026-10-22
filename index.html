@@ -11,7 +11,7 @@
 <meta property="og:description" content="Sites vitrines, boutiques en ligne et applications sur mesure. Devis gratuit sous 48 h.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232747F5'/%3E%3Cpath d='M16 6a10 10 0 0 1 10 10H16z' fill='%23F2AE3A'/%3E%3Cpath d='M16 26A10 10 0 0 1 6 16h10z' fill='%23fff'/%3E%3C/svg%3E">
 <link rel="preload" href="assets/fonts/bricolage-grotesque-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/styles.css?v=202610220956">
+<link rel="stylesheet" href="assets/styles.css?v=202610221930">
 <script>document.documentElement.classList.add("js");</script>
 </head>
 <body>
@@ -261,71 +261,89 @@
   </section>
 
   <section class="contact" id="contact" aria-labelledby="contact-title">
-    <div class="wrap contact-grid">
-      <div class="contact-copy" data-reveal>
-        <h2 id="contact-title">Parlons de votre <em>projet</em>.</h2>
-        <p>Quelques lignes suffisent. On vous répond sous 24&nbsp;h ouvrées avec des questions précises, puis un devis clair.</p>
-        <ul class="contact-points">
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Devis gratuit et sans engagement</li>
-          <li><svg aria-hidden="true"><use href="#i-check"/></svg>Rendez-vous en visio ou en personne</li>
-        </ul>
-        <div class="mail">
-          <span>Ou directement par email</span>
-          <a href="mailto:youcefmlpro@gmail.com" id="mail-link">youcefmlpro@gmail.com</a>
-          <button type="button" id="copy-mail">Copier</button>
-        </div>
+    <div class="wrap">
+      <div class="contact-head">
+        <span class="contact-pill" data-reveal>Contact</span>
+        <h2 id="contact-title" data-reveal style="transition-delay:.15s">Parlons de votre <em>projet</em>.</h2>
+        <p data-reveal style="transition-delay:.3s">Quelques lignes suffisent. On vous répond avec des questions précises, puis un devis clair et gratuit.</p>
       </div>
 
-      <form class="form" id="quote-form" action="contact.php" method="post" novalidate data-reveal>
-        <div class="hp" aria-hidden="true">
-          <label for="f-website">Ne pas remplir ce champ</label>
-          <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
-        </div>
-        <fieldset class="chips">
-          <legend>Votre projet</legend>
-          <label class="chip"><input type="radio" name="project" id="p-vitrine" value="Site vitrine" checked><span>Site vitrine</span></label>
-          <label class="chip"><input type="radio" name="project" id="p-shop" value="Boutique en ligne"><span>Boutique en ligne</span></label>
-          <label class="chip"><input type="radio" name="project" id="p-app" value="Application"><span>Application</span></label>
-          <label class="chip"><input type="radio" name="project" id="p-redo" value="Refonte de site"><span>Refonte</span></label>
-          <label class="chip"><input type="radio" name="project" id="p-other" value="Autre"><span>Autre</span></label>
-        </fieldset>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-name">Nom</label>
-            <input id="f-name" name="name" type="text" autocomplete="name" required>
+      <div class="contact-grid">
+        <div class="contact-info" data-reveal style="transition-delay:.2s">
+          <div>
+            <h3>Prenons contact</h3>
+            <p>Par le formulaire ou directement par email&#8239;: c'est la même personne qui vous répond.</p>
           </div>
-          <div class="field">
-            <label for="f-email">Email</label>
-            <input id="f-email" name="email" type="email" autocomplete="email" required>
+          <ul class="contact-links">
+            <li class="cl-reveal" style="transition-delay:.3s">
+              <a href="mailto:youcefmlpro@gmail.com" id="mail-link"><span class="cl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></span>youcefmlpro@gmail.com</a>
+              <button type="button" id="copy-mail">Copier</button>
+            </li>
+            <li class="cl-reveal" style="transition-delay:.4s"><span class="cl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>Réponse sous 24&nbsp;h ouvrées</li>
+            <li class="cl-reveal" style="transition-delay:.5s"><span class="cl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span>Rendez-vous en visio ou en personne</li>
+            <li class="cl-reveal" style="transition-delay:.6s"><span class="cl-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>Devis gratuit et sans engagement</li>
+          </ul>
+          <div class="globe" aria-hidden="true">
+            <canvas id="globe"></canvas>
           </div>
         </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="f-phone">Téléphone <small>facultatif</small></label>
-            <input id="f-phone" name="phone" type="tel" autocomplete="tel">
+
+        <form class="form" id="quote-form" action="contact.php" method="post" novalidate data-reveal style="transition-delay:.35s">
+          <div class="form-head">
+            <h3>Décrivez votre projet</h3>
+            <p>Remplissez le formulaire, on revient vers vous rapidement.</p>
+          </div>
+          <div class="form-dots" aria-hidden="true"></div>
+          <div class="hp" aria-hidden="true">
+            <label for="f-website">Ne pas remplir ce champ</label>
+            <input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <fieldset class="chips">
+            <legend>Votre projet</legend>
+            <label class="chip"><input type="radio" name="project" id="p-vitrine" value="Site vitrine" checked><span>Site vitrine</span></label>
+            <label class="chip"><input type="radio" name="project" id="p-shop" value="Boutique en ligne"><span>Boutique en ligne</span></label>
+            <label class="chip"><input type="radio" name="project" id="p-app" value="Application"><span>Application</span></label>
+            <label class="chip"><input type="radio" name="project" id="p-redo" value="Refonte de site"><span>Refonte</span></label>
+            <label class="chip"><input type="radio" name="project" id="p-other" value="Autre"><span>Autre</span></label>
+          </fieldset>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-name">Nom</label>
+              <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Camille Martin">
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="camille@exemple.fr">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="field">
+              <label for="f-phone">Téléphone <small>facultatif</small></label>
+              <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="06 12 34 56 78">
+            </div>
+            <div class="field">
+              <label for="f-budget">Budget</label>
+              <select id="f-budget" name="budget">
+                <option>Moins de 2 000 €</option>
+                <option selected>2 000 € à 5 000 €</option>
+                <option>5 000 € à 15 000 €</option>
+                <option>Plus de 15 000 €</option>
+                <option>Je ne sais pas encore</option>
+              </select>
+            </div>
           </div>
           <div class="field">
-            <label for="f-budget">Budget</label>
-            <select id="f-budget" name="budget">
-              <option>Moins de 2 000 €</option>
-              <option selected>2 000 € à 5 000 €</option>
-              <option>5 000 € à 15 000 €</option>
-              <option>Plus de 15 000 €</option>
-              <option>Je ne sais pas encore</option>
-            </select>
+            <label for="f-message">Votre projet en quelques mots</label>
+            <textarea id="f-message" name="message" rows="4" required placeholder="Votre activité, ce que vous voulez créer, pour quand…"></textarea>
           </div>
-        </div>
-        <div class="field">
-          <label for="f-message">Votre projet en quelques mots</label>
-          <textarea id="f-message" name="message" required placeholder="Votre activité, ce que vous voulez créer, pour quand…"></textarea>
-        </div>
-        <button class="btn btn-brand btn-block" type="submit">Envoyer ma demande <span class="btn-ico"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></button>
-        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-        <p class="form-notice">
-          Vos informations servent uniquement à répondre à votre demande et à établir un devis. Elles ne sont jamais revendues et sont supprimées 3 ans après notre dernier échange. Vous pouvez y accéder, les corriger ou les effacer en écrivant à youcefmlpro@gmail.com, ou saisir la CNIL. Si vous donnez votre numéro, vous pouvez vous inscrire gratuitement sur Bloctel (bloctel.gouv.fr).
-          <a href="confidentialite.html">Politique de confidentialité</a>
-        </p>
-      </form>
+          <button class="btn-submit" type="submit">Envoyer ma demande <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+          <p class="form-notice">
+            Vos informations servent uniquement à répondre à votre demande et à établir un devis. Elles ne sont jamais revendues et sont supprimées 3 ans après notre dernier échange. Vous pouvez y accéder, les corriger ou les effacer en écrivant à youcefmlpro@gmail.com, ou saisir la CNIL. Si vous donnez votre numéro, vous pouvez vous inscrire gratuitement sur Bloctel (bloctel.gouv.fr).
+            <a href="confidentialite.html">Politique de confidentialité</a>
+          </p>
+        </form>
+      </div>
     </div>
   </section>
 </main>
@@ -540,6 +558,115 @@
         if (visible) start(); else running = false;
       }).observe(stage);
     } else { start(); }
+  })();
+
+  // Globe filaire de la section contact (projection orthographique sur canvas, tracés world-atlas hébergés sur le site)
+  (function () {
+    var canvas = document.getElementById("globe");
+    if (!canvas || !canvas.getContext) return;
+    var box = canvas.parentElement;
+    var ctx = canvas.getContext("2d");
+    var RAD = Math.PI / 180;
+    var arcs = null;             // pour chaque tracé : [λ0, cosφ0, sinφ0, λ1, cosφ1, sinφ1, …]
+    var rot = [-2, -6];          // comme d3 : centre du globe en (-rot[0], -rot[1]), l'Europe face à nous au départ
+    var W = 0, H = 0, dpr = 1, color = "#0E0E0F";
+    var visible = false, dragging = false, last = 0, lastX = 0, lastY = 0, running = false, loading = false;
+
+    function resize() {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      W = box.clientWidth; H = box.clientHeight;
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      color = getComputedStyle(box).color;
+      draw();
+    }
+
+    function draw() {
+      if (!arcs || !W) return;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+      var R = W / 2 * .9, cx = W / 2, cy = W / 2;
+      var l0 = -rot[0] * RAD, p0 = -rot[1] * RAD, sp0 = Math.sin(p0), cp0 = Math.cos(p0);
+      ctx.strokeStyle = color;
+      ctx.lineJoin = "round";
+      // Frontières et côtes (face visible seulement)
+      ctx.globalAlpha = 1; ctx.lineWidth = .6;
+      ctx.beginPath();
+      for (var a = 0; a < arcs.length; a++) {
+        var arc = arcs[a], pen = false;
+        for (var i = 0; i < arc.length; i += 3) {
+          var dl = arc[i] - l0, cosdl = Math.cos(dl), cp = arc[i + 1], sp = arc[i + 2];
+          if (sp0 * sp + cp0 * cp * cosdl < 0) { pen = false; continue; }
+          var x = cx + R * cp * Math.sin(dl);
+          var y = cy - R * (cp0 * sp - sp0 * cp * cosdl);
+          if (pen) ctx.lineTo(x, y); else { ctx.moveTo(x, y); pen = true; }
+        }
+      }
+      ctx.stroke();
+      // Contour de la sphère
+      ctx.globalAlpha = .8; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.stroke();
+    }
+
+    function frame(t) {
+      if (!running) return;
+      var dt = Math.min((t - (last || t)) / 1000, .05);
+      last = t;
+      if (!dragging) rot[0] = (rot[0] + .45 * 60 * dt) % 360;  // 0,45° par image à 60 i/s, comme le composant
+      draw();
+      requestAnimationFrame(frame);
+    }
+    function play() {
+      if (reduceMotion || !visible || running || !arcs) return;
+      running = true; last = 0; requestAnimationFrame(frame);
+    }
+
+    function load() {
+      if (loading) return;
+      loading = true;
+      fetch("assets/data/world-110m.json").then(function (r) { return r.json(); }).then(function (d) {
+        var sx = d.scale[0], sy = d.scale[1], tx = d.translate[0], ty = d.translate[1];
+        arcs = d.arcs.map(function (q) {
+          var out = [], x = 0, y = 0;
+          for (var i = 0; i < q.length; i += 2) {
+            x += q[i]; y += q[i + 1];
+            var lon = (x * sx + tx) * RAD, lat = (y * sy + ty) * RAD;
+            out.push(lon, Math.cos(lat), Math.sin(lat));
+          }
+          return out;
+        });
+        resize();
+        canvas.classList.add("ready");
+        play();
+      }).catch(function () { box.hidden = true; });
+    }
+
+    // Glisser pour faire tourner le globe (souris et doigt ; le défilement vertical reste libre sur mobile)
+    canvas.addEventListener("pointerdown", function (e) {
+      dragging = true; lastX = e.clientX; lastY = e.clientY;
+      canvas.setPointerCapture(e.pointerId);
+    });
+    canvas.addEventListener("pointermove", function (e) {
+      if (!dragging) return;
+      rot[0] += (e.clientX - lastX) * .5;
+      rot[1] = Math.max(-90, Math.min(90, rot[1] - (e.clientY - lastY) * .5));
+      lastX = e.clientX; lastY = e.clientY;
+      if (!running) draw();
+    });
+    ["pointerup", "pointercancel", "lostpointercapture"].forEach(function (type) {
+      canvas.addEventListener(type, function () { dragging = false; });
+    });
+
+    if ("ResizeObserver" in window) new ResizeObserver(resize).observe(box); else window.addEventListener("resize", resize);
+    if ("IntersectionObserver" in window) {
+      // Les tracés se chargent à l'approche de la section, et l'animation ne tourne que si le globe est visible
+      new IntersectionObserver(function (entries) {
+        if (entries[0].isIntersecting) load();
+      }, { rootMargin: "600px 0px" }).observe(box);
+      new IntersectionObserver(function (entries) {
+        visible = entries[0].isIntersecting;
+        if (visible) play(); else running = false;
+      }).observe(box);
+    } else { visible = true; load(); }
   })();
 
   document.getElementById("year").textContent = new Date().getFullYear();

@@ -17,6 +17,7 @@ Site statique (HTML, CSS, JavaScript), sans cookie ni traceur : les polices sont
 | `assets/styles.css` | Styles communs |
 | `assets/img/` | Captures des démos Citrine affichées sur l'accueil (à régénérer si les démos changent) |
 | `assets/img/hero/` | 20 photos Unsplash (licence Unsplash) du héros animé, en WebP 216 × 306 |
+| `assets/data/world-110m.json` | Tracés des pays pour le globe de la section contact (Natural Earth via world-atlas 2.0.2, arcs TopoJSON quantifiés) |
 
 ## Mise en ligne avec GitHub Pages
 
