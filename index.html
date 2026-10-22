@@ -20,6 +20,7 @@
   <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.8l2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></symbol>
   <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
 </svg>
 
@@ -153,44 +154,56 @@
 
   <section class="section section-tight" id="offres" aria-labelledby="offers-title">
     <div class="wrap">
-      <div class="head" data-reveal>
+      <div class="head head-center" data-reveal>
         <h2 id="offers-title">Des prix clairs, dès le départ.</h2>
-        <p>Un point de départ pour estimer votre budget. Votre devis final est gratuit et sans engagement.</p>
+        <p>Un point de départ pour estimer votre budget.<br>Votre devis final est gratuit, détaillé et sans engagement.</p>
       </div>
-      <div class="plans">
-        <article class="plan" data-reveal>
-          <h3>Boutique en ligne</h3>
-          <p class="plan-desc">Pour vendre vos produits 24&nbsp;h/24.</p>
-          <p class="price"><small>dès</small> 3&nbsp;490&nbsp;€ <small>HT</small></p>
-          <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Catalogue et fiches produits</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Paiement sécurisé (Stripe, PayPal)</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Gestion des commandes et des stocks</li>
+      <div class="pricing">
+        <article class="pc pc-0" data-reveal>
+          <h3 class="pc-name">Boutique en ligne</h3>
+          <p class="pc-price"><span class="price-num" data-count="3490">3&#8239;490</span><span class="price-cur">€</span></p>
+          <span class="price-period">HT · prix de départ</span>
+          <ul class="pc-feats">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Tout le contenu de la formule vitrine</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Catalogue et fiches produits</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Paiement sécurisé (Stripe, PayPal)</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Gestion des commandes et des stocks</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Suivi des ventes et des visites</span></li>
           </ul>
-          <a class="btn btn-line" href="#contact" data-plan="Boutique en ligne">Choisir</a>
+          <hr>
+          <a class="btn btn-line" href="#contact" data-plan="Boutique en ligne">Choisir cette formule</a>
+          <p class="pc-desc">Pour les marques et commerces qui veulent un vrai canal de vente.</p>
         </article>
-        <article class="plan plan-featured" data-reveal>
-          <span class="plan-flag">Idéal pour démarrer</span>
-          <h3>Site vitrine</h3>
-          <p class="plan-desc">Pour présenter votre activité et recevoir des demandes.</p>
-          <p class="price"><small>dès</small> 1&nbsp;490&nbsp;€ <small>HT</small></p>
-          <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Jusqu'à 6 pages sur mesure</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Formulaire de contact et fiche Google</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Back-office simple pour tout modifier</li>
+        <article class="pc pc-1 pc-popular" data-reveal>
+          <span class="pc-flag"><svg aria-hidden="true"><use href="#i-star"/></svg>Idéal pour démarrer</span>
+          <h3 class="pc-name">Site vitrine</h3>
+          <p class="pc-price"><span class="price-num" data-count="1490">1&#8239;490</span><span class="price-cur">€</span></p>
+          <span class="price-period">HT · prix de départ</span>
+          <ul class="pc-feats">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Jusqu'à 6 pages sur mesure</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Adapté au mobile et à la tablette</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Formulaire de contact et fiche Google</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Référencement de base</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Back-office et formation d'1&nbsp;h</span></li>
           </ul>
-          <a class="btn btn-brand" href="#contact" data-plan="Site vitrine">Choisir <span class="btn-ico"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <hr>
+          <a class="btn btn-brand" href="#contact" data-plan="Site vitrine">Choisir cette formule <span class="btn-ico"><svg aria-hidden="true"><use href="#i-arrow"/></svg></span></a>
+          <p class="pc-desc">Idéal pour les indépendants, artisans, commerces et professions libérales.</p>
         </article>
-        <article class="plan" data-reveal>
-          <h3>Sur mesure</h3>
-          <p class="plan-desc">Application mobile, espace client, réservation…</p>
-          <p class="price">Sur devis</p>
-          <ul>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Prototype cliquable avant développement</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>iPhone, Android et web</li>
-            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Publication sur les stores</li>
+        <article class="pc pc-2" data-reveal>
+          <h3 class="pc-name">Sur mesure</h3>
+          <p class="pc-price"><span class="price-num">Sur devis</span></p>
+          <span class="price-period">selon votre projet</span>
+          <ul class="pc-feats">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Cahier des charges rédigé avec vous</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Prototype cliquable avant développement</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>iPhone, Android et web</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>API, back-office et intégrations</span></li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg><span>Publication sur les stores</span></li>
           </ul>
-          <a class="btn btn-line" href="#contact" data-plan="Application">En parler</a>
+          <hr>
+          <a class="btn btn-line" href="#contact" data-plan="Application">Décrire mon projet</a>
+          <p class="pc-desc">Application mobile, espace client, réservation ou outil interne.</p>
         </article>
       </div>
       <p class="care" data-reveal><strong>Maintenance &amp; hébergement</strong> sauvegardes, sécurité et petites évolutions, sans engagement. <b>dès 49&nbsp;€&nbsp;HT/mois</b></p>
@@ -350,12 +363,32 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
+  // Prix qui défilent jusqu'à leur valeur à l'apparition de la carte
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function countUp(el) {
+    var target = Number(el.getAttribute("data-count"));
+    var start = null;
+    function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " "); }
+    function frame(t) {
+      if (start === null) start = t;
+      var p = Math.min((t - start) / 1400, 1);
+      el.textContent = fmt(Math.round(target * (1 - Math.pow(1 - p, 4)) / 10) * 10);
+      if (p < 1) requestAnimationFrame(frame); else el.textContent = fmt(target);
+    }
+    el.textContent = fmt(0);
+    setTimeout(function () { requestAnimationFrame(frame); }, 350);
+  }
+
   // Apparition des blocs au défilement
   var items = document.querySelectorAll("[data-reveal]");
   if ("IntersectionObserver" in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); }
+        if (!en.isIntersecting) return;
+        en.target.classList.add("in");
+        io.unobserve(en.target);
+        var num = en.target.querySelector("[data-count]");
+        if (num && !reduceMotion) countUp(num);
       });
     }, { rootMargin: "0px 0px -8% 0px" });
     items.forEach(function (el) { io.observe(el); });
