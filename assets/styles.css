@@ -1,7 +1,5 @@
 /* Polices hébergées sur le site (aucune requête vers un serveur tiers). Licence SIL OFL 1.1, voir fonts/OFL.txt. */
-@font-face { font-family: "Bricolage Grotesque"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("fonts/bricolage-grotesque-latin-opsz-normal.woff2") format("woff2"); }
-@font-face { font-family: "Instrument Sans"; font-style: normal; font-weight: 400 700; font-display: swap; src: url("fonts/instrument-sans-latin-wght-normal.woff2") format("woff2"); }
-@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 100 900; font-display: swap; src: url("fonts/fraunces-latin-opsz-italic.woff2") format("woff2"); }
+@font-face { font-family: "Plus Jakarta Sans"; font-style: normal; font-weight: 200 800; font-display: swap; src: url("fonts/plus-jakarta-sans-latin-wght-normal.woff2") format("woff2"); }
 
 /* Direction : papier chaud, encre noire, un seul bleu vif. Gros titres serrés, un mot en italique serif par titre clé. Vraies captures des démos plutôt que des maquettes. */
 :root {
@@ -16,9 +14,8 @@
   --dark: #0E0E0F;
   --on-dark: #F4F2EE;
   --on-dark-soft: #A9A59E;
-  --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
-  --body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
-  --serif: "Fraunces", Georgia, serif;
+  --display: "Plus Jakarta Sans", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --body: "Plus Jakarta Sans", "Helvetica Neue", Arial, sans-serif;
   --r: 20px;
   --ease: cubic-bezier(.22, .8, .24, 1);
   color-scheme: light;
@@ -39,8 +36,9 @@ body {
 img, svg { max-width: 100%; display: block; }
 a { color: inherit; }
 button, input, select, textarea { font: inherit; color: inherit; }
-h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1; margin: 0; letter-spacing: -.035em; text-wrap: balance; }
-h1 em, h2 em { font-family: var(--serif); font-style: italic; font-weight: 500; letter-spacing: -.02em; color: var(--brand); }
+h1, h2, h3 { font-family: var(--display); font-weight: 800; line-height: 1.02; margin: 0; letter-spacing: -.035em; text-wrap: balance; }
+h3 { font-weight: 700; }
+h1 em, h2 em { font-style: normal; color: var(--brand); }
 p, ul, ol { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
@@ -92,7 +90,7 @@ ul, ol { padding: 0; list-style: none; }
 }
 .site-header.scrolled { border-bottom-color: var(--line); }
 .header-inner { display: flex; align-items: center; gap: 1.5rem; min-height: 72px; }
-.logo { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font-family: var(--display); font-weight: 700; font-size: 1.55rem; letter-spacing: -.05em; margin-right: auto; }
+.logo { display: inline-flex; align-items: center; gap: .55rem; text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.5rem; letter-spacing: -.05em; margin-right: auto; }
 .mark { width: 32px; height: 32px; flex: none; transition: transform .5s var(--ease); }
 .logo:hover .mark { transform: rotate(90deg); }
 .mark .m-bg { fill: var(--brand); }
@@ -185,7 +183,7 @@ ul, ol { padding: 0; list-style: none; }
 
 .hero-facts { padding-block: clamp(40px, 6vw, 72px) clamp(56px, 8vw, 96px); }
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; padding-top: 28px; border-top: 1px solid var(--line); }
-.facts strong { display: block; font-family: var(--display); font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.facts strong { display: block; font-family: var(--display); font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.045em; line-height: 1; }
 .facts span { display: block; margin-top: .5rem; font-size: .9375rem; color: var(--ink-soft); max-width: 16rem; }
 @media (max-width: 640px) {
   .facts { grid-template-columns: minmax(0, 1fr); gap: 0; padding-top: 0; }
@@ -197,7 +195,7 @@ ul, ol { padding: 0; list-style: none; }
 /* Bandeau défilant */
 .marquee { overflow: hidden; background: var(--ink); color: var(--on-dark); padding-block: clamp(18px, 2.4vw, 28px); }
 .marquee-track { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); width: max-content; animation: marquee 38s linear infinite; }
-.marquee span { font-family: var(--display); font-weight: 600; font-size: clamp(1.5rem, 3.6vw, 2.75rem); letter-spacing: -.035em; white-space: nowrap; }
+.marquee span { font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3.6vw, 2.75rem); letter-spacing: -.035em; white-space: nowrap; }
 .marquee i { font-style: normal; color: var(--sun); font-size: clamp(1rem, 2vw, 1.5rem); }
 @keyframes marquee { to { transform: translateX(calc(-50% - clamp(10px, 1.5vw, 20px))); } }
 
@@ -279,7 +277,7 @@ ul, ol { padding: 0; list-style: none; }
 .pricing { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; align-items: start; perspective: 1400px; }
 .pc { position: relative; display: flex; flex-direction: column; align-items: center; padding: 28px 26px; border-radius: 24px; border: 1px solid var(--line); background: var(--surface); text-align: center; }
 .pc-name { font-family: var(--body); font-size: .9375rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
-.pc-price { display: flex; align-items: flex-start; justify-content: center; gap: .15em; margin-top: 1.25rem; font-family: var(--display); font-weight: 700; letter-spacing: -.05em; line-height: 1; }
+.pc-price { display: flex; align-items: flex-start; justify-content: center; gap: .15em; margin-top: 1.25rem; font-family: var(--display); font-weight: 800; letter-spacing: -.05em; line-height: 1; }
 .price-num { font-size: clamp(3rem, 5vw, 3.75rem); }
 .price-cur { font-size: 1.75rem; margin-top: .3em; }
 .pc-2 .price-num { font-size: clamp(2.6rem, 4.4vw, 3.25rem); }
